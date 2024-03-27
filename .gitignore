@@ -1,0 +1,12 @@
+*.vim
+._.DS_Store
+.DS_Store
+*cache
+*cache/
+__pychache__/
+__pychache__
+*/__pychache__/
+*/__pychache__
+*.pyc
+
+
