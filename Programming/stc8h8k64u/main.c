@@ -1,28 +1,27 @@
 #include "project-defs.h"
 
-
-void main() {
+void main(void) {
 
   // INITs
 	INIT_EXTENDED_SFR();
-  interrupts_init();
+  EA = 1; // enable interrupts
   serialConsoleInitialise(
       CONSOLE_UART, 
       CONSOLE_SPEED, 
       CONSOLE_PIN_CONFIG
       );
   gpio_init();
+  NRF24L01_Init();
 
   // Main Routine
   while (1) {
 
-    gpioWrite(&test_pin, 0);
-    delay1ms(30);
-    gpioWrite(&test_pin, 1);
-    delay1ms(30);
+    tssstt_on();
+    delay1ms(500);
+    tssstt_off();
+    delay1ms(500);
 
 
   }
 
-  return;
 }
