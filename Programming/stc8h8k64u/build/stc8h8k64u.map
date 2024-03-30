@@ -1,0 +1,852 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  _test_p                         
+C:   00000000  _test_pin                       
+C:   00000000  l_BSEG                          
+C:   00000000  l_BSEG_BYTES                    
+C:   00000000  l_CABS                          
+C:   00000000  l_CONST                         
+C:   00000000  l_GSINIT1                       
+C:   00000000  l_GSINIT5                       
+C:   00000000  l_IABS                          
+C:   00000000  l_PSEG                          
+C:   00000000  l_REG_BANK_1                    
+C:   00000000  l_REG_BANK_2                    
+C:   00000000  l_REG_BANK_3                    
+C:   00000000  l_RSEG                          
+C:   00000000  l_RSEG0                         
+C:   00000000  l_RSEG1                         
+C:   00000000  l_XABS                          
+C:   00000000  l_XINIT                         
+C:   00000000  l_XISEG                         
+C:   00000000  l__CODE                         
+C:   00000000  s_BSEG                          
+C:   00000000  s_CABS                          
+C:   00000000  s_DSEG                          
+C:   00000000  s_HOME                          
+C:   00000000  s_IABS                          
+C:   00000000  s_PSEG                          
+C:   00000000  s_REG_BANK_0                    
+C:   00000000  s_RSEG                          
+C:   00000000  s_RSEG0                         
+C:   00000000  s_RSEG1                         
+C:   00000000  s_XABS                          
+C:   00000000  s_XSEG                          
+C:   00000001  l_BIT_BANK                      
+C:   00000003  l_GSFINAL                       
+C:   00000003  l_GSINIT0                       
+C:   00000004  l_OSEG                          
+C:   00000008  l_REG_BANK_0                    
+C:   00000008  s_REG_BANK_1                    
+C:   0000000A  l_GSINIT2                       
+C:   00000010  s_REG_BANK_2                    
+C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BIT_BANK                      
+C:   00000020  s_BSEG_BYTES                    
+C:   00000020  s__CODE                         
+C:   00000021  l_GSINIT3                       
+C:   00000021  s_OSEG                          
+C:   00000025  s_ISEG                          
+C:   00000029  l_HOME                          
+C:   00000029  s_GSINIT0                       
+C:   0000002A  l_GSINIT4                       
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000002C  s_GSINIT1                       
+C:   0000002C  s_GSINIT2                       
+C:   00000030  l_ISEG                          
+C:   00000036  s_GSINIT3                       
+C:   0000003C  l_GSINIT                        
+C:   00000055  s_SSEG                          
+C:   00000057  s_GSINIT4                       
+C:   00000070  l_SSEG                          
+C:   00000080  l_DSEG                          
+C:   00000081  s_GSINIT                        
+C:   00000081  s_GSINIT5                       
+C:   0000009E  l_XSEG                          
+C:   0000009E  s_XISEG                         
+C:   000000BD  s_GSFINAL                       
+C:   000000C0  s_CSEG                          
+C:   00000100  l_IRAM                          
+C:   00001B8A  l_CSEG                          
+C:   00001C4A  s_CONST                         
+C:   00001C4A  s_XINIT                         
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _startup
+     00000081  _SP                                gpio_settings
+     00000082  _DPL                               gpio_settings
+     00000083  _DPH                               gpio_settings
+     00000084  _S4CON                             gpio_settings
+     00000085  _S4BUF                             gpio_settings
+     00000087  _PCON                              gpio_settings
+     00000088  _INT0TR                            gpio_settings
+     00000088  _TCON                              gpio_settings
+     00000089  _TMOD                              gpio_settings
+     0000008A  _INT1TR                            gpio_settings
+     0000008A  _T0L                               gpio_settings
+     0000008B  _T1L                               gpio_settings
+     0000008C  _T0H                               gpio_settings
+     0000008C  _T0RUN                             gpio_settings
+     0000008D  _T1H                               gpio_settings
+     0000008E  _AUXR                              gpio_settings
+     0000008E  _T1RUN                             gpio_settings
+     0000008F  _INT_CLKO                          gpio_settings
+     00000090  _P1                                gpio_settings
+     00000090  _P1_0                              gpio_settings
+     00000091  _P1M1                              gpio_settings
+     00000091  _P1_1                              gpio_settings
+     00000092  _P1M0                              gpio_settings
+     00000092  _P1_2                              gpio_settings
+     00000093  _P1_3                              gpio_settings
+     00000094  _P1_4                              gpio_settings
+     00000095  _P1_5                              gpio_settings
+     00000095  _P2M1                              gpio_settings
+     00000096  _P1_6                              gpio_settings
+     00000096  _P2M0                              gpio_settings
+     00000097  _P1_7                              gpio_settings
+     00000098  _S1CON                             gpio_settings
+     00000099  _S1BUF                             gpio_settings
+     0000009A  _S2CON                             gpio_settings
+     0000009B  _S2BUF                             gpio_settings
+     0000009D  _IRCBAND                           gpio_settings
+     0000009E  _LIRTRIM                           gpio_settings
+     0000009F  _IRTRIM                            gpio_settings
+     0000009F  _S1SM0_FE                          gpio_settings
+     000000A0  _P2                                gpio_settings
+     000000A0  _P2_0                              gpio_settings
+     000000A0  __XPAGE                            
+     000000A1  _BUS_SPEED                         gpio_settings
+     000000A1  _P2_1                              gpio_settings
+     000000A2  _P2_2                              gpio_settings
+     000000A2  _P_SW1                             gpio_settings
+     000000A3  _P2_3                              gpio_settings
+     000000A4  _P2_4                              gpio_settings
+     000000A5  _P2_5                              gpio_settings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000A6  _P2_6                              gpio_settings
+     000000A7  _P2_7                              gpio_settings
+     000000A8  _IE1                               gpio_settings
+     000000A8  _INT0IE                            gpio_settings
+     000000A9  _SADDR                             gpio_settings
+     000000A9  _T0IE                              gpio_settings
+     000000AA  _INT1IE                            gpio_settings
+     000000AA  _WKTCL                             gpio_settings
+     000000AB  _T1IE                              gpio_settings
+     000000AB  _WKTCH                             gpio_settings
+     000000AC  _S3CON                             gpio_settings
+     000000AD  _S3BUF                             gpio_settings
+     000000AE  _TA                                gpio_settings
+     000000AF  _EA                                gpio_settings
+     000000AF  _IE2                               gpio_settings
+     000000B0  _P3                                gpio_settings
+     000000B0  _P3_0                              gpio_settings
+     000000B1  _P3M1                              gpio_settings
+     000000B1  _P3_1                              gpio_settings
+     000000B2  _P3M0                              gpio_settings
+     000000B2  _P3_2                              gpio_settings
+     000000B3  _P3_3                              gpio_settings
+     000000B4  _P3_4                              gpio_settings
+     000000B5  _IP2L                              gpio_settings
+     000000B5  _P3_5                              gpio_settings
+     000000B6  _IP2H                              gpio_settings
+     000000B6  _P3_6                              gpio_settings
+     000000B7  _IP1H                              gpio_settings
+     000000B7  _P3_7                              gpio_settings
+     000000B8  _IP1L                              gpio_settings
+     000000B9  _SADEN                             gpio_settings
+     000000BA  _P_SW2                             gpio_settings
+     000000BC  _ADC_CONTR                         gpio_settings
+     000000BD  _ADC_RESH                          gpio_settings
+     000000BE  _ADC_RESL                          gpio_settings
+     000000C1  _WDT_CONTR                         gpio_settings
+     000000C2  _IAP_DATA                          gpio_settings
+     000000C3  _IAP_ADDRH                         gpio_settings
+     000000C4  _IAP_ADDRL                         gpio_settings
+     000000C5  _IAP_CMD                           gpio_settings
+     000000C6  _IAP_TRIG                          gpio_settings
+     000000C7  _IAP_CONTR                         gpio_settings
+     000000C8  _P5                                gpio_settings
+     000000C8  _P5_0                              gpio_settings
+     000000C9  _P5M1                              gpio_settings
+     000000C9  _P5_1                              gpio_settings
+     000000CA  _P5M0                              gpio_settings
+     000000CA  _P5_2                              gpio_settings
+     000000CB  _P5_3                              gpio_settings
+     000000CC  _P5_4                              gpio_settings
+     000000CD  _P5_5                              gpio_settings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000CD  _SPSTAT                            gpio_settings
+     000000CE  _SPCTL                             gpio_settings
+     000000CF  _SPDAT                             gpio_settings
+     000000D0  _P                                 gpio_settings
+     000000D0  _PSW                               gpio_settings
+     000000D1  _F1                                gpio_settings
+     000000D1  _T4T3M                             gpio_settings
+     000000D2  _OV                                gpio_settings
+     000000D2  _T4H                               gpio_settings
+     000000D3  _RS0                               gpio_settings
+     000000D3  _T4L                               gpio_settings
+     000000D4  _RS1                               gpio_settings
+     000000D4  _T3H                               gpio_settings
+     000000D5  _F0                                gpio_settings
+     000000D5  _T3L                               gpio_settings
+     000000D6  _AC                                gpio_settings
+     000000D6  _T2H                               gpio_settings
+     000000D7  _CY                                gpio_settings
+     000000D7  _T2L                               gpio_settings
+     000000DC  _USBCLK                            gpio_settings
+     000000DE  _ADCCFG                            gpio_settings
+     000000DF  _IP3L                              gpio_settings
+     000000E0  _ACC                               gpio_settings
+     000000E3  _DPS                               gpio_settings
+     000000E4  _DPL1                              gpio_settings
+     000000E5  _DPH1                              gpio_settings
+     000000E6  _CMPCR1                            gpio_settings
+     000000E7  _CMPCR2                            gpio_settings
+     000000EC  _USBDAT                            gpio_settings
+     000000EE  _IP3H                              gpio_settings
+     000000EF  _AUXINTIF                          gpio_settings
+     000000F0  _B                                 gpio_settings
+     000000F4  _USBCON                            gpio_settings
+     000000F5  _B_5                               _gptrget
+     000000F5  _IAP_TPS                           gpio_settings
+     000000F6  _B_6                               _gptrget
+     000000F7  _B_7                               _gptrget
+     000000FA  _DMA_ADC_AMT                       gpio_settings
+     000000FC  _USBADR                            gpio_settings
+     000000FF  _RSTCFG                            gpio_settings
+     00008382  _DP                                gpio_settings
+     00008C8A  _T0                                gpio_settings
+     00008D8B  _T1                                gpio_settings
+     0000ABAA  _WKTC                              gpio_settings
+     0000BDBE  _ADC_RES                           gpio_settings
+     0000C3C4  _IAP_ADDR                          gpio_settings
+     0000D2D3  _T4                                gpio_settings
+     0000D4D5  _T3                                gpio_settings
+     0000D6D7  _T2                                gpio_settings
+     0000FA00  _DMA_M2M_CFG                       gpio_settings
+     0000FA01  _DMA_M2M_CR                        gpio_settings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FA02  _DMA_M2M_STA                       gpio_settings
+     0000FA03  _DMA_M2M_AMT                       gpio_settings
+     0000FA04  _DMA_M2M_DONE                      gpio_settings
+     0000FA05  _DMA_M2M_TXAH                      gpio_settings
+     0000FA06  _DMA_M2M_TXAL                      gpio_settings
+     0000FA07  _DMA_M2M_RXAH                      gpio_settings
+     0000FA08  _DMA_M2M_RXAL                      gpio_settings
+     0000FA10  _DMA_ADC_CFG                       gpio_settings
+     0000FA11  _DMA_ADC_CR                        gpio_settings
+     0000FA12  _DMA_ADC_STA                       gpio_settings
+     0000FA17  _DMA_ADC_RXAH                      gpio_settings
+     0000FA18  _DMA_ADC_RXAL                      gpio_settings
+     0000FA19  _DMA_ADC_CFG2                      gpio_settings
+     0000FA1A  _DMA_ADC_CHSW0                     gpio_settings
+     0000FA1B  _DMA_ADC_CHSW1                     gpio_settings
+     0000FA20  _DMA_SPI_CFG                       gpio_settings
+     0000FA21  _DMA_SPI_CR                        gpio_settings
+     0000FA22  _DMA_SPI_STA                       gpio_settings
+     0000FA23  _DMA_SPI_AMT                       gpio_settings
+     0000FA24  _DMA_SPI_DONE                      gpio_settings
+     0000FA25  _DMA_SPI_TXAH                      gpio_settings
+     0000FA26  _DMA_SPI_TXAL                      gpio_settings
+     0000FA27  _DMA_SPI_RXAH                      gpio_settings
+     0000FA28  _DMA_SPI_RXAL                      gpio_settings
+     0000FA29  _DMA_SPI_CFG2                      gpio_settings
+     0000FA30  _DMA_UR1T_CFG                      gpio_settings
+     0000FA30  _DMA_UR2T_CFG                      gpio_settings
+     0000FA30  _DMA_UR3T_CFG                      gpio_settings
+     0000FA30  _DMA_UR4T_CFG                      gpio_settings
+     0000FA31  _DMA_UR1T_CR                       gpio_settings
+     0000FA31  _DMA_UR2T_CR                       gpio_settings
+     0000FA31  _DMA_UR3T_CR                       gpio_settings
+     0000FA31  _DMA_UR4T_CR                       gpio_settings
+     0000FA32  _DMA_UR1T_STA                      gpio_settings
+     0000FA32  _DMA_UR2T_STA                      gpio_settings
+     0000FA32  _DMA_UR3T_STA                      gpio_settings
+     0000FA32  _DMA_UR4T_STA                      gpio_settings
+     0000FA33  _DMA_UR2T_AMT                      gpio_settings
+     0000FA33  _DMA_UR3T_AMT                      gpio_settings
+     0000FA33  _DMA_UR4T_AMT                      gpio_settings
+     0000FA33  _DMA_URTX_AMT                      gpio_settings
+     0000FA34  _DMA_UR1T_DONE                     gpio_settings
+     0000FA34  _DMA_UR2T_DONE                     gpio_settings
+     0000FA34  _DMA_UR3T_DONE                     gpio_settings
+     0000FA34  _DMA_UR4T_DONE                     gpio_settings
+     0000FA35  _DMA_UR1T_TXAH                     gpio_settings
+     0000FA35  _DMA_UR2T_TXAH                     gpio_settings
+     0000FA35  _DMA_UR3T_TXAH                     gpio_settings
+     0000FA35  _DMA_UR4T_TXAH                     gpio_settings
+     0000FA36  _DMA_UR1T_TXAL                     gpio_settings
+     0000FA36  _DMA_UR2T_TXAL                     gpio_settings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FA36  _DMA_UR3T_TXAL                     gpio_settings
+     0000FA36  _DMA_UR4T_TXAL                     gpio_settings
+     0000FA38  _DMA_UR1R_CFG                      gpio_settings
+     0000FA38  _DMA_UR2R_CFG                      gpio_settings
+     0000FA38  _DMA_UR3R_CFG                      gpio_settings
+     0000FA38  _DMA_UR4R_CFG                      gpio_settings
+     0000FA39  _DMA_UR1R_CR                       gpio_settings
+     0000FA39  _DMA_UR2R_CR                       gpio_settings
+     0000FA39  _DMA_UR3R_CR                       gpio_settings
+     0000FA39  _DMA_UR4R_CR                       gpio_settings
+     0000FA3A  _DMA_UR1R_STA                      gpio_settings
+     0000FA3A  _DMA_UR2R_STA                      gpio_settings
+     0000FA3A  _DMA_UR3R_STA                      gpio_settings
+     0000FA3A  _DMA_UR4R_STA                      gpio_settings
+     0000FA3B  _DMA_UR1R_AMT                      gpio_settings
+     0000FA3B  _DMA_UR2R_AMT                      gpio_settings
+     0000FA3B  _DMA_UR3R_AMT                      gpio_settings
+     0000FA3B  _DMA_UR4R_AMT                      gpio_settings
+     0000FA3C  _DMA_UR1R_DONE                     gpio_settings
+     0000FA3C  _DMA_UR2R_DONE                     gpio_settings
+     0000FA3C  _DMA_UR3R_DONE                     gpio_settings
+     0000FA3C  _DMA_UR4R_DONE                     gpio_settings
+     0000FA3D  _DMA_UR1R_TXAH                     gpio_settings
+     0000FA3D  _DMA_UR2R_TXAH                     gpio_settings
+     0000FA3D  _DMA_UR3R_TXAH                     gpio_settings
+     0000FA3D  _DMA_UR4R_TXAH                     gpio_settings
+     0000FA3E  _DMA_UR1R_TXAL                     gpio_settings
+     0000FA3E  _DMA_UR2R_TXAL                     gpio_settings
+     0000FA3E  _DMA_UR3R_TXAL                     gpio_settings
+     0000FA3E  _DMA_UR4R_TXAL                     gpio_settings
+     0000FA70  _DMA_LCM_CFG                       gpio_settings
+     0000FA71  _DMA_LCM_CR                        gpio_settings
+     0000FA72  _DMA_LCM_STA                       gpio_settings
+     0000FA73  _DMA_LCM_AMT                       gpio_settings
+     0000FA74  _DMA_LCM_DONE                      gpio_settings
+     0000FA75  _DMA_LCM_TXAH                      gpio_settings
+     0000FA76  _DMA_LCM_TXAL                      gpio_settings
+     0000FA77  _DMA_LCM_RXAH                      gpio_settings
+     0000FA78  _DMA_LCM_RXAL                      gpio_settings
+     0000FCF0  _MD3                               gpio_settings
+     0000FCF1  _MD2                               gpio_settings
+     0000FCF2  _MD1                               gpio_settings
+     0000FCF3  _MD0                               gpio_settings
+     0000FCF4  _MD5                               gpio_settings
+     0000FCF5  _MD4                               gpio_settings
+     0000FCF6  _ARCON                             gpio_settings
+     0000FCF7  _OPCON                             gpio_settings
+     0000FD01  _P1INTE                            gpio_settings
+     0000FD02  _P2INTE                            gpio_settings
+     0000FD03  _P3INTE                            gpio_settings
+     0000FD05  _P5INTE                            gpio_settings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FD11  _P1INTF                            gpio_settings
+     0000FD12  _P2INTF                            gpio_settings
+     0000FD13  _P3INTF                            gpio_settings
+     0000FD15  _P5INTF                            gpio_settings
+     0000FD21  _P1IM0                             gpio_settings
+     0000FD22  _P2IM0                             gpio_settings
+     0000FD23  _P3IM0                             gpio_settings
+     0000FD25  _P5IM0                             gpio_settings
+     0000FD31  _P1IM1                             gpio_settings
+     0000FD32  _P2IM1                             gpio_settings
+     0000FD33  _P3IM1                             gpio_settings
+     0000FD35  _P5IM1                             gpio_settings
+     0000FD41  _P1WKUE                            gpio_settings
+     0000FD42  _P2WKUE                            gpio_settings
+     0000FD43  _P3WKUE                            gpio_settings
+     0000FD45  _P5WKUE                            gpio_settings
+     0000FD60  _PINIPL                            gpio_settings
+     0000FD61  _PINIPH                            gpio_settings
+     0000FE00  _CKSEL                             gpio_settings
+     0000FE01  _CLKDIV                            gpio_settings
+     0000FE02  _HIRCCR                            gpio_settings
+     0000FE03  _XOSCCR                            gpio_settings
+     0000FE04  _IRC32KCR                          gpio_settings
+     0000FE05  _MCLKOCR                           gpio_settings
+     0000FE06  _IRCDB                             gpio_settings
+     0000FE07  _IRC48MCR                          gpio_settings
+     0000FE08  _SPFUNC                            gpio_settings
+     0000FE09  _RSTFLAG                           gpio_settings
+     0000FE11  _P1PU                              gpio_settings
+     0000FE12  _P2PU                              gpio_settings
+     0000FE13  _P3PU                              gpio_settings
+     0000FE15  _P5PU                              gpio_settings
+     0000FE19  _P1NCS                             gpio_settings
+     0000FE1A  _P2NCS                             gpio_settings
+     0000FE1B  _P3NCS                             gpio_settings
+     0000FE1D  _P5NCS                             gpio_settings
+     0000FE21  _P1SR                              gpio_settings
+     0000FE22  _P2SR                              gpio_settings
+     0000FE23  _P3SR                              gpio_settings
+     0000FE25  _P5SR                              gpio_settings
+     0000FE29  _P1DR                              gpio_settings
+     0000FE2A  _P2DR                              gpio_settings
+     0000FE2B  _P3DR                              gpio_settings
+     0000FE2D  _P5DR                              gpio_settings
+     0000FE31  _P1IE                              gpio_settings
+     0000FE32  _P2IE                              gpio_settings
+     0000FE33  _P3IE                              gpio_settings
+     0000FE35  _P5IE                              gpio_settings
+     0000FE50  _LCMCFG                            gpio_settings
+     0000FE51  _LCMCFG2                           gpio_settings
+     0000FE52  _LCMCR                             gpio_settings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FE53  _LCMSTA                            gpio_settings
+     0000FE54  _LCMIDDAT                          gpio_settings
+     0000FE54  _LCMIDDATL                         gpio_settings
+     0000FE55  _LCMIDDATH                         gpio_settings
+     0000FE60  _RTCCR                             gpio_settings
+     0000FE61  _RTCCFG                            gpio_settings
+     0000FE62  _RTCIEN                            gpio_settings
+     0000FE63  _RTCIF                             gpio_settings
+     0000FE64  _ALAHOUR                           gpio_settings
+     0000FE65  _ALAMIN                            gpio_settings
+     0000FE66  _ALASEC                            gpio_settings
+     0000FE67  _ALASSEC                           gpio_settings
+     0000FE68  _INIYEAR                           gpio_settings
+     0000FE69  _INIMONTH                          gpio_settings
+     0000FE6A  _INIDAY                            gpio_settings
+     0000FE6B  _INIHOUR                           gpio_settings
+     0000FE6C  _INIMIN                            gpio_settings
+     0000FE6D  _INISEC                            gpio_settings
+     0000FE6E  _INISSEC                           gpio_settings
+     0000FE70  _YEAR                              gpio_settings
+     0000FE71  _MONTH                             gpio_settings
+     0000FE72  _DAY                               gpio_settings
+     0000FE73  _HOUR                              gpio_settings
+     0000FE74  _MIN                               gpio_settings
+     0000FE75  _SEC                               gpio_settings
+     0000FE76  _SSEC                              gpio_settings
+     0000FE80  _I2CCFG                            gpio_settings
+     0000FE81  _I2CMSCR                           gpio_settings
+     0000FE82  _I2CMSST                           gpio_settings
+     0000FE83  _I2CSLCR                           gpio_settings
+     0000FE84  _I2CSLST                           gpio_settings
+     0000FE85  _I2CSLADR                          gpio_settings
+     0000FE86  _I2CTXD                            gpio_settings
+     0000FE87  _I2CRXD                            gpio_settings
+     0000FE88  _I2CMSAUX                          gpio_settings
+     0000FEA2  _TM2PS                             gpio_settings
+     0000FEA3  _TM3PS                             gpio_settings
+     0000FEA4  _TM4PS                             gpio_settings
+     0000FEA8  _ADCTIM                            gpio_settings
+     0000FEAD  _ADCEXCFG                          gpio_settings
+     0000FEAE  _CMPEXCFG                          gpio_settings
+     0000FEB0  _PWMA_ETRPS                        gpio_settings
+     0000FEB1  _PWMA_ENO                          gpio_settings
+     0000FEB2  _PWMA_PS                           gpio_settings
+     0000FEB3  _PWMA_IOAUX                        gpio_settings
+     0000FEB4  _PWMB_ETRPS                        gpio_settings
+     0000FEB5  _PWMB_ENO                          gpio_settings
+     0000FEB6  _PWMB_PS                           gpio_settings
+     0000FEB7  _PWMB_IOAUX                        gpio_settings
+     0000FEC0  _PWMA_CR1                          gpio_settings
+     0000FEC1  _PWMA_CR2                          gpio_settings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FEC2  _PWMA_SMCR                         gpio_settings
+     0000FEC3  _PWMA_ETR                          gpio_settings
+     0000FEC4  _PWMA_IER                          gpio_settings
+     0000FEC5  _PWMA_SR1                          gpio_settings
+     0000FEC6  _PWMA_SR2                          gpio_settings
+     0000FEC7  _PWMA_EGR                          gpio_settings
+     0000FEC8  _PWMA_CCMR1                        gpio_settings
+     0000FEC9  _PWMA_CCMR2                        gpio_settings
+     0000FECA  _PWMA_CCMR3                        gpio_settings
+     0000FECB  _PWMA_CCMR4                        gpio_settings
+     0000FECC  _PWMA_CCER1                        gpio_settings
+     0000FECD  _PWMA_CCER2                        gpio_settings
+     0000FECE  _PWMA_CNTRH                        gpio_settings
+     0000FECF  _PWMA_CNTRL                        gpio_settings
+     0000FED0  _PWMA_PSCRH                        gpio_settings
+     0000FED1  _PWMA_PSCRL                        gpio_settings
+     0000FED2  _PWMA_ARRH                         gpio_settings
+     0000FED3  _PWMA_ARRL                         gpio_settings
+     0000FED4  _PWMA_RCR                          gpio_settings
+     0000FED5  _PWMA_CCR1H                        gpio_settings
+     0000FED6  _PWMA_CCR1L                        gpio_settings
+     0000FED7  _PWMA_CCR2H                        gpio_settings
+     0000FED8  _PWMA_CCR2L                        gpio_settings
+     0000FED9  _PWMA_CCR3H                        gpio_settings
+     0000FEDA  _PWMA_CCR3L                        gpio_settings
+     0000FEDB  _PWMA_CCR4H                        gpio_settings
+     0000FEDC  _PWMA_CCR4L                        gpio_settings
+     0000FEDD  _PWMA_BKR                          gpio_settings
+     0000FEDE  _PWMA_DTR                          gpio_settings
+     0000FEDF  _PWMA_OISR                         gpio_settings
+     0000FEE0  _PWMB_CR1                          gpio_settings
+     0000FEE1  _PWMB_CR2                          gpio_settings
+     0000FEE2  _PWMB_SMCR                         gpio_settings
+     0000FEE3  _PWMB_ETR                          gpio_settings
+     0000FEE4  _PWMB_IER                          gpio_settings
+     0000FEE5  _PWMB_SR1                          gpio_settings
+     0000FEE6  _PWMB_SR2                          gpio_settings
+     0000FEE7  _PWMB_EGR                          gpio_settings
+     0000FEE8  _PWMB_CCMR1                        gpio_settings
+     0000FEE9  _PWMB_CCMR2                        gpio_settings
+     0000FEEA  _PWMB_CCMR3                        gpio_settings
+     0000FEEB  _PWMB_CCMR4                        gpio_settings
+     0000FEEC  _PWMB_CCER1                        gpio_settings
+     0000FEED  _PWMB_CCER2                        gpio_settings
+     0000FEEE  _PWMB_CNTRH                        gpio_settings
+     0000FEEF  _PWMB_CNTRL                        gpio_settings
+     0000FEF0  _PWMB_PSCRH                        gpio_settings
+     0000FEF1  _PWMB_PSCRL                        gpio_settings
+     0000FEF2  _PWMB_ARRH                         gpio_settings
+     0000FEF3  _PWMB_ARRL                         gpio_settings
+     0000FEF4  _PWMB_RCR                          gpio_settings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FEF5  _PWMB_CCR1H                        gpio_settings
+     0000FEF6  _PWMB_CCR1L                        gpio_settings
+     0000FEF7  _PWMB_CCR2H                        gpio_settings
+     0000FEF8  _PWMB_CCR2L                        gpio_settings
+     0000FEF9  _PWMB_CCR3H                        gpio_settings
+     0000FEFA  _PWMB_CCR3L                        gpio_settings
+     0000FEFB  _PWMB_CCR4H                        gpio_settings
+     0000FEFC  _PWMB_CCR4L                        gpio_settings
+     0000FEFD  _PWMB_BKR                          gpio_settings
+     0000FEFE  _PWMB_DTR                          gpio_settings
+     0000FEFF  _PWMB_OISR                         gpio_settings
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+REG_BANK_0                          00000000    00000008 =           8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+BIT_BANK                            00000020    00000001 =           1. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    00000080 =         128. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000001F  _bp                                _bp
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+OSEG                                00000021    00000004 =           4. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+ISEG                                00000025    00000030 =          48. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000035  _UART1_receiveBuffer               uart_hal
+     0000004D  _UART1_transmitBuffer              uart_hal
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000055    00000070 =         112. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000055  __start__stack                     main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XSEG                                00000000    0000009E =         158. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   0000000A  _uartTransmitBufferHasBytesFree_   uart_hal
+D:   0000000F  _uartInitialise_PARM_2             uart_hal
+D:   00000013  _uartInitialise_PARM_3             uart_hal
+D:   00000014  _uartInitialise_PARM_4             uart_hal
+D:   00000015  _uartInitialise_PARM_5             uart_hal
+D:   0000001B  _uartGetBlock_PARM_2               uart_hal
+D:   0000001E  _uartGetBlock_PARM_3               uart_hal
+D:   0000001F  _uartGetBlock_PARM_4               uart_hal
+D:   00000021  _uartSendBlock_PARM_2              uart_hal
+D:   00000024  _uartSendBlock_PARM_3              uart_hal
+D:   00000025  _uartSendBlock_PARM_4              uart_hal
+D:   00000029  _startTimer_PARM_2                 timer_hal
+D:   0000002D  _startTimer_PARM_3                 timer_hal
+D:   0000002E  _startTimer_PARM_4                 timer_hal
+D:   0000002F  _startTimer_PARM_5                 timer_hal
+D:   00000037  _serialConsoleInitialise_PARM_2    serial_console
+D:   0000003B  _serialConsoleInitialise_PARM_3    serial_console
+D:   00000058  _gpio_pin_init_PARM_2              gpio_hal
+D:   00000059  _gpio_pin_init_PARM_3              gpio_hal
+D:   0000005A  _gpio_pin_init_PARM_4              gpio_hal
+D:   00000073  _gpioWrite_PARM_2                  gpio_hal
+D:   00000080  __divuint_PARM_2                   _divuint
+D:   00000087  __modulong_PARM_2                  _modulong
+D:   00000090  __divulong_PARM_2                  _divulong
+D:   0000009D  __gptrput_PARM_2                   _gptrput
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00000000    00000029 =          41. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000026  __sdcc_program_startup             main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT0                             00000029    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000029  __sdcc_gsinit_startup              
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT2                             0000002C    0000000A =          10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT3                             00000036    00000021 =          33. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000036  __mcs51_genXINIT                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT4                             00000057    0000002A =          42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000057  __mcs51_genRAMCLEAR                
+C:   0000005D  __mcs51_genXRAMCLEAR               
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT                              00000081    0000003C =          60. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             000000BD    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                000000C0    00001B8A =        7050. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000012C  _uartIsTransmissionComplete        uart_hal
+C:   00000156  _uartTransmitBufferHasBytesFree    uart_hal
+C:   00000188  _uartReceiveBufferBytes            uart_hal
+C:   000001B3  _uartFlushReceiveBuffer            uart_hal
+C:   000001CA  _uartInitialise                    uart_hal
+C:   000003B0  _uart1_isr                         uart_hal
+C:   00000453  _uartGetBlock                      uart_hal
+C:   000004BE  _uartSendBlock                     uart_hal
+C:   00000579  _startTimer                        timer_hal
+C:   00000932  _serialConsoleInitialise           serial_console
+C:   00000974  _putchar                           serial_console
+C:   000009EF  _getchar                           serial_console
+C:   00000A20  _fifoClear                         fifo_buffer
+C:   00000A85  _fifoIsFull                        fifo_buffer
+C:   00000AC9  _fifoBytesFree                     fifo_buffer
+C:   00000B03  _fifoWrite                         fifo_buffer
+C:   00000C65  _fifoRead                          fifo_buffer
+C:   00000E9D  _gpio_pin_init                     gpio_hal
+C:   00000F76  _gpioConfigure                     gpio_hal
+C:   0000170D  _gpioRead                          gpio_hal
+C:   00001776  _gpioWrite                         gpio_hal
+C:   00001867  _delay1ms                          delay
+C:   00001898  _delay10us                         delay
+C:   000018AF  _delay1us                          delay
+C:   000018D7  _main                              main
+C:   00001924  _gpio_init                         gpio_settings
+C:   0000194E  __divuint                          _divuint
+C:   000019DB  __modulong                         _modulong
+C:   00001B1B  __divulong                         _divulong
+C:   00001C0F  __gptrput                          _gptrput
+C:   00001C2A  __gptrget                          _gptrget
+C:   00001C46  __sdcc_external_startup            _startup
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
+
+Files Linked                              [ module(s) ]
+
+build/uart-hal.rel                        [  ]
+build/timer-hal.rel                       [  ]
+build/serial-console.rel                  [  ]
+build/fifo-buffer.rel                     [  ]
+build/gpio-hal.rel                        [  ]
+build/delay.rel                           [  ]
+build/main.rel                            [  ]
+build/interrupts.rel                      [  ]
+build/gpio_settings.rel                   [  ]
+build/crtxinit.rel                        [  ]
+
+
+Libraries Linked                          [ object file ]
+
+/usr/bin/../share/sdcc/lib/large/libint.lib
+                                          [ _divuint.rel ]
+/usr/bin/../share/sdcc/lib/large/liblong.lib
+                                          [ _modulong.rel ]
+/usr/bin/../share/sdcc/lib/large/liblong.lib
+                                          [ _divulong.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtclear.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _gptrput.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtxclear.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _bp.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtpagesfr.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtstart.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _gptrget.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _startup.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
+
+User Base Address Definitions
+
+HOME = 0x0000
+ISEG = 0x0000
+BSEG = 0x0000
+
+
+?ASlink-Warning-Undefined Global '_test_pin' referenced by module 'main'
+
+?ASlink-Warning-Undefined Global '_test_pin' referenced by module 'gpio_settings'
+
+?ASlink-Warning-Undefined Global '_test_p' referenced by module 'gpio_settings'
