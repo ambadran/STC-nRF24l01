@@ -8,7 +8,8 @@ __pychache__
 */__pychache__/
 */__pychache__
 *.pyc
-Programming/stc8h8k64u/build/
-Programming/stc8h8k64u/Makefiles/
-Programming/stc8h8k64u/Makefile
-Programming/stc8h8k64u/refrence/
+Programming/*/build/
+Programming/*/Makefiles/
+Programming/*/Makefile
+Programming/*/refrences/
+*/refrences/

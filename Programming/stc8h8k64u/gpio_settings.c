@@ -6,6 +6,7 @@ GpioConfig tssstt = GPIO_PIN_CONFIG(GPIO_PORT2, GPIO_PIN5, GPIO_BIDIRECTIONAL_MO
 void gpio_init(void) {
 
   gpioConfigure(&tssstt);
+  tssstt_off();
 
   return;
 }

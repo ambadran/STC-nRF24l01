@@ -2,6 +2,8 @@
 #define INCLUDES_H
 
 #include <STC/8H8KxxU/SKDIP28.h>
+#include <stdio.h>
+#include <stdint.h>
 #include "config.h"
 #include <delay.h>
 #include <gpio-hal.h>
