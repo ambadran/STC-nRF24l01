@@ -48,7 +48,7 @@ void delay_function(uint32_t duration_ms)
 
 /*contains all SPI configuations, such as pins and control registers*/
 /*SPI control: master, interrupts disabled, clock polarity low when idle, clock phase falling edge, clock up tp 1 MHz*/
-void SPI_Initializer()
+void SPI_Initializer(void)
 {
 
   spiConfigure(
@@ -62,7 +62,7 @@ void SPI_Initializer()
 }
 
 /*contains all CSN and CE pins gpio configurations, including setting them as gpio outputs and turning SPI off and CE '1'*/
-void pinout_Initializer()
+void pinout_Initializer(void)
 {
 
   gpioConfigure(&CSN_pin);
@@ -158,7 +158,7 @@ void nrf24_send_payload(uint8_t *payload, uint8_t payload_width)
 
 /*reports back transmit status: TRANSMIT_DONE, TRANSMIT_FAILED (in case of reaching maximum number of retransmits in auto acknowledgement mode)
   and TRANSMIT_IN_PROGRESS, if neither flags are set. automatically resets the '1' flags.*/
-uint8_t nrf24_transmit_status()
+uint8_t nrf24_transmit_status(void)
 {
   nrf24_read(STATUS_ADDRESS, &register_current_value, 1, CLOSE);      /*status register is read to check TX_DS flag*/
   if (register_current_value & (1 << TX_DS))                          /*if the TX_DS == 1, */
@@ -250,7 +250,7 @@ uint8_t nrf24_flush(uint8_t fifo_select)
 }
 
 /*must be called atleast once, which happens with calling nrf24_device function*/
-void nrf24_reset()
+void nrf24_reset(void)
 {
   reset_flag = 1;
   nrf24_CE(CE_OFF);
@@ -304,25 +304,33 @@ void nrf24_device(uint8_t device_mode, uint8_t reset_state)
   delay_function(STARTUP_DELAY);
 
   /* testing to see if nrf24 Hardware is responding */
-  /* register_new_value = 0b11; */
-  /* nrf24_write(SETUP_AW_ADDRESS, &register_new_value, 1, CLOSE); */
-  /* nrf24_read(SETUP_AW_ADDRESS, &register_current_value, 1, CLOSE); */
-  /* while (register_current_value != 0b11) { */
-  /*   uartSendBlock(CONSOLE_UART, "nrf24 Hardware Not responding!\n", 33, BLOCKING); */
-  /*   uartSendBlock(CONSOLE_UART, "Received: ", 12, BLOCKING); */
-  /*   uartSendCharacter(CONSOLE_UART, register_current_value, BLOCKING); */
-  /*   uartSendBlock(CONSOLE_UART, " !\n", 5, BLOCKING); */
+  nrf24_CE(CE_OFF);
+  register_new_value = 0b101;
+  nrf24_write(RF_SETUP_ADDRESS, &register_new_value, 1, CLOSE);
+  nrf24_read(RF_SETUP_ADDRESS, &register_current_value, 1, CLOSE);
+  uint8_t buffer[15];
+  while (register_current_value != 0b11) {
+    uartSendBlock(CONSOLE_UART, "\rnrf not resp!\n", 16, BLOCKING);
+    /* uartSendBlock(CONSOLE_UART, "\rReceived: ", 12, BLOCKING); */
+    /* uartSendCharacter(CONSOLE_UART, 'a', BLOCKING); */
+    /* uartSendBlock(CONSOLE_UART, "\n", 1, BLOCKING); */
+    sprintf(buffer, "\rgot: %d\n", register_current_value);
+    uartSendBlock(CONSOLE_UART, buffer, 15, BLOCKING);
 
-  /*   delay1ms(1000); */
+    delay1ms(1000);
+    /* register_new_value = 0b100; */
+    /* nrf24_write(SETUP_RETR_ADDRESS, &register_new_value, 1, CLOSE); */
 
-  /*   // Trying again! */
-  /*   register_new_value = 0b11; */
-  /*   nrf24_write(SETUP_AW_ADDRESS, &register_new_value, 1, CLOSE); */
-  /*   nrf24_read(SETUP_AW_ADDRESS, &register_current_value, 1, CLOSE); */
+    // Trying again!
+    /* register_new_value = 0b11; */
+    /* nrf24_write(SETUP_AW_ADDRESS, &register_new_value, 1, CLOSE); */
+    /* nrf24_read(SETUP_AW_ADDRESS, &register_current_value, 1, CLOSE); */
 
-  /* } */
-  /* uartSendBlock(CONSOLE_UART, "nrf24 Hardware Detected!\n", 28, BLOCKING); */
-  /* /1* *1/ */
+  }
+
+  nrf24_CE(CE_OFF);
+  uartSendBlock(CONSOLE_UART, "\rnrf24 Hardware Detected!\n", 28, NON_BLOCKING);
+  /* */
 
 
   if ((reset_state == RESET) || (reset_flag == 0))
@@ -410,7 +418,7 @@ void nrf24_datapipe_ptx(uint8_t datapipe_number)
 }
 
 /*setting the 6 datapipe addresses using the datapipe_address[][]*/
-void nrf24_datapipe_address_configuration()
+void nrf24_datapipe_address_configuration(void)
 {
   uint8_t address = RX_ADDR_P0_ADDRESS;
   for (uint8_t counter = 0; counter < 6; counter++)

@@ -175,11 +175,11 @@
 #define W_TX_PAYLOAD_NOACK  0XB0              /*used in TX mode, disables AUTOACK on this specific packet. must be first enabled in FEATURE register by setting the EN_DYN_ACK bit. if used, PTX will not wait for ACK and goes directly to standby I*/
 #define NOP_CMD             0XFF              /*might be used to read the status register*/
 
-void nrf24_reset();                            
+void nrf24_reset(void);                            
 void nrf24_device(uint8_t device_mode, uint8_t reset_state);
 uint8_t SPI_send_command(uint8_t command);          
-void pinout_Initializer();         
-void SPI_Initializer();
+void pinout_Initializer(void);         
+void SPI_Initializer(void);
 void nrf24_mode(uint8_t mode);
 void nrf24_SPI(uint8_t input);
 void nrf24_CE(uint8_t input);
@@ -194,7 +194,7 @@ void nrf24_crc_configuration(uint8_t crc_enable, uint8_t crc_encoding_scheme);
 void nrf24_interrupt_mask(uint8_t rx_mask, uint8_t tx_mask, uint8_t max_rt_mask);
 void nrf24_datapipe_enable(uint8_t number_of_datapipes);
 void nrf24_prx_static_payload_width(uint8_t static_payload_width, uint8_t number_of_datapipes);
-void nrf24_datapipe_address_configuration();
+void nrf24_datapipe_address_configuration(void);
 void nrf24_datapipe_ptx(uint8_t datapipe_number);
 void nrf24_automatic_retransmit_setup(uint16_t delay_time, uint8_t retransmit_count);
 void nrf24_auto_acknowledgment_setup(uint8_t datapipe);
@@ -203,7 +203,7 @@ void nrf24_device(uint8_t device_mode, uint8_t reset_state);
 void nrf24_send_payload(uint8_t *payload, uint8_t payload_width);
 uint8_t nrf24_receive(uint8_t *payload, uint8_t payload_width);
 uint8_t nrf24_transmit(uint8_t *payload, uint8_t payload_width, uint8_t acknowledgement_state);
-uint8_t nrf24_transmit_status();
+uint8_t nrf24_transmit_status(void);
 void nrf24_dynamic_ack(uint8_t state);
 uint8_t nrf24_flush(uint8_t fifo_select);
 
