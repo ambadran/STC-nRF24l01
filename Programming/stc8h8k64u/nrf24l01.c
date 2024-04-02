@@ -1,5 +1,26 @@
 #include "project-defs.h"
 
+// bit reverse hash table for efficient bit reversals
+const uint8_t bitReverseTable256[256] = {
+    0, 128, 64, 192, 32, 160, 96, 224, 16, 144, 80, 208, 48, 176, 112, 240,
+    8, 136, 72, 200, 40, 168, 104, 232, 24, 152, 88, 216, 56, 184, 120, 248,
+    4, 132, 68, 196, 36, 164, 100, 228, 20, 148, 84, 212, 52, 180, 116, 244,
+    12, 140, 76, 204, 44, 172, 108, 236, 28, 156, 92, 220, 60, 188, 124, 252,
+    2, 130, 66, 194, 34, 162, 98, 226, 18, 146, 82, 210, 50, 178, 114, 242,
+    10, 138, 74, 202, 42, 170, 106, 234, 26, 154, 90, 218, 58, 186, 122, 250,
+    6, 134, 70, 198, 38, 166, 102, 230, 22, 150, 86, 214, 54, 182, 118, 246,
+    14, 142, 78, 206, 46, 174, 110, 238, 30, 158, 94, 222, 62, 190, 126, 254,
+    1, 129, 65, 193, 33, 161, 97, 225, 17, 145, 81, 209, 49, 177, 113, 241,
+    9, 137, 73, 201, 41, 169, 105, 233, 25, 153, 89, 217, 57, 185, 121, 249,
+    5, 133, 69, 197, 37, 165, 101, 229, 21, 149, 85, 213, 53, 181, 117, 245,
+    13, 141, 77, 205, 45, 173, 109, 237, 29, 157, 93, 221, 61, 189, 125, 253,
+    3, 131, 67, 195, 35, 163, 99, 227, 19, 147, 83, 211, 51, 179, 115, 243,
+    11, 139, 75, 203, 43, 171, 107, 235, 27, 155, 91, 219, 59, 187, 123, 251,
+    7, 135, 71, 199, 39, 167, 103, 231, 23, 151, 87, 215, 55, 183, 119, 247,
+    15, 143, 79, 207, 47, 175, 111, 239, 31, 159, 95, 223, 63, 191, 127, 255
+};
+
+
 /*global variables related to this file*/
 volatile bool dataReady = 0;
 GpioConfig CSN_pin = GPIO_PIN_CONFIG(GPIO_PORT2, GPIO_PIN6, GPIO_BIDIRECTIONAL_MODE);
@@ -52,7 +73,7 @@ void SPI_Initializer(void)
 {
 
   spiConfigure(
-    SPI_MSB_FIRST, 
+    SPI_LSB_FIRST, 
     SPI_MODE1, 
     spiSelectSpeed(SPI_SPEED), 
     SPI_PIN_CONFIG, 
@@ -82,7 +103,7 @@ void nrf24_SPI(uint8_t input)
 /*1 byte SPI shift register send and receive routine*/
 uint8_t SPI_send_command(uint8_t command)
 {
-  uint8_t spi_byte = command;
+  uint8_t spi_byte = bitReverseTable256[command];
 
   spiSend(&spi_byte, 1, &dataReady);
 
@@ -305,33 +326,17 @@ void nrf24_device(uint8_t device_mode, uint8_t reset_state)
 
   /* testing to see if nrf24 Hardware is responding */
   nrf24_CE(CE_OFF);
-  register_new_value = 0b101;
-  nrf24_write(RF_SETUP_ADDRESS, &register_new_value, 1, CLOSE);
-  nrf24_read(RF_SETUP_ADDRESS, &register_current_value, 1, CLOSE);
-  uint8_t buffer[15];
+  uint8_t register_to_write_to = 0x05;  // 1000 0000
+  /* register_new_value = 0b011; */
+  /* nrf24_write(RF_SETUP_ADDRESS, &register_new_value, 1, CLOSE); */
+  nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE);
   while (register_current_value != 0b11) {
-    uartSendBlock(CONSOLE_UART, "\rnrf not resp!\n", 16, BLOCKING);
-    /* uartSendBlock(CONSOLE_UART, "\rReceived: ", 12, BLOCKING); */
-    /* uartSendCharacter(CONSOLE_UART, 'a', BLOCKING); */
-    /* uartSendBlock(CONSOLE_UART, "\n", 1, BLOCKING); */
-    sprintf(buffer, "\rgot: %d\n", register_current_value);
-    uartSendBlock(CONSOLE_UART, buffer, 15, BLOCKING);
-
-    delay1ms(1000);
-    /* register_new_value = 0b100; */
-    /* nrf24_write(SETUP_RETR_ADDRESS, &register_new_value, 1, CLOSE); */
-
-    // Trying again!
-    /* register_new_value = 0b11; */
-    /* nrf24_write(SETUP_AW_ADDRESS, &register_new_value, 1, CLOSE); */
-    /* nrf24_read(SETUP_AW_ADDRESS, &register_current_value, 1, CLOSE); */
-
+    printf("\rRead from %d: %d\n", register_to_write_to, register_current_value);
+    delay_function(1000);
+    nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE);
   }
 
-  nrf24_CE(CE_OFF);
-  uartSendBlock(CONSOLE_UART, "\rnrf24 Hardware Detected!\n", 28, NON_BLOCKING);
-  /* */
-
+  printf("\rHardware Detected!\n");
 
   if ((reset_state == RESET) || (reset_flag == 0))
   {
@@ -607,6 +612,8 @@ void nrf24_mode(uint8_t mode)
 void nrf24_read(uint8_t address, uint8_t *value, uint8_t data_length, uint8_t spi_state)
 {
   nrf24_SPI(SPI_ON);
+
+  
   SPI_command = R_REGISTER | address;    /*in order to read CONFIG, then change one bit*/
   SPI_send_command(SPI_command);
   SPI_command = NOP_CMD;
