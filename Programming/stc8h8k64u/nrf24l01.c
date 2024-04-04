@@ -49,12 +49,12 @@ static uint8_t dynamic_payload = DISABLE;
 
 /* (b"\xe1\xf0\xf0\xf0\xf0", b"\xd2\xf0\xf0\xf0\xf0") */
 uint8_t datapipe_address[MAXIMUM_NUMBER_OF_DATAPIPES][ADDRESS_WIDTH_DEFAULT] = {
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xE1}, // I inverted the order, compared to upy
   {0xF0, 0xF0, 0xF0, 0xF0, 0xD2},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xD3},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xD4},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xD5},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xD6},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xE1},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xE2},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xE3},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xE3},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xE3}
 };
 
 
@@ -74,7 +74,7 @@ void SPI_Initializer(void)
 
   spiConfigure(
     SPI_LSB_FIRST, 
-    SPI_MODE1, 
+    SPI_MODE0, 
     spiSelectSpeed(SPI_SPEED), 
     SPI_PIN_CONFIG, 
     GPIO_BIDIRECTIONAL_MODE
@@ -110,7 +110,7 @@ uint8_t SPI_send_command(uint8_t command)
   // readyFlag is cleared when calling send and is set after all buffer bits are sent, in this case the after the 1 bit is sent and the new byte is written to SPI_command
   while(!dataReady);
 
-  return spi_byte;
+  return bitReverseTable256[spi_byte];
 
 }
 
@@ -323,24 +323,41 @@ void nrf24_device(uint8_t device_mode, uint8_t reset_state)
   SPI_Initializer();
   pinout_Initializer();
   delay_function(STARTUP_DELAY);
+  nrf24_CE(CE_OFF);
+
+  // I found that the first read is always 0 then the nrf24 device acts normally
+  // dummy read
+  nrf24_read(0x00, &register_current_value, 1, CLOSE);
 
   /* testing to see if nrf24 Hardware is responding */
-  nrf24_CE(CE_OFF);
   uint8_t register_to_write_to = 0x00;  // 1000 0000
-  /* register_new_value = 0b011; */
-  /* nrf24_write(RF_SETUP_ADDRESS, &register_new_value, 1, CLOSE); */
-  /* nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE); */
-  while (register_current_value != 0b11) {
+  uint8_t c;
+  bool hardwareCheckPassed = false;
+  uint8_t new_value;
+  while (!hardwareCheckPassed) {
+    // reading current value!
     nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE);
-    /* nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE); */
     printf("\rRead from %d: %d\n", register_to_write_to, register_current_value);
-    delay_function(1000);
 
-    register_new_value = 255;
+    // writing new value
+    new_value = register_current_value + 3;
+    register_new_value = new_value;
     nrf24_write(register_to_write_to, &register_new_value, 1, CLOSE); // restarts the nrf?!?!? where is requires two read calls to return 8 again
-    nrf24_write(register_to_write_to, &register_new_value, 1, CLOSE); // restarts the nrf?!?!? where is requires two read calls to return 8 again
+    printf("Sending to %d: %d\n", register_to_write_to, register_new_value);
+
+    // reading current value again then comparing it!
+    nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE);
+    printf("\rRead from %d: %d\n", register_to_write_to, register_current_value);
+
+    if (register_current_value == new_value) {
+      printf("\rRead value matches the newly written value :D\n");
+      hardwareCheckPassed = true;
+    } else {
+      printf("\rRead value doesn't match the newly written value ;(\n");
+      printf("\rRead: %d\n", register_current_value);
+    }
+
   }
-
   printf("\rHardware Detected!\n");
 
   if ((reset_state == RESET) || (reset_flag == 0))
@@ -431,7 +448,8 @@ void nrf24_datapipe_ptx(uint8_t datapipe_number)
 void nrf24_datapipe_address_configuration(void)
 {
   uint8_t address = RX_ADDR_P0_ADDRESS;
-  for (uint8_t counter = 0; counter < 6; counter++)
+  /* for (uint8_t counter = 0; counter < 6; counter++) */
+  for (uint8_t counter = 0; counter < 2; counter++) // only write the first two
   {
     nrf24_write(address, &datapipe_address[counter][0], current_address_width, CLOSE);
     address++;
@@ -621,7 +639,8 @@ void nrf24_read(uint8_t address, uint8_t *value, uint8_t data_length, uint8_t sp
   
   SPI_command = R_REGISTER | address;    /*in order to read CONFIG, then change one bit*/
   SPI_send_command(SPI_command);
-  SPI_command = NOP_CMD;
+  /* SPI_command = NOP_CMD; */
+  SPI_command = 0;
   for (; data_length ; data_length--)
   {
     *value = SPI_send_command(SPI_command);

@@ -30,14 +30,15 @@ void main(void) {
     delay1ms(500);
     tssstt_on();
     delay1ms(500);
-    uartSendBlock(CONSOLE_UART, "\rtest\n", 6, NON_BLOCKING);
-    /* if (nrf24_receive(&received_payload, 1) == RECEIVE_FIFO_EMPTY) {    //poll and receive in one simple function call */
-    /*   uartSendBlock(CONSOLE_UART, "Nothing Received!\n", 19, BLOCKING); */
-    /* } else { */
-    /*   uartSendBlock(CONSOLE_UART, "Received Value: < ", 19, BLOCKING); */
-    /*   uartSendCharacter(CONSOLE_UART, received_payload, BLOCKING); */
-    /*   uartSendBlock(CONSOLE_UART, " > !\n", 8, BLOCKING); */
-    /* } */
+    if (nrf24_receive(&received_payload, 1) == RECEIVE_FIFO_EMPTY) {  
+
+      printf("\rNothing Received!\n");
+
+    } else {
+
+      printf("\rReceived Value: %d\n", received_payload);
+
+    }
 
   }
 
