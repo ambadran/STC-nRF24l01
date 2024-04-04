@@ -326,14 +326,19 @@ void nrf24_device(uint8_t device_mode, uint8_t reset_state)
 
   /* testing to see if nrf24 Hardware is responding */
   nrf24_CE(CE_OFF);
-  uint8_t register_to_write_to = 0x05;  // 1000 0000
+  uint8_t register_to_write_to = 0x00;  // 1000 0000
   /* register_new_value = 0b011; */
   /* nrf24_write(RF_SETUP_ADDRESS, &register_new_value, 1, CLOSE); */
-  nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE);
+  /* nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE); */
   while (register_current_value != 0b11) {
+    nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE);
+    /* nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE); */
     printf("\rRead from %d: %d\n", register_to_write_to, register_current_value);
     delay_function(1000);
-    nrf24_read(register_to_write_to, &register_current_value, 1, CLOSE);
+
+    register_new_value = 255;
+    nrf24_write(register_to_write_to, &register_new_value, 1, CLOSE); // restarts the nrf?!?!? where is requires two read calls to return 8 again
+    nrf24_write(register_to_write_to, &register_new_value, 1, CLOSE); // restarts the nrf?!?!? where is requires two read calls to return 8 again
   }
 
   printf("\rHardware Detected!\n");

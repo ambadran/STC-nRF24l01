@@ -3,7 +3,7 @@
 
 // SPI settings
 #define SPI_PIN_CONFIG 0
-#define SPI_SPEED 40000UL
+#define SPI_SPEED 400000UL
 
 // Console settings
 #define CONSOLE_SPEED 115200
