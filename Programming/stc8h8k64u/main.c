@@ -24,6 +24,7 @@ void main(void) {
 
   // Main Routine
   uint8_t received_payload;
+  uint8_t register_current_value;
   while (1) {
 
     tssstt_off();
@@ -39,6 +40,11 @@ void main(void) {
       printf("\rReceived Value: %d\n", received_payload);
 
     }
+    for (int i=0; i<24; i++) {
+      nrf24_read(i, &register_current_value, 1, CLOSE);
+      printf("\rRegister %d: %d\n", i, register_current_value);
+    }
+    while (1);
 
   }
 

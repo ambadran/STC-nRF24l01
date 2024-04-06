@@ -300,7 +300,7 @@ void nrf24_reset(void)
   nrf24_write(STATUS_ADDRESS, &register_new_value, 1, CLOSE);
   
   nrf24_interrupt_mask(ENABLE, ENABLE, ENABLE);
-  nrf24_crc_configuration(ENABLE, 1);
+  nrf24_crc_configuration(ENABLE, 0);
   nrf24_address_width(ADDRESS_WIDTH_DEFAULT);
   nrf24_rf_datarate(RF_DATARATE_DEFAULT);
   nrf24_rf_power(RF_PWR_DEFAULT);
@@ -331,7 +331,6 @@ void nrf24_device(uint8_t device_mode, uint8_t reset_state)
 
   /* testing to see if nrf24 Hardware is responding */
   uint8_t register_to_write_to = 0x00;  // 1000 0000
-  uint8_t c;
   bool hardwareCheckPassed = false;
   uint8_t new_value;
   while (!hardwareCheckPassed) {
