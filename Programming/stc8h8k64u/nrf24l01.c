@@ -49,12 +49,12 @@ static uint8_t dynamic_payload = DISABLE;
 
 /* (b"\xe1\xf0\xf0\xf0\xf0", b"\xd2\xf0\xf0\xf0\xf0") */
 uint8_t datapipe_address[MAXIMUM_NUMBER_OF_DATAPIPES][ADDRESS_WIDTH_DEFAULT] = {
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xD2},
   {0xF0, 0xF0, 0xF0, 0xF0, 0xE1},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xE2},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xE3},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xE3},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xE3}
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xD2},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xF0},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xF0},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xF0},
+  {0xF0, 0xF0, 0xF0, 0xF0, 0xF0}
 };
 
 
@@ -306,8 +306,8 @@ void nrf24_reset(void)
   nrf24_rf_power(RF_PWR_DEFAULT);
   nrf24_rf_channel(RF_CHANNEL_DEFAULT);
   nrf24_datapipe_enable(NUMBER_OF_DP_DEFAULT);
-  nrf24_datapipe_address_configuration();  // I uncommented it
-  nrf24_datapipe_ptx(1);  // I uncommented it
+  /* nrf24_datapipe_address_configuration();  // I uncommented it */
+  /* nrf24_datapipe_ptx(1);  // I uncommented it */
   nrf24_prx_static_payload_width(STATIC_PAYLOAD_WIDTH_DEFAULT, NUMBER_OF_DP_DEFAULT);
   nrf24_automatic_retransmit_setup(RETRANSMIT_DELAY_DEFAULT, RETRANSMIT_COUNT_DEFAULT);
   nrf24_auto_acknowledgment_setup(NUMBER_OF_DP_DEFAULT);

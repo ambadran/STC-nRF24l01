@@ -27,9 +27,9 @@ void main(void) {
   while (1) {
 
     tssstt_off();
-    delay1ms(500);
+    delay1ms(200);
     tssstt_on();
-    delay1ms(500);
+    delay1ms(200);
     if (nrf24_receive(&received_payload, 1) == RECEIVE_FIFO_EMPTY) {  
 
       printf("\rNothing Received!\n");
