@@ -1,5 +1,6 @@
 #include "project-defs.h"
 
+
 // bit reverse hash table for efficient bit reversals
 const uint8_t bitReverseTable256[256] = {
     0, 128, 64, 192, 32, 160, 96, 224, 16, 144, 80, 208, 48, 176, 112, 240,
@@ -49,8 +50,8 @@ static uint8_t dynamic_payload = DISABLE;
 
 /* (b"\xe1\xf0\xf0\xf0\xf0", b"\xd2\xf0\xf0\xf0\xf0") */
 uint8_t datapipe_address[MAXIMUM_NUMBER_OF_DATAPIPES][ADDRESS_WIDTH_DEFAULT] = {
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xE1},
-  {0xF0, 0xF0, 0xF0, 0xF0, 0xD2},
+  {0xD2, 0xF0, 0xF0, 0xF0, 0xF0},
+  {0xE1, 0xF0, 0xF0, 0xF0, 0xF0},
   {0xF0, 0xF0, 0xF0, 0xF0, 0xF0},
   {0xF0, 0xF0, 0xF0, 0xF0, 0xF0},
   {0xF0, 0xF0, 0xF0, 0xF0, 0xF0},
@@ -215,7 +216,7 @@ uint8_t nrf24_receive(uint8_t *payload, uint8_t payload_width)
       for (; payload_width; payload_width--)
       {
         SPI_command = NOP_CMD;
-        *payload = SPI_send_command(SPI_command);
+        *payload = bitReverseTable256[SPI_send_command(SPI_command)]; // newly added
         payload++;
       }
       nrf24_SPI(SPI_OFF); 
@@ -290,6 +291,11 @@ void nrf24_reset(void)
   register_new_value = STATUS_REGISTER_DEFAULT;
   nrf24_write(STATUS_ADDRESS, &register_new_value, 1, CLOSE);
 
+  // OBSERVE_TX_ADDRESS is READ ONLY !!!!!!!!
+  /* // newly added */
+  /* register_new_value = 248; */
+  /* nrf24_write(OBSERVE_TX_ADDRESS, &register_new_value, 1, CLOSE); */
+
   nrf24_mode(PTX);
   nrf24_flush(TX_BUFFER);
   nrf24_mode(PRX);
@@ -300,19 +306,20 @@ void nrf24_reset(void)
   nrf24_write(STATUS_ADDRESS, &register_new_value, 1, CLOSE);
   
   nrf24_interrupt_mask(ENABLE, ENABLE, ENABLE);
-  nrf24_crc_configuration(ENABLE, 0);
+  nrf24_crc_configuration(ENABLE, 2);
   nrf24_address_width(ADDRESS_WIDTH_DEFAULT);
-  nrf24_rf_datarate(RF_DATARATE_DEFAULT);
-  nrf24_rf_power(RF_PWR_DEFAULT);
+  /* nrf24_rf_datarate(RF_DATARATE_DEFAULT); */ // temporary
+  /* nrf24_rf_power(RF_PWR_DEFAULT); */
   nrf24_rf_channel(RF_CHANNEL_DEFAULT);
   nrf24_datapipe_enable(NUMBER_OF_DP_DEFAULT);
-  /* nrf24_datapipe_address_configuration();  // I uncommented it */
-  /* nrf24_datapipe_ptx(1);  // I uncommented it */
+  nrf24_datapipe_address_configuration();  // I uncommented it
+  nrf24_datapipe_ptx(1);  // I uncommented it
   nrf24_prx_static_payload_width(STATIC_PAYLOAD_WIDTH_DEFAULT, NUMBER_OF_DP_DEFAULT);
   nrf24_automatic_retransmit_setup(RETRANSMIT_DELAY_DEFAULT, RETRANSMIT_COUNT_DEFAULT);
   nrf24_auto_acknowledgment_setup(NUMBER_OF_DP_DEFAULT);
   nrf24_dynamic_payload(DISABLE, NUMBER_OF_DP_DEFAULT);
   nrf24_dynamic_ack(ENABLE);
+
 }
 
 /*used by firmware to set the nrf24 mode in TRANSMITTER, RECEIVER, POWER_SAVING or TURN_OFF states, and reseting the device
