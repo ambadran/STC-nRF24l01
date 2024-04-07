@@ -10,6 +10,9 @@
 #define CONSOLE_UART UART1
 #define CONSOLE_PIN_CONFIG 0
 
+// nRF24L01 settings
+#define PRINT_NRF24_REGISTERS
+
 // Others 
 #define SUPPRESS_delay1us_WARNING
 

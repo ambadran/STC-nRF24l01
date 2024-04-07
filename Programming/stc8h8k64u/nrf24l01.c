@@ -216,7 +216,7 @@ uint8_t nrf24_receive(uint8_t *payload, uint8_t payload_width)
       for (; payload_width; payload_width--)
       {
         SPI_command = NOP_CMD;
-        *payload = bitReverseTable256[SPI_send_command(SPI_command)]; // newly added
+        *payload = SPI_send_command(SPI_command); // newly added
         payload++;
       }
       nrf24_SPI(SPI_OFF); 
@@ -398,6 +398,16 @@ void nrf24_device(uint8_t device_mode, uint8_t reset_state)
       nrf24_interrupt_mask(ENABLE, ENABLE, ENABLE);
       break;
   }
+
+#ifdef PRINT_NRF24_REGISTERS
+  for (int i=0; i<24; i++) {
+    nrf24_read(i, &register_current_value, 1, CLOSE);
+    printf("\rRegister %d: %d\n", i, register_current_value);
+    delay1ms(20);
+  }
+  printf("\n\n");
+#endif
+
 }
 
 /*setting automatic retransmit delay time and maximum number of retransmits*/

@@ -23,16 +23,8 @@ void main(void) {
   nrf24_device(RECEIVER, RESET);
 
   // Main Routine
-  uint8_t received_payload;
-  uint8_t register_current_value;
-
-  // for testing
-  for (int i=0; i<24; i++) {
-    nrf24_read(i, &register_current_value, 1, CLOSE);
-    printf("\rRegister %d: %d\n", i, register_current_value);
-    delay1ms(250);
-  }
-
+  char received_payload;
+  char led_state;
   while (1) {
 
     /* tssstt_off(); */
@@ -40,13 +32,14 @@ void main(void) {
     /* tssstt_on(); */
     /* delay1ms(200); */
     if (nrf24_receive(&received_payload, 1) != RECEIVE_FIFO_EMPTY) {  
+      printf("\rReceived Value: %c\n", received_payload);
+      led_state = received_payload;
+    }
 
-      /* printf("\rNothing Received!\n"); */
-
-    } else {
-
-      printf("\rReceived Value: %d  ", received_payload);
-
+    if (led_state == '1') {
+      test_pin_on();
+    } else if (led_state == '0') {
+      test_pin_off();
     }
 
   }
