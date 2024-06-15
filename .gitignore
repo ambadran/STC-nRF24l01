@@ -8,8 +8,7 @@ __pychache__
 */__pychache__/
 */__pychache__
 *.pyc
-Programming/*/build/
-Programming/*/Makefiles/
-Programming/*/Makefile
-Programming/*/refrences/
+*/build/
+*/Makefiles/
+*/Makefile
 */refrences/
