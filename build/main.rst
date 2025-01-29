@@ -1,0 +1,1067 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.0.0 #11528 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module main
+                                      6 	.optsdcc -mmcs51 --model-large
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _main
+                                     12 	.globl _protocol_main_loop
+                                     13 	.globl _nrf24_device
+                                     14 	.globl _report_init
+                                     15 	.globl _global_timer_init
+                                     16 	.globl _serialConsoleInitialise
+                                     17 	.globl _delay1ms
+                                     18 	.globl _S1SM0_FE
+                                     19 	.globl _T1IE
+                                     20 	.globl _T0IE
+                                     21 	.globl _T1RUN
+                                     22 	.globl _T0RUN
+                                     23 	.globl _CY
+                                     24 	.globl _AC
+                                     25 	.globl _F0
+                                     26 	.globl _RS1
+                                     27 	.globl _RS0
+                                     28 	.globl _OV
+                                     29 	.globl _F1
+                                     30 	.globl _P
+                                     31 	.globl _EA
+                                     32 	.globl _INT1IE
+                                     33 	.globl _INT0IE
+                                     34 	.globl _INT1TR
+                                     35 	.globl _INT0TR
+                                     36 	.globl _P5_5
+                                     37 	.globl _P5_4
+                                     38 	.globl _P5_3
+                                     39 	.globl _P5_2
+                                     40 	.globl _P5_1
+                                     41 	.globl _P5_0
+                                     42 	.globl _P3_7
+                                     43 	.globl _P3_6
+                                     44 	.globl _P3_5
+                                     45 	.globl _P3_4
+                                     46 	.globl _P3_3
+                                     47 	.globl _P3_2
+                                     48 	.globl _P3_1
+                                     49 	.globl _P3_0
+                                     50 	.globl _P2_7
+                                     51 	.globl _P2_6
+                                     52 	.globl _P2_5
+                                     53 	.globl _P2_4
+                                     54 	.globl _P2_3
+                                     55 	.globl _P2_2
+                                     56 	.globl _P2_1
+                                     57 	.globl _P2_0
+                                     58 	.globl _P1_7
+                                     59 	.globl _P1_6
+                                     60 	.globl _P1_5
+                                     61 	.globl _P1_4
+                                     62 	.globl _P1_3
+                                     63 	.globl _P1_2
+                                     64 	.globl _P1_1
+                                     65 	.globl _P1_0
+                                     66 	.globl _USBADR
+                                     67 	.globl _USBCON
+                                     68 	.globl _USBDAT
+                                     69 	.globl _USBCLK
+                                     70 	.globl _S4BUF
+                                     71 	.globl _S4CON
+                                     72 	.globl _S3BUF
+                                     73 	.globl _S3CON
+                                     74 	.globl _S2BUF
+                                     75 	.globl _S2CON
+                                     76 	.globl _S1BUF
+                                     77 	.globl _S1CON
+                                     78 	.globl _SADEN
+                                     79 	.globl _SADDR
+                                     80 	.globl _AUXINTIF
+                                     81 	.globl _T3
+                                     82 	.globl _T3L
+                                     83 	.globl _T3H
+                                     84 	.globl _T4
+                                     85 	.globl _T4L
+                                     86 	.globl _T4H
+                                     87 	.globl _T4T3M
+                                     88 	.globl _WDT_CONTR
+                                     89 	.globl _AUXR
+                                     90 	.globl _T2
+                                     91 	.globl _T2H
+                                     92 	.globl _T2L
+                                     93 	.globl _T1
+                                     94 	.globl _T1H
+                                     95 	.globl _T1L
+                                     96 	.globl _T0
+                                     97 	.globl _T0H
+                                     98 	.globl _T0L
+                                     99 	.globl _TMOD
+                                    100 	.globl _TCON
+                                    101 	.globl _IRTRIM
+                                    102 	.globl _LIRTRIM
+                                    103 	.globl _IRCBAND
+                                    104 	.globl _SPDAT
+                                    105 	.globl _SPCTL
+                                    106 	.globl _SPSTAT
+                                    107 	.globl _WKTC
+                                    108 	.globl _WKTCH
+                                    109 	.globl _WKTCL
+                                    110 	.globl _BUS_SPEED
+                                    111 	.globl _P_SW2
+                                    112 	.globl _P_SW1
+                                    113 	.globl _RSTCFG
+                                    114 	.globl _PCON
+                                    115 	.globl _B
+                                    116 	.globl _ACC
+                                    117 	.globl _PSW
+                                    118 	.globl _SP
+                                    119 	.globl _IP3H
+                                    120 	.globl _IP3L
+                                    121 	.globl _IP2H
+                                    122 	.globl _IP2L
+                                    123 	.globl _IE2
+                                    124 	.globl _IP1H
+                                    125 	.globl _IP1L
+                                    126 	.globl _IE1
+                                    127 	.globl _INT_CLKO
+                                    128 	.globl _IAP_TPS
+                                    129 	.globl _IAP_CONTR
+                                    130 	.globl _IAP_TRIG
+                                    131 	.globl _IAP_CMD
+                                    132 	.globl _IAP_ADDR
+                                    133 	.globl _IAP_ADDRL
+                                    134 	.globl _IAP_ADDRH
+                                    135 	.globl _IAP_DATA
+                                    136 	.globl _P5M0
+                                    137 	.globl _P5M1
+                                    138 	.globl _P5
+                                    139 	.globl _P3M0
+                                    140 	.globl _P3M1
+                                    141 	.globl _P3
+                                    142 	.globl _P2M0
+                                    143 	.globl _P2M1
+                                    144 	.globl _P2
+                                    145 	.globl _P1M0
+                                    146 	.globl _P1M1
+                                    147 	.globl _P1
+                                    148 	.globl _TA
+                                    149 	.globl _DPH1
+                                    150 	.globl _DPL1
+                                    151 	.globl _DPS
+                                    152 	.globl _DP
+                                    153 	.globl _DPH
+                                    154 	.globl _DPL
+                                    155 	.globl _CMPCR2
+                                    156 	.globl _CMPCR1
+                                    157 	.globl _DMA_ADC_AMT
+                                    158 	.globl _ADCCFG
+                                    159 	.globl _ADC_RES
+                                    160 	.globl _ADC_RESL
+                                    161 	.globl _ADC_RESH
+                                    162 	.globl _ADC_CONTR
+                                    163 	.globl _DMA_UR4R_TXAL
+                                    164 	.globl _DMA_UR4R_TXAH
+                                    165 	.globl _DMA_UR4R_DONE
+                                    166 	.globl _DMA_UR4R_AMT
+                                    167 	.globl _DMA_UR4R_STA
+                                    168 	.globl _DMA_UR4R_CR
+                                    169 	.globl _DMA_UR4R_CFG
+                                    170 	.globl _DMA_UR4T_TXAL
+                                    171 	.globl _DMA_UR4T_TXAH
+                                    172 	.globl _DMA_UR4T_DONE
+                                    173 	.globl _DMA_UR4T_AMT
+                                    174 	.globl _DMA_UR4T_STA
+                                    175 	.globl _DMA_UR4T_CR
+                                    176 	.globl _DMA_UR4T_CFG
+                                    177 	.globl _DMA_UR3R_TXAL
+                                    178 	.globl _DMA_UR3R_TXAH
+                                    179 	.globl _DMA_UR3R_DONE
+                                    180 	.globl _DMA_UR3R_AMT
+                                    181 	.globl _DMA_UR3R_STA
+                                    182 	.globl _DMA_UR3R_CR
+                                    183 	.globl _DMA_UR3R_CFG
+                                    184 	.globl _DMA_UR3T_TXAL
+                                    185 	.globl _DMA_UR3T_TXAH
+                                    186 	.globl _DMA_UR3T_DONE
+                                    187 	.globl _DMA_UR3T_AMT
+                                    188 	.globl _DMA_UR3T_STA
+                                    189 	.globl _DMA_UR3T_CR
+                                    190 	.globl _DMA_UR3T_CFG
+                                    191 	.globl _DMA_UR2R_TXAL
+                                    192 	.globl _DMA_UR2R_TXAH
+                                    193 	.globl _DMA_UR2R_DONE
+                                    194 	.globl _DMA_UR2R_AMT
+                                    195 	.globl _DMA_UR2R_STA
+                                    196 	.globl _DMA_UR2R_CR
+                                    197 	.globl _DMA_UR2R_CFG
+                                    198 	.globl _DMA_UR2T_TXAL
+                                    199 	.globl _DMA_UR2T_TXAH
+                                    200 	.globl _DMA_UR2T_DONE
+                                    201 	.globl _DMA_UR2T_AMT
+                                    202 	.globl _DMA_UR2T_STA
+                                    203 	.globl _DMA_UR2T_CR
+                                    204 	.globl _DMA_UR2T_CFG
+                                    205 	.globl _DMA_UR1R_TXAL
+                                    206 	.globl _DMA_UR1R_TXAH
+                                    207 	.globl _DMA_UR1R_DONE
+                                    208 	.globl _DMA_UR1R_AMT
+                                    209 	.globl _DMA_UR1R_STA
+                                    210 	.globl _DMA_UR1R_CR
+                                    211 	.globl _DMA_UR1R_CFG
+                                    212 	.globl _DMA_UR1T_TXAL
+                                    213 	.globl _DMA_UR1T_TXAH
+                                    214 	.globl _DMA_UR1T_DONE
+                                    215 	.globl _DMA_URTX_AMT
+                                    216 	.globl _DMA_UR1T_STA
+                                    217 	.globl _DMA_UR1T_CR
+                                    218 	.globl _DMA_UR1T_CFG
+                                    219 	.globl _TM4PS
+                                    220 	.globl _TM3PS
+                                    221 	.globl _TM2PS
+                                    222 	.globl _IRC48MCR
+                                    223 	.globl _IRCDB
+                                    224 	.globl _MCLKOCR
+                                    225 	.globl _CKSEL
+                                    226 	.globl _IRC32KCR
+                                    227 	.globl _X32KCR
+                                    228 	.globl _XOSCCR
+                                    229 	.globl _HIRCCR
+                                    230 	.globl _CLKDIV
+                                    231 	.globl _DMA_SPI_CFG2
+                                    232 	.globl _DMA_SPI_RXAL
+                                    233 	.globl _DMA_SPI_RXAH
+                                    234 	.globl _DMA_SPI_TXAL
+                                    235 	.globl _DMA_SPI_TXAH
+                                    236 	.globl _DMA_SPI_DONE
+                                    237 	.globl _DMA_SPI_AMT
+                                    238 	.globl _DMA_SPI_STA
+                                    239 	.globl _DMA_SPI_CR
+                                    240 	.globl _DMA_SPI_CFG
+                                    241 	.globl _SSEC
+                                    242 	.globl _SEC
+                                    243 	.globl _MIN
+                                    244 	.globl _HOUR
+                                    245 	.globl _DAY
+                                    246 	.globl _MONTH
+                                    247 	.globl _YEAR
+                                    248 	.globl _INISSEC
+                                    249 	.globl _INISEC
+                                    250 	.globl _INIMIN
+                                    251 	.globl _INIHOUR
+                                    252 	.globl _INIDAY
+                                    253 	.globl _INIMONTH
+                                    254 	.globl _INIYEAR
+                                    255 	.globl _ALASSEC
+                                    256 	.globl _ALASEC
+                                    257 	.globl _ALAMIN
+                                    258 	.globl _ALAHOUR
+                                    259 	.globl _RTCIF
+                                    260 	.globl _RTCIEN
+                                    261 	.globl _RTCCFG
+                                    262 	.globl _RTCCR
+                                    263 	.globl _PWMB_OISR
+                                    264 	.globl _PWMB_DTR
+                                    265 	.globl _PWMB_BKR
+                                    266 	.globl _PWMB_CCR4L
+                                    267 	.globl _PWMB_CCR4H
+                                    268 	.globl _PWMB_CCR3L
+                                    269 	.globl _PWMB_CCR3H
+                                    270 	.globl _PWMB_CCR2L
+                                    271 	.globl _PWMB_CCR2H
+                                    272 	.globl _PWMB_CCR1L
+                                    273 	.globl _PWMB_CCR1H
+                                    274 	.globl _PWMB_RCR
+                                    275 	.globl _PWMB_ARRL
+                                    276 	.globl _PWMB_ARRH
+                                    277 	.globl _PWMB_PSCRL
+                                    278 	.globl _PWMB_PSCRH
+                                    279 	.globl _PWMB_CNTRL
+                                    280 	.globl _PWMB_CNTRH
+                                    281 	.globl _PWMB_CCER2
+                                    282 	.globl _PWMB_CCER1
+                                    283 	.globl _PWMB_CCMR4
+                                    284 	.globl _PWMB_CCMR3
+                                    285 	.globl _PWMB_CCMR2
+                                    286 	.globl _PWMB_CCMR1
+                                    287 	.globl _PWMB_EGR
+                                    288 	.globl _PWMB_SR2
+                                    289 	.globl _PWMB_SR1
+                                    290 	.globl _PWMB_IER
+                                    291 	.globl _PWMB_ETR
+                                    292 	.globl _PWMB_SMCR
+                                    293 	.globl _PWMB_CR2
+                                    294 	.globl _PWMB_CR1
+                                    295 	.globl _PWMA_OISR
+                                    296 	.globl _PWMA_DTR
+                                    297 	.globl _PWMA_BKR
+                                    298 	.globl _PWMA_CCR4L
+                                    299 	.globl _PWMA_CCR4H
+                                    300 	.globl _PWMA_CCR3L
+                                    301 	.globl _PWMA_CCR3H
+                                    302 	.globl _PWMA_CCR2L
+                                    303 	.globl _PWMA_CCR2H
+                                    304 	.globl _PWMA_CCR1L
+                                    305 	.globl _PWMA_CCR1H
+                                    306 	.globl _PWMA_RCR
+                                    307 	.globl _PWMA_ARRL
+                                    308 	.globl _PWMA_ARRH
+                                    309 	.globl _PWMA_PSCRL
+                                    310 	.globl _PWMA_PSCRH
+                                    311 	.globl _PWMA_CNTRL
+                                    312 	.globl _PWMA_CNTRH
+                                    313 	.globl _PWMA_CCER2
+                                    314 	.globl _PWMA_CCER1
+                                    315 	.globl _PWMA_CCMR4
+                                    316 	.globl _PWMA_CCMR3
+                                    317 	.globl _PWMA_CCMR2
+                                    318 	.globl _PWMA_CCMR1
+                                    319 	.globl _PWMA_EGR
+                                    320 	.globl _PWMA_SR2
+                                    321 	.globl _PWMA_SR1
+                                    322 	.globl _PWMA_IER
+                                    323 	.globl _PWMA_ETR
+                                    324 	.globl _PWMA_SMCR
+                                    325 	.globl _PWMA_CR2
+                                    326 	.globl _PWMA_CR1
+                                    327 	.globl _PWMB_IOAUX
+                                    328 	.globl _PWMB_PS
+                                    329 	.globl _PWMB_ENO
+                                    330 	.globl _PWMB_ETRPS
+                                    331 	.globl _PWMA_IOAUX
+                                    332 	.globl _PWMA_PS
+                                    333 	.globl _PWMA_ENO
+                                    334 	.globl _PWMA_ETRPS
+                                    335 	.globl _RSTFLAG
+                                    336 	.globl _SPFUNC
+                                    337 	.globl _OPCON
+                                    338 	.globl _ARCON
+                                    339 	.globl _MD4
+                                    340 	.globl _MD5
+                                    341 	.globl _MD0
+                                    342 	.globl _MD1
+                                    343 	.globl _MD2
+                                    344 	.globl _MD3
+                                    345 	.globl _DMA_LCM_RXAL
+                                    346 	.globl _DMA_LCM_RXAH
+                                    347 	.globl _DMA_LCM_TXAL
+                                    348 	.globl _DMA_LCM_TXAH
+                                    349 	.globl _DMA_LCM_DONE
+                                    350 	.globl _DMA_LCM_AMT
+                                    351 	.globl _DMA_LCM_STA
+                                    352 	.globl _DMA_LCM_CR
+                                    353 	.globl _DMA_LCM_CFG
+                                    354 	.globl _LCMIDDAT
+                                    355 	.globl _LCMIDDATH
+                                    356 	.globl _LCMIDDATL
+                                    357 	.globl _LCMSTA
+                                    358 	.globl _LCMCR
+                                    359 	.globl _LCMCFG2
+                                    360 	.globl _LCMCFG
+                                    361 	.globl _I2CMSAUX
+                                    362 	.globl _I2CRXD
+                                    363 	.globl _I2CTXD
+                                    364 	.globl _I2CSLADR
+                                    365 	.globl _I2CSLST
+                                    366 	.globl _I2CSLCR
+                                    367 	.globl _I2CMSST
+                                    368 	.globl _I2CMSCR
+                                    369 	.globl _I2CCFG
+                                    370 	.globl _PINIPH
+                                    371 	.globl _PINIPL
+                                    372 	.globl _P5IE
+                                    373 	.globl _P5DR
+                                    374 	.globl _P5SR
+                                    375 	.globl _P5NCS
+                                    376 	.globl _P5PU
+                                    377 	.globl _P5WKUE
+                                    378 	.globl _P5IM1
+                                    379 	.globl _P5IM0
+                                    380 	.globl _P5INTF
+                                    381 	.globl _P5INTE
+                                    382 	.globl _P3IE
+                                    383 	.globl _P3DR
+                                    384 	.globl _P3SR
+                                    385 	.globl _P3NCS
+                                    386 	.globl _P3PU
+                                    387 	.globl _P3WKUE
+                                    388 	.globl _P3IM1
+                                    389 	.globl _P3IM0
+                                    390 	.globl _P3INTF
+                                    391 	.globl _P3INTE
+                                    392 	.globl _P2IE
+                                    393 	.globl _P2DR
+                                    394 	.globl _P2SR
+                                    395 	.globl _P2NCS
+                                    396 	.globl _P2PU
+                                    397 	.globl _P2WKUE
+                                    398 	.globl _P2IM1
+                                    399 	.globl _P2IM0
+                                    400 	.globl _P2INTF
+                                    401 	.globl _P2INTE
+                                    402 	.globl _P1IE
+                                    403 	.globl _P1DR
+                                    404 	.globl _P1SR
+                                    405 	.globl _P1NCS
+                                    406 	.globl _P1PU
+                                    407 	.globl _P1WKUE
+                                    408 	.globl _P1IM1
+                                    409 	.globl _P1IM0
+                                    410 	.globl _P1INTF
+                                    411 	.globl _P1INTE
+                                    412 	.globl _DMA_M2M_RXAL
+                                    413 	.globl _DMA_M2M_RXAH
+                                    414 	.globl _DMA_M2M_TXAL
+                                    415 	.globl _DMA_M2M_TXAH
+                                    416 	.globl _DMA_M2M_DONE
+                                    417 	.globl _DMA_M2M_AMT
+                                    418 	.globl _DMA_M2M_STA
+                                    419 	.globl _DMA_M2M_CR
+                                    420 	.globl _DMA_M2M_CFG
+                                    421 	.globl _CMPEXCFG
+                                    422 	.globl _CHIP_PACKAGE_TYPE
+                                    423 	.globl _CHIP_TEST_DAY_BCD
+                                    424 	.globl _CHIP_TEST_MONTH_BCD
+                                    425 	.globl _CHIP_TEST_YEAR_BCD
+                                    426 	.globl _PROGRAM_AREA_SIZE
+                                    427 	.globl _VRTRIM_44MHz
+                                    428 	.globl _VRTRIM_27MHz
+                                    429 	.globl _VRTRIM_10MHz
+                                    430 	.globl _VRTRIM_6MHz
+                                    431 	.globl _IRTRIM_48MHz
+                                    432 	.globl _IRTRIM_44_2368MHz
+                                    433 	.globl _IRTRIM_40MHz
+                                    434 	.globl _IRTRIM_36_864MHz
+                                    435 	.globl _IRTRIM_35MHz
+                                    436 	.globl _IRTRIM_33_1776MHz
+                                    437 	.globl _IRTRIM_30MHz
+                                    438 	.globl _IRTRIM_27MHz
+                                    439 	.globl _IRTRIM_24MHz
+                                    440 	.globl _IRTRIM_22_1184MHz
+                                    441 	.globl ___OTHER_INFO
+                                    442 	.globl _CHIP_GUID
+                                    443 	.globl _DMA_ADC_CHSW1
+                                    444 	.globl _DMA_ADC_CHSW0
+                                    445 	.globl _DMA_ADC_CFG2
+                                    446 	.globl _DMA_ADC_RXAL
+                                    447 	.globl _DMA_ADC_RXAH
+                                    448 	.globl _DMA_ADC_STA
+                                    449 	.globl _DMA_ADC_CR
+                                    450 	.globl _DMA_ADC_CFG
+                                    451 	.globl _ADCEXCFG
+                                    452 	.globl _ADCTIM
+                                    453 ;--------------------------------------------------------
+                                    454 ; special function registers
+                                    455 ;--------------------------------------------------------
+                                    456 	.area RSEG    (ABS,DATA)
+      000000                        457 	.org 0x0000
+                           0000BC   458 _ADC_CONTR	=	0x00bc
+                           0000BD   459 _ADC_RESH	=	0x00bd
+                           0000BE   460 _ADC_RESL	=	0x00be
+                           00BDBE   461 _ADC_RES	=	0xbdbe
+                           0000DE   462 _ADCCFG	=	0x00de
+                           0000FA   463 _DMA_ADC_AMT	=	0x00fa
+                           0000E6   464 _CMPCR1	=	0x00e6
+                           0000E7   465 _CMPCR2	=	0x00e7
+                           000082   466 _DPL	=	0x0082
+                           000083   467 _DPH	=	0x0083
+                           008382   468 _DP	=	0x8382
+                           0000E3   469 _DPS	=	0x00e3
+                           0000E4   470 _DPL1	=	0x00e4
+                           0000E5   471 _DPH1	=	0x00e5
+                           0000AE   472 _TA	=	0x00ae
+                           000090   473 _P1	=	0x0090
+                           000091   474 _P1M1	=	0x0091
+                           000092   475 _P1M0	=	0x0092
+                           0000A0   476 _P2	=	0x00a0
+                           000095   477 _P2M1	=	0x0095
+                           000096   478 _P2M0	=	0x0096
+                           0000B0   479 _P3	=	0x00b0
+                           0000B1   480 _P3M1	=	0x00b1
+                           0000B2   481 _P3M0	=	0x00b2
+                           0000C8   482 _P5	=	0x00c8
+                           0000C9   483 _P5M1	=	0x00c9
+                           0000CA   484 _P5M0	=	0x00ca
+                           0000C2   485 _IAP_DATA	=	0x00c2
+                           0000C3   486 _IAP_ADDRH	=	0x00c3
+                           0000C4   487 _IAP_ADDRL	=	0x00c4
+                           00C3C4   488 _IAP_ADDR	=	0xc3c4
+                           0000C5   489 _IAP_CMD	=	0x00c5
+                           0000C6   490 _IAP_TRIG	=	0x00c6
+                           0000C7   491 _IAP_CONTR	=	0x00c7
+                           0000F5   492 _IAP_TPS	=	0x00f5
+                           00008F   493 _INT_CLKO	=	0x008f
+                           0000A8   494 _IE1	=	0x00a8
+                           0000B8   495 _IP1L	=	0x00b8
+                           0000B7   496 _IP1H	=	0x00b7
+                           0000AF   497 _IE2	=	0x00af
+                           0000B5   498 _IP2L	=	0x00b5
+                           0000B6   499 _IP2H	=	0x00b6
+                           0000DF   500 _IP3L	=	0x00df
+                           0000EE   501 _IP3H	=	0x00ee
+                           000081   502 _SP	=	0x0081
+                           0000D0   503 _PSW	=	0x00d0
+                           0000E0   504 _ACC	=	0x00e0
+                           0000F0   505 _B	=	0x00f0
+                           000087   506 _PCON	=	0x0087
+                           0000FF   507 _RSTCFG	=	0x00ff
+                           0000A2   508 _P_SW1	=	0x00a2
+                           0000BA   509 _P_SW2	=	0x00ba
+                           0000A1   510 _BUS_SPEED	=	0x00a1
+                           0000AA   511 _WKTCL	=	0x00aa
+                           0000AB   512 _WKTCH	=	0x00ab
+                           00ABAA   513 _WKTC	=	0xabaa
+                           0000CD   514 _SPSTAT	=	0x00cd
+                           0000CE   515 _SPCTL	=	0x00ce
+                           0000CF   516 _SPDAT	=	0x00cf
+                           00009D   517 _IRCBAND	=	0x009d
+                           00009E   518 _LIRTRIM	=	0x009e
+                           00009F   519 _IRTRIM	=	0x009f
+                           000088   520 _TCON	=	0x0088
+                           000089   521 _TMOD	=	0x0089
+                           00008A   522 _T0L	=	0x008a
+                           00008C   523 _T0H	=	0x008c
+                           008C8A   524 _T0	=	0x8c8a
+                           00008B   525 _T1L	=	0x008b
+                           00008D   526 _T1H	=	0x008d
+                           008D8B   527 _T1	=	0x8d8b
+                           0000D7   528 _T2L	=	0x00d7
+                           0000D6   529 _T2H	=	0x00d6
+                           00D6D7   530 _T2	=	0xd6d7
+                           00008E   531 _AUXR	=	0x008e
+                           0000C1   532 _WDT_CONTR	=	0x00c1
+                           0000D1   533 _T4T3M	=	0x00d1
+                           0000D2   534 _T4H	=	0x00d2
+                           0000D3   535 _T4L	=	0x00d3
+                           00D2D3   536 _T4	=	0xd2d3
+                           0000D4   537 _T3H	=	0x00d4
+                           0000D5   538 _T3L	=	0x00d5
+                           00D4D5   539 _T3	=	0xd4d5
+                           0000EF   540 _AUXINTIF	=	0x00ef
+                           0000A9   541 _SADDR	=	0x00a9
+                           0000B9   542 _SADEN	=	0x00b9
+                           000098   543 _S1CON	=	0x0098
+                           000099   544 _S1BUF	=	0x0099
+                           00009A   545 _S2CON	=	0x009a
+                           00009B   546 _S2BUF	=	0x009b
+                           0000AC   547 _S3CON	=	0x00ac
+                           0000AD   548 _S3BUF	=	0x00ad
+                           000084   549 _S4CON	=	0x0084
+                           000085   550 _S4BUF	=	0x0085
+                           0000DC   551 _USBCLK	=	0x00dc
+                           0000EC   552 _USBDAT	=	0x00ec
+                           0000F4   553 _USBCON	=	0x00f4
+                           0000FC   554 _USBADR	=	0x00fc
+                                    555 ;--------------------------------------------------------
+                                    556 ; special function bits
+                                    557 ;--------------------------------------------------------
+                                    558 	.area RSEG    (ABS,DATA)
+      000000                        559 	.org 0x0000
+                           000090   560 _P1_0	=	0x0090
+                           000091   561 _P1_1	=	0x0091
+                           000092   562 _P1_2	=	0x0092
+                           000093   563 _P1_3	=	0x0093
+                           000094   564 _P1_4	=	0x0094
+                           000095   565 _P1_5	=	0x0095
+                           000096   566 _P1_6	=	0x0096
+                           000097   567 _P1_7	=	0x0097
+                           0000A0   568 _P2_0	=	0x00a0
+                           0000A1   569 _P2_1	=	0x00a1
+                           0000A2   570 _P2_2	=	0x00a2
+                           0000A3   571 _P2_3	=	0x00a3
+                           0000A4   572 _P2_4	=	0x00a4
+                           0000A5   573 _P2_5	=	0x00a5
+                           0000A6   574 _P2_6	=	0x00a6
+                           0000A7   575 _P2_7	=	0x00a7
+                           0000B0   576 _P3_0	=	0x00b0
+                           0000B1   577 _P3_1	=	0x00b1
+                           0000B2   578 _P3_2	=	0x00b2
+                           0000B3   579 _P3_3	=	0x00b3
+                           0000B4   580 _P3_4	=	0x00b4
+                           0000B5   581 _P3_5	=	0x00b5
+                           0000B6   582 _P3_6	=	0x00b6
+                           0000B7   583 _P3_7	=	0x00b7
+                           0000C8   584 _P5_0	=	0x00c8
+                           0000C9   585 _P5_1	=	0x00c9
+                           0000CA   586 _P5_2	=	0x00ca
+                           0000CB   587 _P5_3	=	0x00cb
+                           0000CC   588 _P5_4	=	0x00cc
+                           0000CD   589 _P5_5	=	0x00cd
+                           000088   590 _INT0TR	=	0x0088
+                           00008A   591 _INT1TR	=	0x008a
+                           0000A8   592 _INT0IE	=	0x00a8
+                           0000AA   593 _INT1IE	=	0x00aa
+                           0000AF   594 _EA	=	0x00af
+                           0000D0   595 _P	=	0x00d0
+                           0000D1   596 _F1	=	0x00d1
+                           0000D2   597 _OV	=	0x00d2
+                           0000D3   598 _RS0	=	0x00d3
+                           0000D4   599 _RS1	=	0x00d4
+                           0000D5   600 _F0	=	0x00d5
+                           0000D6   601 _AC	=	0x00d6
+                           0000D7   602 _CY	=	0x00d7
+                           00008C   603 _T0RUN	=	0x008c
+                           00008E   604 _T1RUN	=	0x008e
+                           0000A9   605 _T0IE	=	0x00a9
+                           0000AB   606 _T1IE	=	0x00ab
+                           00009F   607 _S1SM0_FE	=	0x009f
+                                    608 ;--------------------------------------------------------
+                                    609 ; overlayable register banks
+                                    610 ;--------------------------------------------------------
+                                    611 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        612 	.ds 8
+                                    613 ;--------------------------------------------------------
+                                    614 ; internal ram data
+                                    615 ;--------------------------------------------------------
+                                    616 	.area DSEG    (DATA)
+                                    617 ;--------------------------------------------------------
+                                    618 ; overlayable items in internal ram 
+                                    619 ;--------------------------------------------------------
+                                    620 ;--------------------------------------------------------
+                                    621 ; Stack segment in internal ram 
+                                    622 ;--------------------------------------------------------
+                                    623 	.area	SSEG
+      00003D                        624 __start__stack:
+      00003D                        625 	.ds	1
+                                    626 
+                                    627 ;--------------------------------------------------------
+                                    628 ; indirectly addressable internal ram data
+                                    629 ;--------------------------------------------------------
+                                    630 	.area ISEG    (DATA)
+                                    631 ;--------------------------------------------------------
+                                    632 ; absolute internal ram data
+                                    633 ;--------------------------------------------------------
+                                    634 	.area IABS    (ABS,DATA)
+                                    635 	.area IABS    (ABS,DATA)
+                                    636 ;--------------------------------------------------------
+                                    637 ; bit data
+                                    638 ;--------------------------------------------------------
+                                    639 	.area BSEG    (BIT)
+                                    640 ;--------------------------------------------------------
+                                    641 ; paged external ram data
+                                    642 ;--------------------------------------------------------
+                                    643 	.area PSEG    (PAG,XDATA)
+                                    644 ;--------------------------------------------------------
+                                    645 ; external ram data
+                                    646 ;--------------------------------------------------------
+                                    647 	.area XSEG    (XDATA)
+                           00FEA8   648 _ADCTIM	=	0xfea8
+                           00FEAD   649 _ADCEXCFG	=	0xfead
+                           00FA10   650 _DMA_ADC_CFG	=	0xfa10
+                           00FA11   651 _DMA_ADC_CR	=	0xfa11
+                           00FA12   652 _DMA_ADC_STA	=	0xfa12
+                           00FA17   653 _DMA_ADC_RXAH	=	0xfa17
+                           00FA18   654 _DMA_ADC_RXAL	=	0xfa18
+                           00FA19   655 _DMA_ADC_CFG2	=	0xfa19
+                           00FA1A   656 _DMA_ADC_CHSW0	=	0xfa1a
+                           00FA1B   657 _DMA_ADC_CHSW1	=	0xfa1b
+                           00FDE0   658 _CHIP_GUID	=	0xfde0
+                           00FDE7   659 ___OTHER_INFO	=	0xfde7
+                           00FDEB   660 _IRTRIM_22_1184MHz	=	0xfdeb
+                           00FDEC   661 _IRTRIM_24MHz	=	0xfdec
+                           00FDED   662 _IRTRIM_27MHz	=	0xfded
+                           00FDEE   663 _IRTRIM_30MHz	=	0xfdee
+                           00FDEF   664 _IRTRIM_33_1776MHz	=	0xfdef
+                           00FDF0   665 _IRTRIM_35MHz	=	0xfdf0
+                           00FDF1   666 _IRTRIM_36_864MHz	=	0xfdf1
+                           00FDF2   667 _IRTRIM_40MHz	=	0xfdf2
+                           00FDF3   668 _IRTRIM_44_2368MHz	=	0xfdf3
+                           00FDF4   669 _IRTRIM_48MHz	=	0xfdf4
+                           00FDF5   670 _VRTRIM_6MHz	=	0xfdf5
+                           00FDF6   671 _VRTRIM_10MHz	=	0xfdf6
+                           00FDF7   672 _VRTRIM_27MHz	=	0xfdf7
+                           00FDF8   673 _VRTRIM_44MHz	=	0xfdf8
+                           00FDF9   674 _PROGRAM_AREA_SIZE	=	0xfdf9
+                           00FDFB   675 _CHIP_TEST_YEAR_BCD	=	0xfdfb
+                           00FDFC   676 _CHIP_TEST_MONTH_BCD	=	0xfdfc
+                           00FDFD   677 _CHIP_TEST_DAY_BCD	=	0xfdfd
+                           00FDFE   678 _CHIP_PACKAGE_TYPE	=	0xfdfe
+                           00FEAE   679 _CMPEXCFG	=	0xfeae
+                           00FA00   680 _DMA_M2M_CFG	=	0xfa00
+                           00FA01   681 _DMA_M2M_CR	=	0xfa01
+                           00FA02   682 _DMA_M2M_STA	=	0xfa02
+                           00FA03   683 _DMA_M2M_AMT	=	0xfa03
+                           00FA04   684 _DMA_M2M_DONE	=	0xfa04
+                           00FA05   685 _DMA_M2M_TXAH	=	0xfa05
+                           00FA06   686 _DMA_M2M_TXAL	=	0xfa06
+                           00FA07   687 _DMA_M2M_RXAH	=	0xfa07
+                           00FA08   688 _DMA_M2M_RXAL	=	0xfa08
+                           00FD01   689 _P1INTE	=	0xfd01
+                           00FD11   690 _P1INTF	=	0xfd11
+                           00FD21   691 _P1IM0	=	0xfd21
+                           00FD31   692 _P1IM1	=	0xfd31
+                           00FD41   693 _P1WKUE	=	0xfd41
+                           00FE11   694 _P1PU	=	0xfe11
+                           00FE19   695 _P1NCS	=	0xfe19
+                           00FE21   696 _P1SR	=	0xfe21
+                           00FE29   697 _P1DR	=	0xfe29
+                           00FE31   698 _P1IE	=	0xfe31
+                           00FD02   699 _P2INTE	=	0xfd02
+                           00FD12   700 _P2INTF	=	0xfd12
+                           00FD22   701 _P2IM0	=	0xfd22
+                           00FD32   702 _P2IM1	=	0xfd32
+                           00FD42   703 _P2WKUE	=	0xfd42
+                           00FE12   704 _P2PU	=	0xfe12
+                           00FE1A   705 _P2NCS	=	0xfe1a
+                           00FE22   706 _P2SR	=	0xfe22
+                           00FE2A   707 _P2DR	=	0xfe2a
+                           00FE32   708 _P2IE	=	0xfe32
+                           00FD03   709 _P3INTE	=	0xfd03
+                           00FD13   710 _P3INTF	=	0xfd13
+                           00FD23   711 _P3IM0	=	0xfd23
+                           00FD33   712 _P3IM1	=	0xfd33
+                           00FD43   713 _P3WKUE	=	0xfd43
+                           00FE13   714 _P3PU	=	0xfe13
+                           00FE1B   715 _P3NCS	=	0xfe1b
+                           00FE23   716 _P3SR	=	0xfe23
+                           00FE2B   717 _P3DR	=	0xfe2b
+                           00FE33   718 _P3IE	=	0xfe33
+                           00FD05   719 _P5INTE	=	0xfd05
+                           00FD15   720 _P5INTF	=	0xfd15
+                           00FD25   721 _P5IM0	=	0xfd25
+                           00FD35   722 _P5IM1	=	0xfd35
+                           00FD45   723 _P5WKUE	=	0xfd45
+                           00FE15   724 _P5PU	=	0xfe15
+                           00FE1D   725 _P5NCS	=	0xfe1d
+                           00FE25   726 _P5SR	=	0xfe25
+                           00FE2D   727 _P5DR	=	0xfe2d
+                           00FE35   728 _P5IE	=	0xfe35
+                           00FD60   729 _PINIPL	=	0xfd60
+                           00FD61   730 _PINIPH	=	0xfd61
+                           00FE80   731 _I2CCFG	=	0xfe80
+                           00FE81   732 _I2CMSCR	=	0xfe81
+                           00FE82   733 _I2CMSST	=	0xfe82
+                           00FE83   734 _I2CSLCR	=	0xfe83
+                           00FE84   735 _I2CSLST	=	0xfe84
+                           00FE85   736 _I2CSLADR	=	0xfe85
+                           00FE86   737 _I2CTXD	=	0xfe86
+                           00FE87   738 _I2CRXD	=	0xfe87
+                           00FE88   739 _I2CMSAUX	=	0xfe88
+                           00FE50   740 _LCMCFG	=	0xfe50
+                           00FE51   741 _LCMCFG2	=	0xfe51
+                           00FE52   742 _LCMCR	=	0xfe52
+                           00FE53   743 _LCMSTA	=	0xfe53
+                           00FE54   744 _LCMIDDATL	=	0xfe54
+                           00FE55   745 _LCMIDDATH	=	0xfe55
+                           00FE54   746 _LCMIDDAT	=	0xfe54
+                           00FA70   747 _DMA_LCM_CFG	=	0xfa70
+                           00FA71   748 _DMA_LCM_CR	=	0xfa71
+                           00FA72   749 _DMA_LCM_STA	=	0xfa72
+                           00FA73   750 _DMA_LCM_AMT	=	0xfa73
+                           00FA74   751 _DMA_LCM_DONE	=	0xfa74
+                           00FA75   752 _DMA_LCM_TXAH	=	0xfa75
+                           00FA76   753 _DMA_LCM_TXAL	=	0xfa76
+                           00FA77   754 _DMA_LCM_RXAH	=	0xfa77
+                           00FA78   755 _DMA_LCM_RXAL	=	0xfa78
+                           00FCF0   756 _MD3	=	0xfcf0
+                           00FCF1   757 _MD2	=	0xfcf1
+                           00FCF2   758 _MD1	=	0xfcf2
+                           00FCF3   759 _MD0	=	0xfcf3
+                           00FCF4   760 _MD5	=	0xfcf4
+                           00FCF5   761 _MD4	=	0xfcf5
+                           00FCF6   762 _ARCON	=	0xfcf6
+                           00FCF7   763 _OPCON	=	0xfcf7
+                           00FE08   764 _SPFUNC	=	0xfe08
+                           00FE09   765 _RSTFLAG	=	0xfe09
+                           00FEB0   766 _PWMA_ETRPS	=	0xfeb0
+                           00FEB1   767 _PWMA_ENO	=	0xfeb1
+                           00FEB2   768 _PWMA_PS	=	0xfeb2
+                           00FEB3   769 _PWMA_IOAUX	=	0xfeb3
+                           00FEB4   770 _PWMB_ETRPS	=	0xfeb4
+                           00FEB5   771 _PWMB_ENO	=	0xfeb5
+                           00FEB6   772 _PWMB_PS	=	0xfeb6
+                           00FEB7   773 _PWMB_IOAUX	=	0xfeb7
+                           00FEC0   774 _PWMA_CR1	=	0xfec0
+                           00FEC1   775 _PWMA_CR2	=	0xfec1
+                           00FEC2   776 _PWMA_SMCR	=	0xfec2
+                           00FEC3   777 _PWMA_ETR	=	0xfec3
+                           00FEC4   778 _PWMA_IER	=	0xfec4
+                           00FEC5   779 _PWMA_SR1	=	0xfec5
+                           00FEC6   780 _PWMA_SR2	=	0xfec6
+                           00FEC7   781 _PWMA_EGR	=	0xfec7
+                           00FEC8   782 _PWMA_CCMR1	=	0xfec8
+                           00FEC9   783 _PWMA_CCMR2	=	0xfec9
+                           00FECA   784 _PWMA_CCMR3	=	0xfeca
+                           00FECB   785 _PWMA_CCMR4	=	0xfecb
+                           00FECC   786 _PWMA_CCER1	=	0xfecc
+                           00FECD   787 _PWMA_CCER2	=	0xfecd
+                           00FECE   788 _PWMA_CNTRH	=	0xfece
+                           00FECF   789 _PWMA_CNTRL	=	0xfecf
+                           00FED0   790 _PWMA_PSCRH	=	0xfed0
+                           00FED1   791 _PWMA_PSCRL	=	0xfed1
+                           00FED2   792 _PWMA_ARRH	=	0xfed2
+                           00FED3   793 _PWMA_ARRL	=	0xfed3
+                           00FED4   794 _PWMA_RCR	=	0xfed4
+                           00FED5   795 _PWMA_CCR1H	=	0xfed5
+                           00FED6   796 _PWMA_CCR1L	=	0xfed6
+                           00FED7   797 _PWMA_CCR2H	=	0xfed7
+                           00FED8   798 _PWMA_CCR2L	=	0xfed8
+                           00FED9   799 _PWMA_CCR3H	=	0xfed9
+                           00FEDA   800 _PWMA_CCR3L	=	0xfeda
+                           00FEDB   801 _PWMA_CCR4H	=	0xfedb
+                           00FEDC   802 _PWMA_CCR4L	=	0xfedc
+                           00FEDD   803 _PWMA_BKR	=	0xfedd
+                           00FEDE   804 _PWMA_DTR	=	0xfede
+                           00FEDF   805 _PWMA_OISR	=	0xfedf
+                           00FEE0   806 _PWMB_CR1	=	0xfee0
+                           00FEE1   807 _PWMB_CR2	=	0xfee1
+                           00FEE2   808 _PWMB_SMCR	=	0xfee2
+                           00FEE3   809 _PWMB_ETR	=	0xfee3
+                           00FEE4   810 _PWMB_IER	=	0xfee4
+                           00FEE5   811 _PWMB_SR1	=	0xfee5
+                           00FEE6   812 _PWMB_SR2	=	0xfee6
+                           00FEE7   813 _PWMB_EGR	=	0xfee7
+                           00FEE8   814 _PWMB_CCMR1	=	0xfee8
+                           00FEE9   815 _PWMB_CCMR2	=	0xfee9
+                           00FEEA   816 _PWMB_CCMR3	=	0xfeea
+                           00FEEB   817 _PWMB_CCMR4	=	0xfeeb
+                           00FEEC   818 _PWMB_CCER1	=	0xfeec
+                           00FEED   819 _PWMB_CCER2	=	0xfeed
+                           00FEEE   820 _PWMB_CNTRH	=	0xfeee
+                           00FEEF   821 _PWMB_CNTRL	=	0xfeef
+                           00FEF0   822 _PWMB_PSCRH	=	0xfef0
+                           00FEF1   823 _PWMB_PSCRL	=	0xfef1
+                           00FEF2   824 _PWMB_ARRH	=	0xfef2
+                           00FEF3   825 _PWMB_ARRL	=	0xfef3
+                           00FEF4   826 _PWMB_RCR	=	0xfef4
+                           00FEF5   827 _PWMB_CCR1H	=	0xfef5
+                           00FEF6   828 _PWMB_CCR1L	=	0xfef6
+                           00FEF7   829 _PWMB_CCR2H	=	0xfef7
+                           00FEF8   830 _PWMB_CCR2L	=	0xfef8
+                           00FEF9   831 _PWMB_CCR3H	=	0xfef9
+                           00FEFA   832 _PWMB_CCR3L	=	0xfefa
+                           00FEFB   833 _PWMB_CCR4H	=	0xfefb
+                           00FEFC   834 _PWMB_CCR4L	=	0xfefc
+                           00FEFD   835 _PWMB_BKR	=	0xfefd
+                           00FEFE   836 _PWMB_DTR	=	0xfefe
+                           00FEFF   837 _PWMB_OISR	=	0xfeff
+                           00FE60   838 _RTCCR	=	0xfe60
+                           00FE61   839 _RTCCFG	=	0xfe61
+                           00FE62   840 _RTCIEN	=	0xfe62
+                           00FE63   841 _RTCIF	=	0xfe63
+                           00FE64   842 _ALAHOUR	=	0xfe64
+                           00FE65   843 _ALAMIN	=	0xfe65
+                           00FE66   844 _ALASEC	=	0xfe66
+                           00FE67   845 _ALASSEC	=	0xfe67
+                           00FE68   846 _INIYEAR	=	0xfe68
+                           00FE69   847 _INIMONTH	=	0xfe69
+                           00FE6A   848 _INIDAY	=	0xfe6a
+                           00FE6B   849 _INIHOUR	=	0xfe6b
+                           00FE6C   850 _INIMIN	=	0xfe6c
+                           00FE6D   851 _INISEC	=	0xfe6d
+                           00FE6E   852 _INISSEC	=	0xfe6e
+                           00FE70   853 _YEAR	=	0xfe70
+                           00FE71   854 _MONTH	=	0xfe71
+                           00FE72   855 _DAY	=	0xfe72
+                           00FE73   856 _HOUR	=	0xfe73
+                           00FE74   857 _MIN	=	0xfe74
+                           00FE75   858 _SEC	=	0xfe75
+                           00FE76   859 _SSEC	=	0xfe76
+                           00FA20   860 _DMA_SPI_CFG	=	0xfa20
+                           00FA21   861 _DMA_SPI_CR	=	0xfa21
+                           00FA22   862 _DMA_SPI_STA	=	0xfa22
+                           00FA23   863 _DMA_SPI_AMT	=	0xfa23
+                           00FA24   864 _DMA_SPI_DONE	=	0xfa24
+                           00FA25   865 _DMA_SPI_TXAH	=	0xfa25
+                           00FA26   866 _DMA_SPI_TXAL	=	0xfa26
+                           00FA27   867 _DMA_SPI_RXAH	=	0xfa27
+                           00FA28   868 _DMA_SPI_RXAL	=	0xfa28
+                           00FA29   869 _DMA_SPI_CFG2	=	0xfa29
+                           00FE01   870 _CLKDIV	=	0xfe01
+                           00FE02   871 _HIRCCR	=	0xfe02
+                           00FE03   872 _XOSCCR	=	0xfe03
+                           00FE08   873 _X32KCR	=	0xfe08
+                           00FE04   874 _IRC32KCR	=	0xfe04
+                           00FE00   875 _CKSEL	=	0xfe00
+                           00FE05   876 _MCLKOCR	=	0xfe05
+                           00FE06   877 _IRCDB	=	0xfe06
+                           00FE07   878 _IRC48MCR	=	0xfe07
+                           00FEA2   879 _TM2PS	=	0xfea2
+                           00FEA3   880 _TM3PS	=	0xfea3
+                           00FEA4   881 _TM4PS	=	0xfea4
+                           00FA30   882 _DMA_UR1T_CFG	=	0xfa30
+                           00FA31   883 _DMA_UR1T_CR	=	0xfa31
+                           00FA32   884 _DMA_UR1T_STA	=	0xfa32
+                           00FA33   885 _DMA_URTX_AMT	=	0xfa33
+                           00FA34   886 _DMA_UR1T_DONE	=	0xfa34
+                           00FA35   887 _DMA_UR1T_TXAH	=	0xfa35
+                           00FA36   888 _DMA_UR1T_TXAL	=	0xfa36
+                           00FA38   889 _DMA_UR1R_CFG	=	0xfa38
+                           00FA39   890 _DMA_UR1R_CR	=	0xfa39
+                           00FA3A   891 _DMA_UR1R_STA	=	0xfa3a
+                           00FA3B   892 _DMA_UR1R_AMT	=	0xfa3b
+                           00FA3C   893 _DMA_UR1R_DONE	=	0xfa3c
+                           00FA3D   894 _DMA_UR1R_TXAH	=	0xfa3d
+                           00FA3E   895 _DMA_UR1R_TXAL	=	0xfa3e
+                           00FA30   896 _DMA_UR2T_CFG	=	0xfa30
+                           00FA31   897 _DMA_UR2T_CR	=	0xfa31
+                           00FA32   898 _DMA_UR2T_STA	=	0xfa32
+                           00FA33   899 _DMA_UR2T_AMT	=	0xfa33
+                           00FA34   900 _DMA_UR2T_DONE	=	0xfa34
+                           00FA35   901 _DMA_UR2T_TXAH	=	0xfa35
+                           00FA36   902 _DMA_UR2T_TXAL	=	0xfa36
+                           00FA38   903 _DMA_UR2R_CFG	=	0xfa38
+                           00FA39   904 _DMA_UR2R_CR	=	0xfa39
+                           00FA3A   905 _DMA_UR2R_STA	=	0xfa3a
+                           00FA3B   906 _DMA_UR2R_AMT	=	0xfa3b
+                           00FA3C   907 _DMA_UR2R_DONE	=	0xfa3c
+                           00FA3D   908 _DMA_UR2R_TXAH	=	0xfa3d
+                           00FA3E   909 _DMA_UR2R_TXAL	=	0xfa3e
+                           00FA30   910 _DMA_UR3T_CFG	=	0xfa30
+                           00FA31   911 _DMA_UR3T_CR	=	0xfa31
+                           00FA32   912 _DMA_UR3T_STA	=	0xfa32
+                           00FA33   913 _DMA_UR3T_AMT	=	0xfa33
+                           00FA34   914 _DMA_UR3T_DONE	=	0xfa34
+                           00FA35   915 _DMA_UR3T_TXAH	=	0xfa35
+                           00FA36   916 _DMA_UR3T_TXAL	=	0xfa36
+                           00FA38   917 _DMA_UR3R_CFG	=	0xfa38
+                           00FA39   918 _DMA_UR3R_CR	=	0xfa39
+                           00FA3A   919 _DMA_UR3R_STA	=	0xfa3a
+                           00FA3B   920 _DMA_UR3R_AMT	=	0xfa3b
+                           00FA3C   921 _DMA_UR3R_DONE	=	0xfa3c
+                           00FA3D   922 _DMA_UR3R_TXAH	=	0xfa3d
+                           00FA3E   923 _DMA_UR3R_TXAL	=	0xfa3e
+                           00FA30   924 _DMA_UR4T_CFG	=	0xfa30
+                           00FA31   925 _DMA_UR4T_CR	=	0xfa31
+                           00FA32   926 _DMA_UR4T_STA	=	0xfa32
+                           00FA33   927 _DMA_UR4T_AMT	=	0xfa33
+                           00FA34   928 _DMA_UR4T_DONE	=	0xfa34
+                           00FA35   929 _DMA_UR4T_TXAH	=	0xfa35
+                           00FA36   930 _DMA_UR4T_TXAL	=	0xfa36
+                           00FA38   931 _DMA_UR4R_CFG	=	0xfa38
+                           00FA39   932 _DMA_UR4R_CR	=	0xfa39
+                           00FA3A   933 _DMA_UR4R_STA	=	0xfa3a
+                           00FA3B   934 _DMA_UR4R_AMT	=	0xfa3b
+                           00FA3C   935 _DMA_UR4R_DONE	=	0xfa3c
+                           00FA3D   936 _DMA_UR4R_TXAH	=	0xfa3d
+                           00FA3E   937 _DMA_UR4R_TXAL	=	0xfa3e
+      000237                        938 _uartGetCharacter_result_65536_69:
+      000237                        939 	.ds 1
+                                    940 ;--------------------------------------------------------
+                                    941 ; absolute external ram data
+                                    942 ;--------------------------------------------------------
+                                    943 	.area XABS    (ABS,XDATA)
+                                    944 ;--------------------------------------------------------
+                                    945 ; external initialized ram data
+                                    946 ;--------------------------------------------------------
+                                    947 	.area XISEG   (XDATA)
+                                    948 	.area HOME    (CODE)
+                                    949 	.area GSINIT0 (CODE)
+                                    950 	.area GSINIT1 (CODE)
+                                    951 	.area GSINIT2 (CODE)
+                                    952 	.area GSINIT3 (CODE)
+                                    953 	.area GSINIT4 (CODE)
+                                    954 	.area GSINIT5 (CODE)
+                                    955 	.area GSINIT  (CODE)
+                                    956 	.area GSFINAL (CODE)
+                                    957 	.area CSEG    (CODE)
+                                    958 ;--------------------------------------------------------
+                                    959 ; interrupt vector 
+                                    960 ;--------------------------------------------------------
+                                    961 	.area HOME    (CODE)
+      000000                        962 __interrupt_vect:
+      000000 02 00 51         [24]  963 	ljmp	__sdcc_gsinit_startup
+      000003 32               [24]  964 	reti
+      000004                        965 	.ds	7
+      00000B 02 39 06         [24]  966 	ljmp	_timer0_isr
+      00000E                        967 	.ds	5
+      000013 32               [24]  968 	reti
+      000014                        969 	.ds	7
+      00001B 32               [24]  970 	reti
+      00001C                        971 	.ds	7
+      000023 02 1C 4F         [24]  972 	ljmp	_uart1_isr
+      000026                        973 	.ds	5
+      00002B 32               [24]  974 	reti
+      00002C                        975 	.ds	7
+      000033 32               [24]  976 	reti
+      000034                        977 	.ds	7
+      00003B 32               [24]  978 	reti
+      00003C                        979 	.ds	7
+      000043 02 1C F3         [24]  980 	ljmp	_uart2_isr
+      000046                        981 	.ds	5
+      00004B 02 14 6E         [24]  982 	ljmp	_spi_isr
+                                    983 ;--------------------------------------------------------
+                                    984 ; global & static initialisations
+                                    985 ;--------------------------------------------------------
+                                    986 	.area HOME    (CODE)
+                                    987 	.area GSINIT  (CODE)
+                                    988 	.area GSFINAL (CODE)
+                                    989 	.area GSINIT  (CODE)
+                                    990 	.globl __sdcc_gsinit_startup
+                                    991 	.globl __sdcc_program_startup
+                                    992 	.globl __start__stack
+                                    993 	.globl __mcs51_genXINIT
+                                    994 	.globl __mcs51_genXRAMCLEAR
+                                    995 	.globl __mcs51_genRAMCLEAR
+                                    996 	.area GSFINAL (CODE)
+      0000A9 02 00 4E         [24]  997 	ljmp	__sdcc_program_startup
+                                    998 ;--------------------------------------------------------
+                                    999 ; Home
+                                   1000 ;--------------------------------------------------------
+                                   1001 	.area HOME    (CODE)
+                                   1002 	.area HOME    (CODE)
+      00004E                       1003 __sdcc_program_startup:
+      00004E 02 20 D8         [24] 1004 	ljmp	_main
+                                   1005 ;	return from main will return to caller
+                                   1006 ;--------------------------------------------------------
+                                   1007 ; code
+                                   1008 ;--------------------------------------------------------
+                                   1009 	.area CSEG    (CODE)
+                                   1010 ;------------------------------------------------------------
+                                   1011 ;Allocation info for local variables in function 'main'
+                                   1012 ;------------------------------------------------------------
+                                   1013 ;	main.c:6: void main(void) {
+                                   1014 ;	-----------------------------------------
+                                   1015 ;	 function main
+                                   1016 ;	-----------------------------------------
+      0020D8                       1017 _main:
+                           000007  1018 	ar7 = 0x07
+                           000006  1019 	ar6 = 0x06
+                           000005  1020 	ar5 = 0x05
+                           000004  1021 	ar4 = 0x04
+                           000003  1022 	ar3 = 0x03
+                           000002  1023 	ar2 = 0x02
+                           000001  1024 	ar1 = 0x01
+                           000000  1025 	ar0 = 0x00
+                                   1026 ;	main.c:7: INIT_EXTENDED_SFR();
+      0020D8 43 BA 80         [24] 1027 	orl	_P_SW2,#0x80
+                                   1028 ;	main.c:10: EA = 1;
+                                   1029 ;	assignBit
+      0020DB D2 AF            [12] 1030 	setb	_EA
+                                   1031 ;	main.c:14: CONSOLE_PIN_CONFIG
+      0020DD 90 00 4C         [24] 1032 	mov	dptr,#_serialConsoleInitialise_PARM_2
+      0020E0 E4               [12] 1033 	clr	a
+      0020E1 F0               [24] 1034 	movx	@dptr,a
+      0020E2 74 C2            [12] 1035 	mov	a,#0xc2
+      0020E4 A3               [24] 1036 	inc	dptr
+      0020E5 F0               [24] 1037 	movx	@dptr,a
+      0020E6 74 01            [12] 1038 	mov	a,#0x01
+      0020E8 A3               [24] 1039 	inc	dptr
+      0020E9 F0               [24] 1040 	movx	@dptr,a
+      0020EA E4               [12] 1041 	clr	a
+      0020EB A3               [24] 1042 	inc	dptr
+      0020EC F0               [24] 1043 	movx	@dptr,a
+      0020ED 90 00 50         [24] 1044 	mov	dptr,#_serialConsoleInitialise_PARM_3
+      0020F0 F0               [24] 1045 	movx	@dptr,a
+      0020F1 75 82 01         [24] 1046 	mov	dpl,#0x01
+      0020F4 12 10 1E         [24] 1047 	lcall	_serialConsoleInitialise
+                                   1048 ;	main.c:17: global_timer_init();
+      0020F7 12 38 CF         [24] 1049 	lcall	_global_timer_init
+                                   1050 ;	main.c:18: report_init();
+      0020FA 12 1F 7A         [24] 1051 	lcall	_report_init
+                                   1052 ;	main.c:19: nrf24_device(RECEIVER, RESET);
+      0020FD 90 02 51         [24] 1053 	mov	dptr,#_nrf24_device_PARM_2
+      002100 74 01            [12] 1054 	mov	a,#0x01
+      002102 F0               [24] 1055 	movx	@dptr,a
+      002103 75 82 01         [24] 1056 	mov	dpl,#0x01
+      002106 12 27 1D         [24] 1057 	lcall	_nrf24_device
+                                   1058 ;	main.c:21: delay1ms(500);
+      002109 90 01 F4         [24] 1059 	mov	dptr,#0x01f4
+      00210C 12 1E CC         [24] 1060 	lcall	_delay1ms
+                                   1061 ;	main.c:24: protocol_main_loop();
+                                   1062 ;	main.c:26: }
+      00210F 02 38 60         [24] 1063 	ljmp	_protocol_main_loop
+                                   1064 	.area CSEG    (CODE)
+                                   1065 	.area CONST   (CODE)
+                                   1066 	.area XINIT   (CODE)
+                                   1067 	.area CABS    (ABS,CODE)
