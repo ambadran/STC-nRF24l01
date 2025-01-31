@@ -1600,7 +1600,7 @@ _terminal_execute_line:
 	inc	dptr
 	movx	a,@dptr
 	mov	r7,a
-00122$:
+00123$:
 	mov	dptr,#_terminal_execute_line_char_count_65536_149
 	movx	a,@dptr
 	mov	r4,a
@@ -1615,9 +1615,9 @@ _terminal_execute_line:
 	mov	b,r3
 	lcall	__gptrget
 	mov	r3,a
-	jnz	00217$
-	ljmp	00124$
-00217$:
+	jnz	00222$
+	ljmp	00125$
+00222$:
 ;	terminal.c:87: letter = line[char_count];
 	mov	dptr,#_terminal_execute_line_letter_65536_149
 	mov	a,r3
@@ -1631,8 +1631,8 @@ _terminal_execute_line:
 	mov	dptr,#_terminal_execute_line_letter_65536_149
 	movx	a,@dptr
 	mov	r4,a
-	cjne	r4,#0x41,00218$
-00218$:
+	cjne	r4,#0x41,00223$
+00223$:
 	jc	00101$
 	mov	a,r4
 	add	a,#0xff - 0x7a
@@ -1640,8 +1640,8 @@ _terminal_execute_line:
 	mov	a,r4
 	add	a,#0xff - 0x5a
 	jnc	00102$
-	cjne	r4,#0x61,00222$
-00222$:
+	cjne	r4,#0x61,00227$
+00227$:
 	jnc	00102$
 00101$:
 ;	terminal.c:97: printf("\rExpected a letter!\n"); 
@@ -1659,69 +1659,21 @@ _terminal_execute_line:
 	mov	dpl,#0x01
 	ret
 00102$:
-;	terminal.c:102: switch(letter) {
+;	terminal.c:102: if (!(letter >= 'a' && letter < 'z') && \
 	mov	dptr,#_terminal_execute_line_letter_65536_149
 	movx	a,@dptr
 	mov	r4,a
-	cjne	r4,#0x41,00224$
-	sjmp	00106$
-00224$:
-	cjne	r4,#0x4e,00225$
-	ljmp	00112$
-00225$:
-	cjne	r4,#0x54,00226$
-	ljmp	00113$
-00226$:
-	cjne	r4,#0x69,00227$
-	ljmp	00114$
-00227$:
-	cjne	r4,#0x6a,00228$
-	ljmp	00117$
-00228$:
-	ljmp	00120$
-;	terminal.c:104: case 'A':
-00106$:
-;	terminal.c:106: if (!read_int(line, &char_count, &int_value)) {
-	mov	dptr,#_terminal_execute_line_line_65536_148
+	cjne	r4,#0x61,00229$
+00229$:
+	jc	00109$
+	cjne	r4,#0x7a,00231$
+00231$:
+	jc	00107$
+00109$:
+	mov	dptr,#_command
 	movx	a,@dptr
-	mov	r1,a
-	inc	dptr
-	movx	a,@dptr
-	mov	r2,a
-	inc	dptr
-	movx	a,@dptr
-	mov	r3,a
-	mov	dptr,#_read_int_PARM_2
-	mov	a,#_terminal_execute_line_char_count_65536_149
-	movx	@dptr,a
-	mov	a,#(_terminal_execute_line_char_count_65536_149 >> 8)
-	inc	dptr
-	movx	@dptr,a
-	clr	a
-	inc	dptr
-	movx	@dptr,a
-	mov	dptr,#_read_int_PARM_3
-	mov	a,#_terminal_execute_line_int_value_65536_149
-	movx	@dptr,a
-	mov	a,#(_terminal_execute_line_int_value_65536_149 >> 8)
-	inc	dptr
-	movx	@dptr,a
-	clr	a
-	inc	dptr
-	movx	@dptr,a
-	mov	dpl,r1
-	mov	dph,r2
-	mov	b,r3
-	push	ar7
-	push	ar6
-	push	ar5
-	lcall	_read_int
-	mov	a,dpl
-	pop	ar5
-	pop	ar6
-	pop	ar7
-	jnz	00110$
-;	terminal.c:107: printf("Bad integer Number Format\n");
+	jz	00107$
+;	terminal.c:104: printf("Can't have >1 command letter in one command!\n");
 	mov	a,#___str_1
 	push	acc
 	mov	a,#(___str_1 >> 8)
@@ -1732,54 +1684,33 @@ _terminal_execute_line:
 	dec	sp
 	dec	sp
 	dec	sp
-;	terminal.c:108: return LINE_FAILED;
+;	terminal.c:105: return LINE_FAILED;
 	mov	dpl,#0x01
 	ret
-00110$:
-;	terminal.c:110: } else if (command.command_type != COMMAND_NOT_SET) {
-	mov	dptr,#_command
+00107$:
+;	terminal.c:109: switch(letter) {
+	mov	dptr,#_terminal_execute_line_letter_65536_149
 	movx	a,@dptr
-	jz	00111$
-;	terminal.c:111: printf("Can't have >1 command letter in one command!\n");
-	mov	a,#___str_2
-	push	acc
-	mov	a,#(___str_2 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	terminal.c:112: return LINE_FAILED;
-	mov	dpl,#0x01
-	ret
-00111$:
-;	terminal.c:116: command.command_type = COMMAND_TEST_INT_READING;
-	mov	dptr,#_command
-	mov	a,#0x01
-	movx	@dptr,a
-;	terminal.c:117: break;
-	ljmp	00122$
-;	terminal.c:119: case 'N':
-00112$:
-;	terminal.c:120: command.command_type = COMMAND_GET_NRF24_REGISTERS;
-	mov	dptr,#_command
-	mov	a,#0x02
-	movx	@dptr,a
-;	terminal.c:121: break;
-	ljmp	00122$
-;	terminal.c:123: case 'T':
-00113$:
-;	terminal.c:124: command.command_type = COMMAND_GET_CURRENT_TIME;
-	mov	dptr,#_command
-	mov	a,#0x03
-	movx	@dptr,a
-;	terminal.c:125: break;
-	ljmp	00122$
-;	terminal.c:127: case 'i':
-00114$:
-;	terminal.c:129: if (!read_int(line, &char_count, &int_value)) {
+	mov	r4,a
+	cjne	r4,#0x41,00234$
+	sjmp	00110$
+00234$:
+	cjne	r4,#0x4e,00235$
+	sjmp	00113$
+00235$:
+	cjne	r4,#0x54,00236$
+	sjmp	00114$
+00236$:
+	cjne	r4,#0x69,00237$
+	ljmp	00115$
+00237$:
+	cjne	r4,#0x6a,00238$
+	ljmp	00118$
+00238$:
+	ljmp	00121$
+;	terminal.c:111: case 'A':
+00110$:
+;	terminal.c:113: if (!read_int(line, &char_count, &int_value)) {
 	mov	dptr,#_terminal_execute_line_line_65536_148
 	movx	a,@dptr
 	mov	r1,a
@@ -1818,8 +1749,87 @@ _terminal_execute_line:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-	jnz	00116$
-;	terminal.c:130: printf("Bad int Number Format\n");
+	jnz	00112$
+;	terminal.c:114: printf("Bad integer Number Format\n");
+	mov	a,#___str_2
+	push	acc
+	mov	a,#(___str_2 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	terminal.c:115: return LINE_FAILED;
+	mov	dpl,#0x01
+	ret
+00112$:
+;	terminal.c:118: command.command_type = COMMAND_TEST_INT_READING;
+	mov	dptr,#_command
+	mov	a,#0x01
+	movx	@dptr,a
+;	terminal.c:119: break;
+	ljmp	00123$
+;	terminal.c:121: case 'N':
+00113$:
+;	terminal.c:122: command.command_type = COMMAND_GET_NRF24_REGISTERS;
+	mov	dptr,#_command
+	mov	a,#0x02
+	movx	@dptr,a
+;	terminal.c:123: break;
+	ljmp	00123$
+;	terminal.c:125: case 'T':
+00114$:
+;	terminal.c:126: command.command_type = COMMAND_GET_CURRENT_TIME;
+	mov	dptr,#_command
+	mov	a,#0x03
+	movx	@dptr,a
+;	terminal.c:127: break;
+	ljmp	00123$
+;	terminal.c:129: case 'i':
+00115$:
+;	terminal.c:131: if (!read_int(line, &char_count, &int_value)) {
+	mov	dptr,#_terminal_execute_line_line_65536_148
+	movx	a,@dptr
+	mov	r1,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#_read_int_PARM_2
+	mov	a,#_terminal_execute_line_char_count_65536_149
+	movx	@dptr,a
+	mov	a,#(_terminal_execute_line_char_count_65536_149 >> 8)
+	inc	dptr
+	movx	@dptr,a
+	clr	a
+	inc	dptr
+	movx	@dptr,a
+	mov	dptr,#_read_int_PARM_3
+	mov	a,#_terminal_execute_line_int_value_65536_149
+	movx	@dptr,a
+	mov	a,#(_terminal_execute_line_int_value_65536_149 >> 8)
+	inc	dptr
+	movx	@dptr,a
+	clr	a
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r1
+	mov	dph,r2
+	mov	b,r3
+	push	ar7
+	push	ar6
+	push	ar5
+	lcall	_read_int
+	mov	a,dpl
+	pop	ar5
+	pop	ar6
+	pop	ar7
+	jnz	00117$
+;	terminal.c:132: printf("Bad int Number Format\n");
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1830,11 +1840,11 @@ _terminal_execute_line:
 	dec	sp
 	dec	sp
 	dec	sp
-;	terminal.c:131: return LINE_FAILED;
+;	terminal.c:133: return LINE_FAILED;
 	mov	dpl,#0x01
 	ret
-00116$:
-;	terminal.c:133: command.i = int_value;
+00117$:
+;	terminal.c:135: command.i = int_value;
 	mov	dptr,#_terminal_execute_line_int_value_65536_149
 	movx	a,@dptr
 	mov	r2,a
@@ -1847,11 +1857,11 @@ _terminal_execute_line:
 	mov	a,r3
 	inc	dptr
 	movx	@dptr,a
-;	terminal.c:134: break;
-	ljmp	00122$
-;	terminal.c:136: case 'j':
-00117$:
-;	terminal.c:138: if (!read_int(line, &char_count, &int_value)) {
+;	terminal.c:136: break;
+	ljmp	00123$
+;	terminal.c:138: case 'j':
+00118$:
+;	terminal.c:140: if (!read_int(line, &char_count, &int_value)) {
 	mov	dptr,#_terminal_execute_line_line_65536_148
 	movx	a,@dptr
 	mov	r1,a
@@ -1890,8 +1900,8 @@ _terminal_execute_line:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-	jnz	00119$
-;	terminal.c:139: printf("Bad int Number Format\n");
+	jnz	00120$
+;	terminal.c:141: printf("Bad int Number Format\n");
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1902,11 +1912,11 @@ _terminal_execute_line:
 	dec	sp
 	dec	sp
 	dec	sp
-;	terminal.c:140: return LINE_FAILED;
+;	terminal.c:142: return LINE_FAILED;
 	mov	dpl,#0x01
 	ret
-00119$:
-;	terminal.c:142: command.j = int_value;
+00120$:
+;	terminal.c:144: command.j = int_value;
 	mov	dptr,#_terminal_execute_line_int_value_65536_149
 	movx	a,@dptr
 	mov	r2,a
@@ -1919,11 +1929,11 @@ _terminal_execute_line:
 	mov	a,r3
 	inc	dptr
 	movx	@dptr,a
-;	terminal.c:143: break;
-	ljmp	00122$
-;	terminal.c:145: default:
-00120$:
-;	terminal.c:146: printf("Command Letter '%c' Not Implemented\n", letter);
+;	terminal.c:145: break;
+	ljmp	00123$
+;	terminal.c:147: default:
+00121$:
+;	terminal.c:148: printf("Command Letter '%c' Not Implemented\n", letter);
 	mov	r7,#0x00
 	push	ar4
 	push	ar7
@@ -1937,25 +1947,25 @@ _terminal_execute_line:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	terminal.c:147: return LINE_FAILED;
+;	terminal.c:149: return LINE_FAILED;
 	mov	dpl,#0x01
 	ret
-;	terminal.c:148: }
-00124$:
-;	terminal.c:152: switch(command.command_type) {
+;	terminal.c:150: }
+00125$:
+;	terminal.c:154: switch(command.command_type) {
 	mov	dptr,#_command
 	movx	a,@dptr
 	mov	r7,a
-	cjne	r7,#0x01,00233$
-	sjmp	00129$
-00233$:
-	cjne	r7,#0x02,00234$
-	sjmp	00129$
-00234$:
-	cjne	r7,#0x03,00235$
-	sjmp	00129$
-00235$:
-;	terminal.c:164: printf("SHOULD NEVER REACH HERE IN ERROR CHECKING.\n");
+	cjne	r7,#0x01,00242$
+	sjmp	00130$
+00242$:
+	cjne	r7,#0x02,00243$
+	sjmp	00130$
+00243$:
+	cjne	r7,#0x03,00244$
+	sjmp	00130$
+00244$:
+;	terminal.c:166: printf("SHOULD NEVER REACH HERE IN ERROR CHECKING.\n");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -1966,26 +1976,26 @@ _terminal_execute_line:
 	dec	sp
 	dec	sp
 	dec	sp
-;	terminal.c:165: return LINE_FAILED;
+;	terminal.c:167: return LINE_FAILED;
 	mov	dpl,#0x01
 	ret
-;	terminal.c:166: }
-00129$:
-;	terminal.c:169: switch(command.command_type) {
+;	terminal.c:168: }
+00130$:
+;	terminal.c:171: switch(command.command_type) {
 	mov	dptr,#_command
 	movx	a,@dptr
 	mov	r7,a
-	cjne	r7,#0x01,00236$
-	sjmp	00130$
-00236$:
-	cjne	r7,#0x02,00237$
+	cjne	r7,#0x01,00245$
 	sjmp	00131$
-00237$:
-;	terminal.c:171: case COMMAND_TEST_INT_READING:
-	cjne	r7,#0x03,00133$
+00245$:
+	cjne	r7,#0x02,00246$
 	sjmp	00132$
-00130$:
-;	terminal.c:172: printf("Read INT value: %d\n", int_value);
+00246$:
+;	terminal.c:173: case COMMAND_TEST_INT_READING:
+	cjne	r7,#0x03,00134$
+	sjmp	00133$
+00131$:
+;	terminal.c:174: printf("Read INT value: %d\n", int_value);
 	mov	dptr,#_terminal_execute_line_int_value_65536_149
 	movx	a,@dptr
 	push	acc
@@ -2002,17 +2012,17 @@ _terminal_execute_line:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	terminal.c:173: break;
-;	terminal.c:175: case COMMAND_GET_NRF24_REGISTERS:
-	sjmp	00134$
-00131$:
-;	terminal.c:176: nrf24_print_internal_register_values();
-	lcall	_nrf24_print_internal_register_values
-;	terminal.c:177: break;
-;	terminal.c:179: case COMMAND_GET_CURRENT_TIME:
-	sjmp	00134$
+;	terminal.c:175: break;
+;	terminal.c:177: case COMMAND_GET_NRF24_REGISTERS:
+	sjmp	00135$
 00132$:
-;	terminal.c:180: report("Current Time Passed: %lu\n", get_current_time());
+;	terminal.c:178: nrf24_print_internal_register_values();
+	lcall	_nrf24_print_internal_register_values
+;	terminal.c:179: break;
+;	terminal.c:181: case COMMAND_GET_CURRENT_TIME:
+	sjmp	00135$
+00133$:
+;	terminal.c:182: report("Current Time Passed: %lu\n", get_current_time());
 	lcall	_get_current_time
 	mov	r4,dpl
 	mov	r5,dph
@@ -2032,11 +2042,11 @@ _terminal_execute_line:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	terminal.c:181: break;
-;	terminal.c:183: default:
-	sjmp	00134$
-00133$:
-;	terminal.c:188: printf("SHOULD NEVER REACH HERE.");
+;	terminal.c:183: break;
+;	terminal.c:185: default:
+	sjmp	00135$
+00134$:
+;	terminal.c:190: printf("SHOULD NEVER REACH HERE.");
 	mov	a,#___str_8
 	push	acc
 	mov	a,#(___str_8 >> 8)
@@ -2047,14 +2057,14 @@ _terminal_execute_line:
 	dec	sp
 	dec	sp
 	dec	sp
-;	terminal.c:189: return LINE_FAILED;
+;	terminal.c:191: return LINE_FAILED;
 	mov	dpl,#0x01
-;	terminal.c:190: }
+;	terminal.c:192: }
 	ret
-00134$:
-;	terminal.c:192: return LINE_PASSED;
+00135$:
+;	terminal.c:194: return LINE_PASSED;
 	mov	dpl,#0x00
-;	terminal.c:194: }
+;	terminal.c:196: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
@@ -2067,13 +2077,13 @@ ___str_0:
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_1:
-	.ascii "Bad integer Number Format"
+	.ascii "Can't have >1 command letter in one command!"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_2:
-	.ascii "Can't have >1 command letter in one command!"
+	.ascii "Bad integer Number Format"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)

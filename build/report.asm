@@ -1244,7 +1244,10 @@ _report:
 ;	report.c:46: delay10us(2); //TODO: remove this
 	mov	dpl,#0x02
 	lcall	_delay10us
-;	report.c:48: while(nrf24_transmit_status() == TRANSMIT_IN_PROGRESS) {printf(".");}
+;	report.c:47: nrf24_CE(0);
+	mov	dpl,#0x00
+	lcall	_nrf24_CE
+;	report.c:49: while(nrf24_transmit_status() == TRANSMIT_IN_PROGRESS) {printf(".");}
 00104$:
 	lcall	_nrf24_transmit_status
 	mov	a,dpl
@@ -1261,9 +1264,6 @@ _report:
 	dec	sp
 	sjmp	00104$
 00106$:
-;	report.c:50: nrf24_CE(0);
-	mov	dpl,#0x00
-	lcall	_nrf24_CE
 ;	report.c:52: printf("\n");
 	mov	a,#___str_3
 	push	acc

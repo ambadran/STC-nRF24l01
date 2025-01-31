@@ -137,7 +137,7 @@ void nrf24_send_payload(uint8_t *payload, uint8_t payload_width) {
   if (current_acknowledgement_state == NO_ACK_MODE) {SPI_command = W_TX_PAYLOAD_NOACK;}
   else { SPI_command = W_TX_PAYLOAD; }
 
-  /* SPI_send_command(SPI_command); */
+  /* SPI_send_command(SPI_command); */ //TODO:
   SPI_send_command(W_TX_PAYLOAD);
   for (; payload_width; payload_width--) {
     //TODO: replace with this after testing

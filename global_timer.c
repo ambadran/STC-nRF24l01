@@ -1,6 +1,6 @@
 #include "project-defs.h"
 
-static volatile uint32_t global_timer_counter;
+static volatile uint32_t global_timer_counter = 0;
 
 void global_timer_init(void) {
     startTimer(

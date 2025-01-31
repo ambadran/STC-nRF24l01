@@ -1244,26 +1244,26 @@
                                    1244 ;	report.c:46: delay10us(2); //TODO: remove this
       00013A 75 82 02         [24] 1245 	mov	dpl,#0x02
       00013D 12r00r00         [24] 1246 	lcall	_delay10us
-                                   1247 ;	report.c:48: while(nrf24_transmit_status() == TRANSMIT_IN_PROGRESS) {printf(".");}
-      000140                       1248 00104$:
-      000140 12r00r00         [24] 1249 	lcall	_nrf24_transmit_status
-      000143 E5 82            [12] 1250 	mov	a,dpl
-      000145 70 17            [24] 1251 	jnz	00106$
-      000147 74r27            [12] 1252 	mov	a,#___str_2
-      000149 C0 E0            [24] 1253 	push	acc
-      00014B 74s00            [12] 1254 	mov	a,#(___str_2 >> 8)
-      00014D C0 E0            [24] 1255 	push	acc
-      00014F 74 80            [12] 1256 	mov	a,#0x80
-      000151 C0 E0            [24] 1257 	push	acc
-      000153 12r00r00         [24] 1258 	lcall	_printf
-      000156 15 81            [12] 1259 	dec	sp
-      000158 15 81            [12] 1260 	dec	sp
-      00015A 15 81            [12] 1261 	dec	sp
-      00015C 80 E2            [24] 1262 	sjmp	00104$
-      00015E                       1263 00106$:
-                                   1264 ;	report.c:50: nrf24_CE(0);
-      00015E 75 82 00         [24] 1265 	mov	dpl,#0x00
-      000161 12r00r00         [24] 1266 	lcall	_nrf24_CE
+                                   1247 ;	report.c:47: nrf24_CE(0);
+      000140 75 82 00         [24] 1248 	mov	dpl,#0x00
+      000143 12r00r00         [24] 1249 	lcall	_nrf24_CE
+                                   1250 ;	report.c:49: while(nrf24_transmit_status() == TRANSMIT_IN_PROGRESS) {printf(".");}
+      000146                       1251 00104$:
+      000146 12r00r00         [24] 1252 	lcall	_nrf24_transmit_status
+      000149 E5 82            [12] 1253 	mov	a,dpl
+      00014B 70 17            [24] 1254 	jnz	00106$
+      00014D 74r27            [12] 1255 	mov	a,#___str_2
+      00014F C0 E0            [24] 1256 	push	acc
+      000151 74s00            [12] 1257 	mov	a,#(___str_2 >> 8)
+      000153 C0 E0            [24] 1258 	push	acc
+      000155 74 80            [12] 1259 	mov	a,#0x80
+      000157 C0 E0            [24] 1260 	push	acc
+      000159 12r00r00         [24] 1261 	lcall	_printf
+      00015C 15 81            [12] 1262 	dec	sp
+      00015E 15 81            [12] 1263 	dec	sp
+      000160 15 81            [12] 1264 	dec	sp
+      000162 80 E2            [24] 1265 	sjmp	00104$
+      000164                       1266 00106$:
                                    1267 ;	report.c:52: printf("\n");
       000164 74r29            [12] 1268 	mov	a,#___str_3
       000166 C0 E0            [24] 1269 	push	acc

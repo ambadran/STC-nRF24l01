@@ -927,16 +927,16 @@
                            00FA3E   927 _DMA_UR4R_TXAL	=	0xfa3e
       0002BC                        928 _uartGetCharacter_result_65536_69:
       0002BC                        929 	.ds 1
-      0002BD                        930 _global_timer_counter:
-      0002BD                        931 	.ds 4
+                                    930 ;--------------------------------------------------------
+                                    931 ; absolute external ram data
                                     932 ;--------------------------------------------------------
-                                    933 ; absolute external ram data
+                                    933 	.area XABS    (ABS,XDATA)
                                     934 ;--------------------------------------------------------
-                                    935 	.area XABS    (ABS,XDATA)
+                                    935 ; external initialized ram data
                                     936 ;--------------------------------------------------------
-                                    937 ; external initialized ram data
-                                    938 ;--------------------------------------------------------
-                                    939 	.area XISEG   (XDATA)
+                                    937 	.area XISEG   (XDATA)
+      00038E                        938 _global_timer_counter:
+      00038E                        939 	.ds 4
                                     940 	.area HOME    (CODE)
                                     941 	.area GSINIT0 (CODE)
                                     942 	.area GSINIT1 (CODE)
@@ -970,7 +970,7 @@
                                     970 ;	-----------------------------------------
                                     971 ;	 function global_timer_init
                                     972 ;	-----------------------------------------
-      0038CF                        973 _global_timer_init:
+      0038DC                        973 _global_timer_init:
                            000007   974 	ar7 = 0x07
                            000006   975 	ar6 = 0x06
                            000005   976 	ar5 = 0x05
@@ -980,28 +980,28 @@
                            000001   980 	ar1 = 0x01
                            000000   981 	ar0 = 0x00
                                     982 ;	global_timer.c:11: FREE_RUNNING
-      0038CF 90 00 87         [24]  983 	mov	dptr,#_startTimer_PARM_2
-      0038D2 74 B8            [12]  984 	mov	a,#0xb8
-      0038D4 F0               [24]  985 	movx	@dptr,a
-      0038D5 74 88            [12]  986 	mov	a,#0x88
-      0038D7 A3               [24]  987 	inc	dptr
-      0038D8 F0               [24]  988 	movx	@dptr,a
-      0038D9 E4               [12]  989 	clr	a
-      0038DA A3               [24]  990 	inc	dptr
-      0038DB F0               [24]  991 	movx	@dptr,a
-      0038DC A3               [24]  992 	inc	dptr
-      0038DD F0               [24]  993 	movx	@dptr,a
-      0038DE 90 00 8B         [24]  994 	mov	dptr,#_startTimer_PARM_3
-      0038E1 F0               [24]  995 	movx	@dptr,a
-      0038E2 90 00 8C         [24]  996 	mov	dptr,#_startTimer_PARM_4
-      0038E5 04               [12]  997 	inc	a
-      0038E6 F0               [24]  998 	movx	@dptr,a
-      0038E7 90 00 8D         [24]  999 	mov	dptr,#_startTimer_PARM_5
-      0038EA E4               [12] 1000 	clr	a
-      0038EB F0               [24] 1001 	movx	@dptr,a
-      0038EC 75 82 00         [24] 1002 	mov	dpl,#0x00
+      0038DC 90 00 87         [24]  983 	mov	dptr,#_startTimer_PARM_2
+      0038DF 74 B8            [12]  984 	mov	a,#0xb8
+      0038E1 F0               [24]  985 	movx	@dptr,a
+      0038E2 74 88            [12]  986 	mov	a,#0x88
+      0038E4 A3               [24]  987 	inc	dptr
+      0038E5 F0               [24]  988 	movx	@dptr,a
+      0038E6 E4               [12]  989 	clr	a
+      0038E7 A3               [24]  990 	inc	dptr
+      0038E8 F0               [24]  991 	movx	@dptr,a
+      0038E9 A3               [24]  992 	inc	dptr
+      0038EA F0               [24]  993 	movx	@dptr,a
+      0038EB 90 00 8B         [24]  994 	mov	dptr,#_startTimer_PARM_3
+      0038EE F0               [24]  995 	movx	@dptr,a
+      0038EF 90 00 8C         [24]  996 	mov	dptr,#_startTimer_PARM_4
+      0038F2 04               [12]  997 	inc	a
+      0038F3 F0               [24]  998 	movx	@dptr,a
+      0038F4 90 00 8D         [24]  999 	mov	dptr,#_startTimer_PARM_5
+      0038F7 E4               [12] 1000 	clr	a
+      0038F8 F0               [24] 1001 	movx	@dptr,a
+      0038F9 75 82 00         [24] 1002 	mov	dpl,#0x00
                                    1003 ;	global_timer.c:13: }
-      0038EF 02 15 23         [24] 1004 	ljmp	_startTimer
+      0038FC 02 15 23         [24] 1004 	ljmp	_startTimer
                                    1005 ;------------------------------------------------------------
                                    1006 ;Allocation info for local variables in function 'get_current_time'
                                    1007 ;------------------------------------------------------------
@@ -1009,22 +1009,22 @@
                                    1009 ;	-----------------------------------------
                                    1010 ;	 function get_current_time
                                    1011 ;	-----------------------------------------
-      0038F2                       1012 _get_current_time:
-      0038F2 90 02 BD         [24] 1013 	mov	dptr,#_global_timer_counter
-      0038F5 E0               [24] 1014 	movx	a,@dptr
-      0038F6 FC               [12] 1015 	mov	r4,a
-      0038F7 A3               [24] 1016 	inc	dptr
-      0038F8 E0               [24] 1017 	movx	a,@dptr
-      0038F9 FD               [12] 1018 	mov	r5,a
-      0038FA A3               [24] 1019 	inc	dptr
-      0038FB E0               [24] 1020 	movx	a,@dptr
-      0038FC FE               [12] 1021 	mov	r6,a
-      0038FD A3               [24] 1022 	inc	dptr
-      0038FE E0               [24] 1023 	movx	a,@dptr
-      0038FF 8C 82            [24] 1024 	mov	dpl,r4
-      003901 8D 83            [24] 1025 	mov	dph,r5
-      003903 8E F0            [24] 1026 	mov	b,r6
-      003905 22               [24] 1027 	ret
+      0038FF                       1012 _get_current_time:
+      0038FF 90 03 8E         [24] 1013 	mov	dptr,#_global_timer_counter
+      003902 E0               [24] 1014 	movx	a,@dptr
+      003903 FC               [12] 1015 	mov	r4,a
+      003904 A3               [24] 1016 	inc	dptr
+      003905 E0               [24] 1017 	movx	a,@dptr
+      003906 FD               [12] 1018 	mov	r5,a
+      003907 A3               [24] 1019 	inc	dptr
+      003908 E0               [24] 1020 	movx	a,@dptr
+      003909 FE               [12] 1021 	mov	r6,a
+      00390A A3               [24] 1022 	inc	dptr
+      00390B E0               [24] 1023 	movx	a,@dptr
+      00390C 8C 82            [24] 1024 	mov	dpl,r4
+      00390E 8D 83            [24] 1025 	mov	dph,r5
+      003910 8E F0            [24] 1026 	mov	b,r6
+      003912 22               [24] 1027 	ret
                                    1028 ;------------------------------------------------------------
                                    1029 ;Allocation info for local variables in function 'timer0_isr'
                                    1030 ;------------------------------------------------------------
@@ -1032,57 +1032,59 @@
                                    1032 ;	-----------------------------------------
                                    1033 ;	 function timer0_isr
                                    1034 ;	-----------------------------------------
-      003906                       1035 _timer0_isr:
-      003906 C0 E0            [24] 1036 	push	acc
-      003908 C0 82            [24] 1037 	push	dpl
-      00390A C0 83            [24] 1038 	push	dph
-      00390C C0 07            [24] 1039 	push	ar7
-      00390E C0 06            [24] 1040 	push	ar6
-      003910 C0 05            [24] 1041 	push	ar5
-      003912 C0 04            [24] 1042 	push	ar4
-      003914 C0 D0            [24] 1043 	push	psw
-      003916 75 D0 00         [24] 1044 	mov	psw,#0x00
+      003913                       1035 _timer0_isr:
+      003913 C0 E0            [24] 1036 	push	acc
+      003915 C0 82            [24] 1037 	push	dpl
+      003917 C0 83            [24] 1038 	push	dph
+      003919 C0 07            [24] 1039 	push	ar7
+      00391B C0 06            [24] 1040 	push	ar6
+      00391D C0 05            [24] 1041 	push	ar5
+      00391F C0 04            [24] 1042 	push	ar4
+      003921 C0 D0            [24] 1043 	push	psw
+      003923 75 D0 00         [24] 1044 	mov	psw,#0x00
                                    1045 ;	global_timer.c:20: global_timer_counter++;
-      003919 90 02 BD         [24] 1046 	mov	dptr,#_global_timer_counter
-      00391C E0               [24] 1047 	movx	a,@dptr
-      00391D FC               [12] 1048 	mov	r4,a
-      00391E A3               [24] 1049 	inc	dptr
-      00391F E0               [24] 1050 	movx	a,@dptr
-      003920 FD               [12] 1051 	mov	r5,a
-      003921 A3               [24] 1052 	inc	dptr
-      003922 E0               [24] 1053 	movx	a,@dptr
-      003923 FE               [12] 1054 	mov	r6,a
-      003924 A3               [24] 1055 	inc	dptr
-      003925 E0               [24] 1056 	movx	a,@dptr
-      003926 FF               [12] 1057 	mov	r7,a
-      003927 90 02 BD         [24] 1058 	mov	dptr,#_global_timer_counter
-      00392A 74 01            [12] 1059 	mov	a,#0x01
-      00392C 2C               [12] 1060 	add	a,r4
-      00392D F0               [24] 1061 	movx	@dptr,a
-      00392E E4               [12] 1062 	clr	a
-      00392F 3D               [12] 1063 	addc	a,r5
-      003930 A3               [24] 1064 	inc	dptr
-      003931 F0               [24] 1065 	movx	@dptr,a
-      003932 E4               [12] 1066 	clr	a
-      003933 3E               [12] 1067 	addc	a,r6
-      003934 A3               [24] 1068 	inc	dptr
-      003935 F0               [24] 1069 	movx	@dptr,a
-      003936 E4               [12] 1070 	clr	a
-      003937 3F               [12] 1071 	addc	a,r7
-      003938 A3               [24] 1072 	inc	dptr
-      003939 F0               [24] 1073 	movx	@dptr,a
+      003926 90 03 8E         [24] 1046 	mov	dptr,#_global_timer_counter
+      003929 E0               [24] 1047 	movx	a,@dptr
+      00392A FC               [12] 1048 	mov	r4,a
+      00392B A3               [24] 1049 	inc	dptr
+      00392C E0               [24] 1050 	movx	a,@dptr
+      00392D FD               [12] 1051 	mov	r5,a
+      00392E A3               [24] 1052 	inc	dptr
+      00392F E0               [24] 1053 	movx	a,@dptr
+      003930 FE               [12] 1054 	mov	r6,a
+      003931 A3               [24] 1055 	inc	dptr
+      003932 E0               [24] 1056 	movx	a,@dptr
+      003933 FF               [12] 1057 	mov	r7,a
+      003934 90 03 8E         [24] 1058 	mov	dptr,#_global_timer_counter
+      003937 74 01            [12] 1059 	mov	a,#0x01
+      003939 2C               [12] 1060 	add	a,r4
+      00393A F0               [24] 1061 	movx	@dptr,a
+      00393B E4               [12] 1062 	clr	a
+      00393C 3D               [12] 1063 	addc	a,r5
+      00393D A3               [24] 1064 	inc	dptr
+      00393E F0               [24] 1065 	movx	@dptr,a
+      00393F E4               [12] 1066 	clr	a
+      003940 3E               [12] 1067 	addc	a,r6
+      003941 A3               [24] 1068 	inc	dptr
+      003942 F0               [24] 1069 	movx	@dptr,a
+      003943 E4               [12] 1070 	clr	a
+      003944 3F               [12] 1071 	addc	a,r7
+      003945 A3               [24] 1072 	inc	dptr
+      003946 F0               [24] 1073 	movx	@dptr,a
                                    1074 ;	global_timer.c:22: }
-      00393A D0 D0            [24] 1075 	pop	psw
-      00393C D0 04            [24] 1076 	pop	ar4
-      00393E D0 05            [24] 1077 	pop	ar5
-      003940 D0 06            [24] 1078 	pop	ar6
-      003942 D0 07            [24] 1079 	pop	ar7
-      003944 D0 83            [24] 1080 	pop	dph
-      003946 D0 82            [24] 1081 	pop	dpl
-      003948 D0 E0            [24] 1082 	pop	acc
-      00394A 32               [24] 1083 	reti
+      003947 D0 D0            [24] 1075 	pop	psw
+      003949 D0 04            [24] 1076 	pop	ar4
+      00394B D0 05            [24] 1077 	pop	ar5
+      00394D D0 06            [24] 1078 	pop	ar6
+      00394F D0 07            [24] 1079 	pop	ar7
+      003951 D0 83            [24] 1080 	pop	dph
+      003953 D0 82            [24] 1081 	pop	dpl
+      003955 D0 E0            [24] 1082 	pop	acc
+      003957 32               [24] 1083 	reti
                                    1084 ;	eliminated unneeded push/pop b
                                    1085 	.area CSEG    (CODE)
                                    1086 	.area CONST   (CODE)
                                    1087 	.area XINIT   (CODE)
-                                   1088 	.area CABS    (ABS,CODE)
+      004D59                       1088 __xinit__global_timer_counter:
+      004D59 00 00 00 00           1089 	.byte #0x00, #0x00, #0x00, #0x00	; 0
+                                   1090 	.area CABS    (ABS,CODE)

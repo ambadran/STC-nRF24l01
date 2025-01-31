@@ -44,10 +44,10 @@ void report(const char* __fmt, ...) {
 
   nrf24_CE(1);
   delay10us(2); //TODO: remove this
+  nrf24_CE(0);
 
   while(nrf24_transmit_status() == TRANSMIT_IN_PROGRESS) {printf(".");}
 
-  nrf24_CE(0);
 
   printf("\n");
   nrf24_device(RECEIVER, RESET);

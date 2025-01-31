@@ -951,12 +951,12 @@
                                     951 ; external initialized ram data
                                     952 ;--------------------------------------------------------
                                     953 	.area XISEG   (XDATA)
-      00038D                        954 _char_count::
-      00038D                        955 	.ds 1
-      00038E                        956 _uart_receive_func_ptr::
-      00038E                        957 	.ds 2
-      000390                        958 _nrf24_receive_func_ptr::
-      000390                        959 	.ds 2
+      000389                        954 _char_count::
+      000389                        955 	.ds 1
+      00038A                        956 _uart_receive_func_ptr::
+      00038A                        957 	.ds 2
+      00038C                        958 _nrf24_receive_func_ptr::
+      00038C                        959 	.ds 2
                                     960 	.area HOME    (CODE)
                                     961 	.area GSINIT0 (CODE)
                                     962 	.area GSINIT1 (CODE)
@@ -993,7 +993,7 @@
                                     993 ;	-----------------------------------------
                                     994 ;	 function uartGetCharacter_modified
                                     995 ;	-----------------------------------------
-      0036F3                        996 _uartGetCharacter_modified:
+      003700                        996 _uartGetCharacter_modified:
                            000007   997 	ar7 = 0x07
                            000006   998 	ar6 = 0x06
                            000005   999 	ar5 = 0x05
@@ -1002,50 +1002,50 @@
                            000002  1002 	ar2 = 0x02
                            000001  1003 	ar1 = 0x01
                            000000  1004 	ar0 = 0x00
-      0036F3 C0 19            [24] 1005 	push	_bp
-      0036F5 85 81 19         [24] 1006 	mov	_bp,sp
+      003700 C0 19            [24] 1005 	push	_bp
+      003702 85 81 19         [24] 1006 	mov	_bp,sp
                                    1007 ;	protocol.c:12: *data = UART_RECEIVE_EMPTY;
-      0036F8 AD 82            [24] 1008 	mov	r5,dpl
-      0036FA AE 83            [24] 1009 	mov	r6,dph
-      0036FC AF F0            [24] 1010 	mov	r7,b
-      0036FE E4               [12] 1011 	clr	a
-      0036FF 12 3D D2         [24] 1012 	lcall	__gptrput
+      003705 AD 82            [24] 1008 	mov	r5,dpl
+      003707 AE 83            [24] 1009 	mov	r6,dph
+      003709 AF F0            [24] 1010 	mov	r7,b
+      00370B E4               [12] 1011 	clr	a
+      00370C 12 3D DF         [24] 1012 	lcall	__gptrput
                                    1013 ;	protocol.c:13: uartGetBlock(CONSOLE_UART, data, size, NON_BLOCKING);
-      003702 90 01 CB         [24] 1014 	mov	dptr,#_uartGetBlock_PARM_2
-      003705 ED               [12] 1015 	mov	a,r5
-      003706 F0               [24] 1016 	movx	@dptr,a
-      003707 EE               [12] 1017 	mov	a,r6
-      003708 A3               [24] 1018 	inc	dptr
-      003709 F0               [24] 1019 	movx	@dptr,a
-      00370A EF               [12] 1020 	mov	a,r7
-      00370B A3               [24] 1021 	inc	dptr
-      00370C F0               [24] 1022 	movx	@dptr,a
-      00370D E5 19            [12] 1023 	mov	a,_bp
-      00370F 24 FD            [12] 1024 	add	a,#0xfd
-      003711 F8               [12] 1025 	mov	r0,a
-      003712 90 01 CE         [24] 1026 	mov	dptr,#_uartGetBlock_PARM_3
-      003715 E6               [12] 1027 	mov	a,@r0
-      003716 F0               [24] 1028 	movx	@dptr,a
-      003717 90 01 CF         [24] 1029 	mov	dptr,#_uartGetBlock_PARM_4
-      00371A E4               [12] 1030 	clr	a
-      00371B F0               [24] 1031 	movx	@dptr,a
-      00371C 75 82 01         [24] 1032 	mov	dpl,#0x01
-      00371F C0 07            [24] 1033 	push	ar7
-      003721 C0 06            [24] 1034 	push	ar6
-      003723 C0 05            [24] 1035 	push	ar5
-      003725 12 1D 97         [24] 1036 	lcall	_uartGetBlock
-      003728 D0 05            [24] 1037 	pop	ar5
-      00372A D0 06            [24] 1038 	pop	ar6
-      00372C D0 07            [24] 1039 	pop	ar7
+      00370F 90 01 CB         [24] 1014 	mov	dptr,#_uartGetBlock_PARM_2
+      003712 ED               [12] 1015 	mov	a,r5
+      003713 F0               [24] 1016 	movx	@dptr,a
+      003714 EE               [12] 1017 	mov	a,r6
+      003715 A3               [24] 1018 	inc	dptr
+      003716 F0               [24] 1019 	movx	@dptr,a
+      003717 EF               [12] 1020 	mov	a,r7
+      003718 A3               [24] 1021 	inc	dptr
+      003719 F0               [24] 1022 	movx	@dptr,a
+      00371A E5 19            [12] 1023 	mov	a,_bp
+      00371C 24 FD            [12] 1024 	add	a,#0xfd
+      00371E F8               [12] 1025 	mov	r0,a
+      00371F 90 01 CE         [24] 1026 	mov	dptr,#_uartGetBlock_PARM_3
+      003722 E6               [12] 1027 	mov	a,@r0
+      003723 F0               [24] 1028 	movx	@dptr,a
+      003724 90 01 CF         [24] 1029 	mov	dptr,#_uartGetBlock_PARM_4
+      003727 E4               [12] 1030 	clr	a
+      003728 F0               [24] 1031 	movx	@dptr,a
+      003729 75 82 01         [24] 1032 	mov	dpl,#0x01
+      00372C C0 07            [24] 1033 	push	ar7
+      00372E C0 06            [24] 1034 	push	ar6
+      003730 C0 05            [24] 1035 	push	ar5
+      003732 12 1D 97         [24] 1036 	lcall	_uartGetBlock
+      003735 D0 05            [24] 1037 	pop	ar5
+      003737 D0 06            [24] 1038 	pop	ar6
+      003739 D0 07            [24] 1039 	pop	ar7
                                    1040 ;	protocol.c:14: return *data;
-      00372E 8D 82            [24] 1041 	mov	dpl,r5
-      003730 8E 83            [24] 1042 	mov	dph,r6
-      003732 8F F0            [24] 1043 	mov	b,r7
-      003734 12 49 F9         [24] 1044 	lcall	__gptrget
-      003737 F5 82            [12] 1045 	mov	dpl,a
+      00373B 8D 82            [24] 1041 	mov	dpl,r5
+      00373D 8E 83            [24] 1042 	mov	dph,r6
+      00373F 8F F0            [24] 1043 	mov	b,r7
+      003741 12 4A 06         [24] 1044 	lcall	__gptrget
+      003744 F5 82            [12] 1045 	mov	dpl,a
                                    1046 ;	protocol.c:15: }
-      003739 D0 19            [24] 1047 	pop	_bp
-      00373B 22               [24] 1048 	ret
+      003746 D0 19            [24] 1047 	pop	_bp
+      003748 22               [24] 1048 	ret
                                    1049 ;------------------------------------------------------------
                                    1050 ;Allocation info for local variables in function 'protocol_read_line'
                                    1051 ;------------------------------------------------------------
@@ -1056,120 +1056,120 @@
                                    1056 ;	-----------------------------------------
                                    1057 ;	 function protocol_read_line
                                    1058 ;	-----------------------------------------
-      00373C                       1059 _protocol_read_line:
-      00373C AF 83            [24] 1060 	mov	r7,dph
-      00373E E5 82            [12] 1061 	mov	a,dpl
-      003740 90 02 B7         [24] 1062 	mov	dptr,#_protocol_read_line_func_65536_135
-      003743 F0               [24] 1063 	movx	@dptr,a
-      003744 EF               [12] 1064 	mov	a,r7
-      003745 A3               [24] 1065 	inc	dptr
-      003746 F0               [24] 1066 	movx	@dptr,a
+      003749                       1059 _protocol_read_line:
+      003749 AF 83            [24] 1060 	mov	r7,dph
+      00374B E5 82            [12] 1061 	mov	a,dpl
+      00374D 90 02 B7         [24] 1062 	mov	dptr,#_protocol_read_line_func_65536_135
+      003750 F0               [24] 1063 	movx	@dptr,a
+      003751 EF               [12] 1064 	mov	a,r7
+      003752 A3               [24] 1065 	inc	dptr
+      003753 F0               [24] 1066 	movx	@dptr,a
                                    1067 ;	protocol.c:19: do { 
-      003747 90 02 B6         [24] 1068 	mov	dptr,#_protocol_read_line_PARM_2
-      00374A E0               [24] 1069 	movx	a,@dptr
-      00374B FF               [12] 1070 	mov	r7,a
-      00374C                       1071 00111$:
+      003754 90 02 B6         [24] 1068 	mov	dptr,#_protocol_read_line_PARM_2
+      003757 E0               [24] 1069 	movx	a,@dptr
+      003758 FF               [12] 1070 	mov	r7,a
+      003759                       1071 00111$:
                                    1072 ;	protocol.c:21: if ((c == '\n') || (c == '\r')) {
-      00374C 90 02 B5         [24] 1073 	mov	dptr,#_c
-      00374F E0               [24] 1074 	movx	a,@dptr
-      003750 FE               [12] 1075 	mov	r6,a
-      003751 BE 0A 02         [24] 1076 	cjne	r6,#0x0a,00132$
-      003754 80 03            [24] 1077 	sjmp	00107$
-      003756                       1078 00132$:
-      003756 BE 0D 22         [24] 1079 	cjne	r6,#0x0d,00108$
-      003759                       1080 00107$:
+      003759 90 02 B5         [24] 1073 	mov	dptr,#_c
+      00375C E0               [24] 1074 	movx	a,@dptr
+      00375D FE               [12] 1075 	mov	r6,a
+      00375E BE 0A 02         [24] 1076 	cjne	r6,#0x0a,00132$
+      003761 80 03            [24] 1077 	sjmp	00107$
+      003763                       1078 00132$:
+      003763 BE 0D 22         [24] 1079 	cjne	r6,#0x0d,00108$
+      003766                       1080 00107$:
                                    1081 ;	protocol.c:22: line[char_count] = 0; // string termination character, V.IMP for terminal.c to know where the command characters end
-      003759 90 03 8D         [24] 1082 	mov	dptr,#_char_count
-      00375C E0               [24] 1083 	movx	a,@dptr
-      00375D 24 A1            [12] 1084 	add	a,#_line
-      00375F F5 82            [12] 1085 	mov	dpl,a
-      003761 E4               [12] 1086 	clr	a
-      003762 34 02            [12] 1087 	addc	a,#(_line >> 8)
-      003764 F5 83            [12] 1088 	mov	dph,a
-      003766 E4               [12] 1089 	clr	a
-      003767 F0               [24] 1090 	movx	@dptr,a
+      003766 90 03 89         [24] 1082 	mov	dptr,#_char_count
+      003769 E0               [24] 1083 	movx	a,@dptr
+      00376A 24 A1            [12] 1084 	add	a,#_line
+      00376C F5 82            [12] 1085 	mov	dpl,a
+      00376E E4               [12] 1086 	clr	a
+      00376F 34 02            [12] 1087 	addc	a,#(_line >> 8)
+      003771 F5 83            [12] 1088 	mov	dph,a
+      003773 E4               [12] 1089 	clr	a
+      003774 F0               [24] 1090 	movx	@dptr,a
                                    1091 ;	protocol.c:23: char_count = 0; // reseting to read next command
-      003768 90 03 8D         [24] 1092 	mov	dptr,#_char_count
-      00376B F0               [24] 1093 	movx	@dptr,a
+      003775 90 03 89         [24] 1092 	mov	dptr,#_char_count
+      003778 F0               [24] 1093 	movx	@dptr,a
                                    1094 ;	protocol.c:26: protocol_execute_line(line);
-      00376C 90 02 A1         [24] 1095 	mov	dptr,#_line
-      00376F 75 F0 00         [24] 1096 	mov	b,#0x00
-      003772 C0 07            [24] 1097 	push	ar7
-      003774 12 37 E7         [24] 1098 	lcall	_protocol_execute_line
-      003777 D0 07            [24] 1099 	pop	ar7
-      003779 80 41            [24] 1100 	sjmp	00112$
-      00377B                       1101 00108$:
+      003779 90 02 A1         [24] 1095 	mov	dptr,#_line
+      00377C 75 F0 00         [24] 1096 	mov	b,#0x00
+      00377F C0 07            [24] 1097 	push	ar7
+      003781 12 37 F4         [24] 1098 	lcall	_protocol_execute_line
+      003784 D0 07            [24] 1099 	pop	ar7
+      003786 80 41            [24] 1100 	sjmp	00112$
+      003788                       1101 00108$:
                                    1102 ;	protocol.c:29: } else if (c <= ' '){
-      00377B EE               [12] 1103 	mov	a,r6
-      00377C 24 DF            [12] 1104 	add	a,#0xff - 0x20
-      00377E 50 3C            [24] 1105 	jnc	00112$
+      003788 EE               [12] 1103 	mov	a,r6
+      003789 24 DF            [12] 1104 	add	a,#0xff - 0x20
+      00378B 50 3C            [24] 1105 	jnc	00112$
                                    1106 ;	protocol.c:33: } else if (char_count >= (LINE_BUFFER_SIZE-1)) {
-      003780 90 03 8D         [24] 1107 	mov	dptr,#_char_count
-      003783 E0               [24] 1108 	movx	a,@dptr
-      003784 FD               [12] 1109 	mov	r5,a
-      003785 BD 13 00         [24] 1110 	cjne	r5,#0x13,00136$
-      003788                       1111 00136$:
-      003788 40 20            [24] 1112 	jc	00102$
+      00378D 90 03 89         [24] 1107 	mov	dptr,#_char_count
+      003790 E0               [24] 1108 	movx	a,@dptr
+      003791 FD               [12] 1109 	mov	r5,a
+      003792 BD 13 00         [24] 1110 	cjne	r5,#0x13,00136$
+      003795                       1111 00136$:
+      003795 40 20            [24] 1112 	jc	00102$
                                    1113 ;	protocol.c:35: printf("BUFFER OVERFLOW!!!!\n");
-      00378A C0 07            [24] 1114 	push	ar7
-      00378C 74 78            [12] 1115 	mov	a,#___str_0
-      00378E C0 E0            [24] 1116 	push	acc
-      003790 74 4C            [12] 1117 	mov	a,#(___str_0 >> 8)
-      003792 C0 E0            [24] 1118 	push	acc
-      003794 74 80            [12] 1119 	mov	a,#0x80
-      003796 C0 E0            [24] 1120 	push	acc
-      003798 12 3F B7         [24] 1121 	lcall	_printf
-      00379B 15 81            [12] 1122 	dec	sp
-      00379D 15 81            [12] 1123 	dec	sp
-      00379F 15 81            [12] 1124 	dec	sp
-      0037A1 D0 07            [24] 1125 	pop	ar7
+      003797 C0 07            [24] 1114 	push	ar7
+      003799 74 85            [12] 1115 	mov	a,#___str_0
+      00379B C0 E0            [24] 1116 	push	acc
+      00379D 74 4C            [12] 1117 	mov	a,#(___str_0 >> 8)
+      00379F C0 E0            [24] 1118 	push	acc
+      0037A1 74 80            [12] 1119 	mov	a,#0x80
+      0037A3 C0 E0            [24] 1120 	push	acc
+      0037A5 12 3F C4         [24] 1121 	lcall	_printf
+      0037A8 15 81            [12] 1122 	dec	sp
+      0037AA 15 81            [12] 1123 	dec	sp
+      0037AC 15 81            [12] 1124 	dec	sp
+      0037AE D0 07            [24] 1125 	pop	ar7
                                    1126 ;	protocol.c:36: char_count = 0;
-      0037A3 90 03 8D         [24] 1127 	mov	dptr,#_char_count
-      0037A6 E4               [12] 1128 	clr	a
-      0037A7 F0               [24] 1129 	movx	@dptr,a
-      0037A8 80 12            [24] 1130 	sjmp	00112$
-      0037AA                       1131 00102$:
+      0037B0 90 03 89         [24] 1127 	mov	dptr,#_char_count
+      0037B3 E4               [12] 1128 	clr	a
+      0037B4 F0               [24] 1129 	movx	@dptr,a
+      0037B5 80 12            [24] 1130 	sjmp	00112$
+      0037B7                       1131 00102$:
                                    1132 ;	protocol.c:41: line[char_count++] = c;
-      0037AA 90 03 8D         [24] 1133 	mov	dptr,#_char_count
-      0037AD ED               [12] 1134 	mov	a,r5
-      0037AE 04               [12] 1135 	inc	a
-      0037AF F0               [24] 1136 	movx	@dptr,a
-      0037B0 ED               [12] 1137 	mov	a,r5
-      0037B1 24 A1            [12] 1138 	add	a,#_line
-      0037B3 F5 82            [12] 1139 	mov	dpl,a
-      0037B5 E4               [12] 1140 	clr	a
-      0037B6 34 02            [12] 1141 	addc	a,#(_line >> 8)
-      0037B8 F5 83            [12] 1142 	mov	dph,a
-      0037BA EE               [12] 1143 	mov	a,r6
-      0037BB F0               [24] 1144 	movx	@dptr,a
-      0037BC                       1145 00112$:
+      0037B7 90 03 89         [24] 1133 	mov	dptr,#_char_count
+      0037BA ED               [12] 1134 	mov	a,r5
+      0037BB 04               [12] 1135 	inc	a
+      0037BC F0               [24] 1136 	movx	@dptr,a
+      0037BD ED               [12] 1137 	mov	a,r5
+      0037BE 24 A1            [12] 1138 	add	a,#_line
+      0037C0 F5 82            [12] 1139 	mov	dpl,a
+      0037C2 E4               [12] 1140 	clr	a
+      0037C3 34 02            [12] 1141 	addc	a,#(_line >> 8)
+      0037C5 F5 83            [12] 1142 	mov	dph,a
+      0037C7 EE               [12] 1143 	mov	a,r6
+      0037C8 F0               [24] 1144 	movx	@dptr,a
+      0037C9                       1145 00112$:
                                    1146 ;	protocol.c:43: } while (func(&c, 1) != flag_to_compare_to);
-      0037BC C0 07            [24] 1147 	push	ar7
-      0037BE 74 01            [12] 1148 	mov	a,#0x01
-      0037C0 C0 E0            [24] 1149 	push	acc
-      0037C2 12 37 C7         [24] 1150 	lcall	00138$
-      0037C5 80 11            [24] 1151 	sjmp	00139$
-      0037C7                       1152 00138$:
-      0037C7 90 02 B7         [24] 1153 	mov	dptr,#_protocol_read_line_func_65536_135
-      0037CA E0               [24] 1154 	movx	a,@dptr
-      0037CB C0 E0            [24] 1155 	push	acc
-      0037CD A3               [24] 1156 	inc	dptr
-      0037CE E0               [24] 1157 	movx	a,@dptr
-      0037CF C0 E0            [24] 1158 	push	acc
-      0037D1 90 02 B5         [24] 1159 	mov	dptr,#_c
-      0037D4 75 F0 00         [24] 1160 	mov	b,#0x00
-      0037D7 22               [24] 1161 	ret
-      0037D8                       1162 00139$:
-      0037D8 AE 82            [24] 1163 	mov	r6,dpl
-      0037DA 15 81            [12] 1164 	dec	sp
-      0037DC D0 07            [24] 1165 	pop	ar7
-      0037DE EE               [12] 1166 	mov	a,r6
-      0037DF B5 07 01         [24] 1167 	cjne	a,ar7,00140$
-      0037E2 22               [24] 1168 	ret
-      0037E3                       1169 00140$:
-      0037E3 02 37 4C         [24] 1170 	ljmp	00111$
+      0037C9 C0 07            [24] 1147 	push	ar7
+      0037CB 74 01            [12] 1148 	mov	a,#0x01
+      0037CD C0 E0            [24] 1149 	push	acc
+      0037CF 12 37 D4         [24] 1150 	lcall	00138$
+      0037D2 80 11            [24] 1151 	sjmp	00139$
+      0037D4                       1152 00138$:
+      0037D4 90 02 B7         [24] 1153 	mov	dptr,#_protocol_read_line_func_65536_135
+      0037D7 E0               [24] 1154 	movx	a,@dptr
+      0037D8 C0 E0            [24] 1155 	push	acc
+      0037DA A3               [24] 1156 	inc	dptr
+      0037DB E0               [24] 1157 	movx	a,@dptr
+      0037DC C0 E0            [24] 1158 	push	acc
+      0037DE 90 02 B5         [24] 1159 	mov	dptr,#_c
+      0037E1 75 F0 00         [24] 1160 	mov	b,#0x00
+      0037E4 22               [24] 1161 	ret
+      0037E5                       1162 00139$:
+      0037E5 AE 82            [24] 1163 	mov	r6,dpl
+      0037E7 15 81            [12] 1164 	dec	sp
+      0037E9 D0 07            [24] 1165 	pop	ar7
+      0037EB EE               [12] 1166 	mov	a,r6
+      0037EC B5 07 01         [24] 1167 	cjne	a,ar7,00140$
+      0037EF 22               [24] 1168 	ret
+      0037F0                       1169 00140$:
+      0037F0 02 37 59         [24] 1170 	ljmp	00111$
                                    1171 ;	protocol.c:44: }
-      0037E6 22               [24] 1172 	ret
+      0037F3 22               [24] 1172 	ret
                                    1173 ;------------------------------------------------------------
                                    1174 ;Allocation info for local variables in function 'protocol_execute_line'
                                    1175 ;------------------------------------------------------------
@@ -1180,82 +1180,82 @@
                                    1180 ;	-----------------------------------------
                                    1181 ;	 function protocol_execute_line
                                    1182 ;	-----------------------------------------
-      0037E7                       1183 _protocol_execute_line:
-      0037E7 AF F0            [24] 1184 	mov	r7,b
-      0037E9 AE 83            [24] 1185 	mov	r6,dph
-      0037EB E5 82            [12] 1186 	mov	a,dpl
-      0037ED 90 02 B9         [24] 1187 	mov	dptr,#_protocol_execute_line_line_65536_143
-      0037F0 F0               [24] 1188 	movx	@dptr,a
-      0037F1 EE               [12] 1189 	mov	a,r6
-      0037F2 A3               [24] 1190 	inc	dptr
-      0037F3 F0               [24] 1191 	movx	@dptr,a
-      0037F4 EF               [12] 1192 	mov	a,r7
-      0037F5 A3               [24] 1193 	inc	dptr
-      0037F6 F0               [24] 1194 	movx	@dptr,a
+      0037F4                       1183 _protocol_execute_line:
+      0037F4 AF F0            [24] 1184 	mov	r7,b
+      0037F6 AE 83            [24] 1185 	mov	r6,dph
+      0037F8 E5 82            [12] 1186 	mov	a,dpl
+      0037FA 90 02 B9         [24] 1187 	mov	dptr,#_protocol_execute_line_line_65536_143
+      0037FD F0               [24] 1188 	movx	@dptr,a
+      0037FE EE               [12] 1189 	mov	a,r6
+      0037FF A3               [24] 1190 	inc	dptr
+      003800 F0               [24] 1191 	movx	@dptr,a
+      003801 EF               [12] 1192 	mov	a,r7
+      003802 A3               [24] 1193 	inc	dptr
+      003803 F0               [24] 1194 	movx	@dptr,a
                                    1195 ;	protocol.c:48: if(line[0] == 0) {
-      0037F7 90 02 B9         [24] 1196 	mov	dptr,#_protocol_execute_line_line_65536_143
-      0037FA E0               [24] 1197 	movx	a,@dptr
-      0037FB FD               [12] 1198 	mov	r5,a
-      0037FC A3               [24] 1199 	inc	dptr
-      0037FD E0               [24] 1200 	movx	a,@dptr
-      0037FE FE               [12] 1201 	mov	r6,a
-      0037FF A3               [24] 1202 	inc	dptr
-      003800 E0               [24] 1203 	movx	a,@dptr
-      003801 FF               [12] 1204 	mov	r7,a
-      003802 8D 82            [24] 1205 	mov	dpl,r5
-      003804 8E 83            [24] 1206 	mov	dph,r6
-      003806 8F F0            [24] 1207 	mov	b,r7
-      003808 12 49 F9         [24] 1208 	lcall	__gptrget
-      00380B 70 16            [24] 1209 	jnz	00107$
+      003804 90 02 B9         [24] 1196 	mov	dptr,#_protocol_execute_line_line_65536_143
+      003807 E0               [24] 1197 	movx	a,@dptr
+      003808 FD               [12] 1198 	mov	r5,a
+      003809 A3               [24] 1199 	inc	dptr
+      00380A E0               [24] 1200 	movx	a,@dptr
+      00380B FE               [12] 1201 	mov	r6,a
+      00380C A3               [24] 1202 	inc	dptr
+      00380D E0               [24] 1203 	movx	a,@dptr
+      00380E FF               [12] 1204 	mov	r7,a
+      00380F 8D 82            [24] 1205 	mov	dpl,r5
+      003811 8E 83            [24] 1206 	mov	dph,r6
+      003813 8F F0            [24] 1207 	mov	b,r7
+      003815 12 4A 06         [24] 1208 	lcall	__gptrget
+      003818 70 16            [24] 1209 	jnz	00107$
                                    1210 ;	protocol.c:50: printf("Enter Received..\n\n");
-      00380D 74 8D            [12] 1211 	mov	a,#___str_1
-      00380F C0 E0            [24] 1212 	push	acc
-      003811 74 4C            [12] 1213 	mov	a,#(___str_1 >> 8)
-      003813 C0 E0            [24] 1214 	push	acc
-      003815 74 80            [12] 1215 	mov	a,#0x80
-      003817 C0 E0            [24] 1216 	push	acc
-      003819 12 3F B7         [24] 1217 	lcall	_printf
-      00381C 15 81            [12] 1218 	dec	sp
-      00381E 15 81            [12] 1219 	dec	sp
-      003820 15 81            [12] 1220 	dec	sp
-      003822 22               [24] 1221 	ret
-      003823                       1222 00107$:
+      00381A 74 9A            [12] 1211 	mov	a,#___str_1
+      00381C C0 E0            [24] 1212 	push	acc
+      00381E 74 4C            [12] 1213 	mov	a,#(___str_1 >> 8)
+      003820 C0 E0            [24] 1214 	push	acc
+      003822 74 80            [12] 1215 	mov	a,#0x80
+      003824 C0 E0            [24] 1216 	push	acc
+      003826 12 3F C4         [24] 1217 	lcall	_printf
+      003829 15 81            [12] 1218 	dec	sp
+      00382B 15 81            [12] 1219 	dec	sp
+      00382D 15 81            [12] 1220 	dec	sp
+      00382F 22               [24] 1221 	ret
+      003830                       1222 00107$:
                                    1223 ;	protocol.c:54: LINE_STATUS line_state = terminal_execute_line(line);
-      003823 8D 82            [24] 1224 	mov	dpl,r5
-      003825 8E 83            [24] 1225 	mov	dph,r6
-      003827 8F F0            [24] 1226 	mov	b,r7
-      003829 12 34 09         [24] 1227 	lcall	_terminal_execute_line
+      003830 8D 82            [24] 1224 	mov	dpl,r5
+      003832 8E 83            [24] 1225 	mov	dph,r6
+      003834 8F F0            [24] 1226 	mov	b,r7
+      003836 12 34 09         [24] 1227 	lcall	_terminal_execute_line
                                    1228 ;	protocol.c:56: if (line_state == LINE_PASSED) { printf("Command passed..\n\n"); } 
-      00382C E5 82            [12] 1229 	mov	a,dpl
-      00382E FF               [12] 1230 	mov	r7,a
-      00382F 70 16            [24] 1231 	jnz	00104$
-      003831 74 A0            [12] 1232 	mov	a,#___str_2
-      003833 C0 E0            [24] 1233 	push	acc
-      003835 74 4C            [12] 1234 	mov	a,#(___str_2 >> 8)
-      003837 C0 E0            [24] 1235 	push	acc
-      003839 74 80            [12] 1236 	mov	a,#0x80
-      00383B C0 E0            [24] 1237 	push	acc
-      00383D 12 3F B7         [24] 1238 	lcall	_printf
-      003840 15 81            [12] 1239 	dec	sp
-      003842 15 81            [12] 1240 	dec	sp
-      003844 15 81            [12] 1241 	dec	sp
-      003846 22               [24] 1242 	ret
-      003847                       1243 00104$:
+      003839 E5 82            [12] 1229 	mov	a,dpl
+      00383B FF               [12] 1230 	mov	r7,a
+      00383C 70 16            [24] 1231 	jnz	00104$
+      00383E 74 AD            [12] 1232 	mov	a,#___str_2
+      003840 C0 E0            [24] 1233 	push	acc
+      003842 74 4C            [12] 1234 	mov	a,#(___str_2 >> 8)
+      003844 C0 E0            [24] 1235 	push	acc
+      003846 74 80            [12] 1236 	mov	a,#0x80
+      003848 C0 E0            [24] 1237 	push	acc
+      00384A 12 3F C4         [24] 1238 	lcall	_printf
+      00384D 15 81            [12] 1239 	dec	sp
+      00384F 15 81            [12] 1240 	dec	sp
+      003851 15 81            [12] 1241 	dec	sp
+      003853 22               [24] 1242 	ret
+      003854                       1243 00104$:
                                    1244 ;	protocol.c:57: else if (line_state == LINE_FAILED) { printf("Command Failed..\n\n"); }
-      003847 BF 01 15         [24] 1245 	cjne	r7,#0x01,00109$
-      00384A 74 B3            [12] 1246 	mov	a,#___str_3
-      00384C C0 E0            [24] 1247 	push	acc
-      00384E 74 4C            [12] 1248 	mov	a,#(___str_3 >> 8)
-      003850 C0 E0            [24] 1249 	push	acc
-      003852 74 80            [12] 1250 	mov	a,#0x80
-      003854 C0 E0            [24] 1251 	push	acc
-      003856 12 3F B7         [24] 1252 	lcall	_printf
-      003859 15 81            [12] 1253 	dec	sp
-      00385B 15 81            [12] 1254 	dec	sp
-      00385D 15 81            [12] 1255 	dec	sp
-      00385F                       1256 00109$:
+      003854 BF 01 15         [24] 1245 	cjne	r7,#0x01,00109$
+      003857 74 C0            [12] 1246 	mov	a,#___str_3
+      003859 C0 E0            [24] 1247 	push	acc
+      00385B 74 4C            [12] 1248 	mov	a,#(___str_3 >> 8)
+      00385D C0 E0            [24] 1249 	push	acc
+      00385F 74 80            [12] 1250 	mov	a,#0x80
+      003861 C0 E0            [24] 1251 	push	acc
+      003863 12 3F C4         [24] 1252 	lcall	_printf
+      003866 15 81            [12] 1253 	dec	sp
+      003868 15 81            [12] 1254 	dec	sp
+      00386A 15 81            [12] 1255 	dec	sp
+      00386C                       1256 00109$:
                                    1257 ;	protocol.c:61: }
-      00385F 22               [24] 1258 	ret
+      00386C 22               [24] 1258 	ret
                                    1259 ;------------------------------------------------------------
                                    1260 ;Allocation info for local variables in function 'protocol_main_loop'
                                    1261 ;------------------------------------------------------------
@@ -1263,123 +1263,124 @@
                                    1263 ;	-----------------------------------------
                                    1264 ;	 function protocol_main_loop
                                    1265 ;	-----------------------------------------
-      003860                       1266 _protocol_main_loop:
-                                   1267 ;	protocol.c:64: printf("starting\n");
-      003860 74 C6            [12] 1268 	mov	a,#___str_4
-      003862 C0 E0            [24] 1269 	push	acc
-      003864 74 4C            [12] 1270 	mov	a,#(___str_4 >> 8)
-      003866 C0 E0            [24] 1271 	push	acc
-      003868 74 80            [12] 1272 	mov	a,#0x80
-      00386A C0 E0            [24] 1273 	push	acc
-      00386C 12 3F B7         [24] 1274 	lcall	_printf
-      00386F 15 81            [12] 1275 	dec	sp
-      003871 15 81            [12] 1276 	dec	sp
-      003873 15 81            [12] 1277 	dec	sp
+      00386D                       1266 _protocol_main_loop:
+                                   1267 ;	protocol.c:64: printf("\nstarting\n");
+      00386D 74 D3            [12] 1268 	mov	a,#___str_4
+      00386F C0 E0            [24] 1269 	push	acc
+      003871 74 4C            [12] 1270 	mov	a,#(___str_4 >> 8)
+      003873 C0 E0            [24] 1271 	push	acc
+      003875 74 80            [12] 1272 	mov	a,#0x80
+      003877 C0 E0            [24] 1273 	push	acc
+      003879 12 3F C4         [24] 1274 	lcall	_printf
+      00387C 15 81            [12] 1275 	dec	sp
+      00387E 15 81            [12] 1276 	dec	sp
+      003880 15 81            [12] 1277 	dec	sp
                                    1278 ;	protocol.c:66: while(1) {
-      003875                       1279 00107$:
+      003882                       1279 00107$:
                                    1280 ;	protocol.c:67: if (uartGetCharacter_modified(&c, 1) != UART_RECEIVE_EMPTY) {
-      003875 74 01            [12] 1281 	mov	a,#0x01
-      003877 C0 E0            [24] 1282 	push	acc
-      003879 90 02 B5         [24] 1283 	mov	dptr,#_c
-      00387C 75 F0 00         [24] 1284 	mov	b,#0x00
-      00387F 12 36 F3         [24] 1285 	lcall	_uartGetCharacter_modified
-      003882 AF 82            [24] 1286 	mov	r7,dpl
-      003884 15 81            [12] 1287 	dec	sp
-      003886 EF               [12] 1288 	mov	a,r7
-      003887 60 16            [24] 1289 	jz	00104$
+      003882 74 01            [12] 1281 	mov	a,#0x01
+      003884 C0 E0            [24] 1282 	push	acc
+      003886 90 02 B5         [24] 1283 	mov	dptr,#_c
+      003889 75 F0 00         [24] 1284 	mov	b,#0x00
+      00388C 12 37 00         [24] 1285 	lcall	_uartGetCharacter_modified
+      00388F AF 82            [24] 1286 	mov	r7,dpl
+      003891 15 81            [12] 1287 	dec	sp
+      003893 EF               [12] 1288 	mov	a,r7
+      003894 60 16            [24] 1289 	jz	00104$
                                    1290 ;	protocol.c:69: protocol_read_line(uart_receive_func_ptr, UART_RECEIVE_EMPTY);
-      003889 90 03 8E         [24] 1291 	mov	dptr,#_uart_receive_func_ptr
-      00388C E0               [24] 1292 	movx	a,@dptr
-      00388D FE               [12] 1293 	mov	r6,a
-      00388E A3               [24] 1294 	inc	dptr
-      00388F E0               [24] 1295 	movx	a,@dptr
-      003890 FF               [12] 1296 	mov	r7,a
-      003891 90 02 B6         [24] 1297 	mov	dptr,#_protocol_read_line_PARM_2
-      003894 E4               [12] 1298 	clr	a
-      003895 F0               [24] 1299 	movx	@dptr,a
-      003896 8E 82            [24] 1300 	mov	dpl,r6
-      003898 8F 83            [24] 1301 	mov	dph,r7
-      00389A 12 37 3C         [24] 1302 	lcall	_protocol_read_line
-      00389D 80 2B            [24] 1303 	sjmp	00105$
-      00389F                       1304 00104$:
+      003896 90 03 8A         [24] 1291 	mov	dptr,#_uart_receive_func_ptr
+      003899 E0               [24] 1292 	movx	a,@dptr
+      00389A FE               [12] 1293 	mov	r6,a
+      00389B A3               [24] 1294 	inc	dptr
+      00389C E0               [24] 1295 	movx	a,@dptr
+      00389D FF               [12] 1296 	mov	r7,a
+      00389E 90 02 B6         [24] 1297 	mov	dptr,#_protocol_read_line_PARM_2
+      0038A1 E4               [12] 1298 	clr	a
+      0038A2 F0               [24] 1299 	movx	@dptr,a
+      0038A3 8E 82            [24] 1300 	mov	dpl,r6
+      0038A5 8F 83            [24] 1301 	mov	dph,r7
+      0038A7 12 37 49         [24] 1302 	lcall	_protocol_read_line
+      0038AA 80 2B            [24] 1303 	sjmp	00105$
+      0038AC                       1304 00104$:
                                    1305 ;	protocol.c:71: } else if (nrf24_receive(&c, 1) != RECEIVE_FIFO_EMPTY) {
-      00389F 74 01            [12] 1306 	mov	a,#0x01
-      0038A1 C0 E0            [24] 1307 	push	acc
-      0038A3 90 02 B5         [24] 1308 	mov	dptr,#_c
-      0038A6 75 F0 00         [24] 1309 	mov	b,#0x00
-      0038A9 12 23 D6         [24] 1310 	lcall	_nrf24_receive
-      0038AC AF 82            [24] 1311 	mov	r7,dpl
-      0038AE 15 81            [12] 1312 	dec	sp
-      0038B0 BF 02 02         [24] 1313 	cjne	r7,#0x02,00124$
-      0038B3 80 15            [24] 1314 	sjmp	00105$
-      0038B5                       1315 00124$:
+      0038AC 74 01            [12] 1306 	mov	a,#0x01
+      0038AE C0 E0            [24] 1307 	push	acc
+      0038B0 90 02 B5         [24] 1308 	mov	dptr,#_c
+      0038B3 75 F0 00         [24] 1309 	mov	b,#0x00
+      0038B6 12 23 D6         [24] 1310 	lcall	_nrf24_receive
+      0038B9 AF 82            [24] 1311 	mov	r7,dpl
+      0038BB 15 81            [12] 1312 	dec	sp
+      0038BD BF 02 02         [24] 1313 	cjne	r7,#0x02,00124$
+      0038C0 80 15            [24] 1314 	sjmp	00105$
+      0038C2                       1315 00124$:
                                    1316 ;	protocol.c:73: protocol_read_line(nrf24_receive_func_ptr, RECEIVE_FIFO_EMPTY);
-      0038B5 90 03 90         [24] 1317 	mov	dptr,#_nrf24_receive_func_ptr
-      0038B8 E0               [24] 1318 	movx	a,@dptr
-      0038B9 FE               [12] 1319 	mov	r6,a
-      0038BA A3               [24] 1320 	inc	dptr
-      0038BB E0               [24] 1321 	movx	a,@dptr
-      0038BC FF               [12] 1322 	mov	r7,a
-      0038BD 90 02 B6         [24] 1323 	mov	dptr,#_protocol_read_line_PARM_2
-      0038C0 74 02            [12] 1324 	mov	a,#0x02
-      0038C2 F0               [24] 1325 	movx	@dptr,a
-      0038C3 8E 82            [24] 1326 	mov	dpl,r6
-      0038C5 8F 83            [24] 1327 	mov	dph,r7
-      0038C7 12 37 3C         [24] 1328 	lcall	_protocol_read_line
-      0038CA                       1329 00105$:
+      0038C2 90 03 8C         [24] 1317 	mov	dptr,#_nrf24_receive_func_ptr
+      0038C5 E0               [24] 1318 	movx	a,@dptr
+      0038C6 FE               [12] 1319 	mov	r6,a
+      0038C7 A3               [24] 1320 	inc	dptr
+      0038C8 E0               [24] 1321 	movx	a,@dptr
+      0038C9 FF               [12] 1322 	mov	r7,a
+      0038CA 90 02 B6         [24] 1323 	mov	dptr,#_protocol_read_line_PARM_2
+      0038CD 74 02            [12] 1324 	mov	a,#0x02
+      0038CF F0               [24] 1325 	movx	@dptr,a
+      0038D0 8E 82            [24] 1326 	mov	dpl,r6
+      0038D2 8F 83            [24] 1327 	mov	dph,r7
+      0038D4 12 37 49         [24] 1328 	lcall	_protocol_read_line
+      0038D7                       1329 00105$:
                                    1330 ;	protocol.c:77: report_toggle_led();
-      0038CA 12 1F 9C         [24] 1331 	lcall	_report_toggle_led
+      0038D7 12 1F 9C         [24] 1331 	lcall	_report_toggle_led
                                    1332 ;	protocol.c:80: }
-      0038CD 80 A6            [24] 1333 	sjmp	00107$
+      0038DA 80 A6            [24] 1333 	sjmp	00107$
                                    1334 	.area CSEG    (CODE)
                                    1335 	.area CONST   (CODE)
                                    1336 	.area CONST   (CODE)
-      004C78                       1337 ___str_0:
-      004C78 42 55 46 46 45 52 20  1338 	.ascii "BUFFER OVERFLOW!!!!"
+      004C85                       1337 ___str_0:
+      004C85 42 55 46 46 45 52 20  1338 	.ascii "BUFFER OVERFLOW!!!!"
              4F 56 45 52 46 4C 4F
              57 21 21 21 21
-      004C8B 0A                    1339 	.db 0x0a
-      004C8C 00                    1340 	.db 0x00
+      004C98 0A                    1339 	.db 0x0a
+      004C99 00                    1340 	.db 0x00
                                    1341 	.area CSEG    (CODE)
                                    1342 	.area CONST   (CODE)
-      004C8D                       1343 ___str_1:
-      004C8D 45 6E 74 65 72 20 52  1344 	.ascii "Enter Received.."
+      004C9A                       1343 ___str_1:
+      004C9A 45 6E 74 65 72 20 52  1344 	.ascii "Enter Received.."
              65 63 65 69 76 65 64
              2E 2E
-      004C9D 0A                    1345 	.db 0x0a
-      004C9E 0A                    1346 	.db 0x0a
-      004C9F 00                    1347 	.db 0x00
+      004CAA 0A                    1345 	.db 0x0a
+      004CAB 0A                    1346 	.db 0x0a
+      004CAC 00                    1347 	.db 0x00
                                    1348 	.area CSEG    (CODE)
                                    1349 	.area CONST   (CODE)
-      004CA0                       1350 ___str_2:
-      004CA0 43 6F 6D 6D 61 6E 64  1351 	.ascii "Command passed.."
+      004CAD                       1350 ___str_2:
+      004CAD 43 6F 6D 6D 61 6E 64  1351 	.ascii "Command passed.."
              20 70 61 73 73 65 64
              2E 2E
-      004CB0 0A                    1352 	.db 0x0a
-      004CB1 0A                    1353 	.db 0x0a
-      004CB2 00                    1354 	.db 0x00
+      004CBD 0A                    1352 	.db 0x0a
+      004CBE 0A                    1353 	.db 0x0a
+      004CBF 00                    1354 	.db 0x00
                                    1355 	.area CSEG    (CODE)
                                    1356 	.area CONST   (CODE)
-      004CB3                       1357 ___str_3:
-      004CB3 43 6F 6D 6D 61 6E 64  1358 	.ascii "Command Failed.."
+      004CC0                       1357 ___str_3:
+      004CC0 43 6F 6D 6D 61 6E 64  1358 	.ascii "Command Failed.."
              20 46 61 69 6C 65 64
              2E 2E
-      004CC3 0A                    1359 	.db 0x0a
-      004CC4 0A                    1360 	.db 0x0a
-      004CC5 00                    1361 	.db 0x00
+      004CD0 0A                    1359 	.db 0x0a
+      004CD1 0A                    1360 	.db 0x0a
+      004CD2 00                    1361 	.db 0x00
                                    1362 	.area CSEG    (CODE)
                                    1363 	.area CONST   (CODE)
-      004CC6                       1364 ___str_4:
-      004CC6 73 74 61 72 74 69 6E  1365 	.ascii "starting"
+      004CD3                       1364 ___str_4:
+      004CD3 0A                    1365 	.db 0x0a
+      004CD4 73 74 61 72 74 69 6E  1366 	.ascii "starting"
              67
-      004CCE 0A                    1366 	.db 0x0a
-      004CCF 00                    1367 	.db 0x00
-                                   1368 	.area CSEG    (CODE)
-                                   1369 	.area XINIT   (CODE)
-      004D46                       1370 __xinit__char_count:
-      004D46 00                    1371 	.db #0x00	; 0
-      004D47                       1372 __xinit__uart_receive_func_ptr:
-      004D47 F3 36                 1373 	.byte _uartGetCharacter_modified, (_uartGetCharacter_modified >> 8)
-      004D49                       1374 __xinit__nrf24_receive_func_ptr:
-      004D49 D6 23                 1375 	.byte _nrf24_receive, (_nrf24_receive >> 8)
-                                   1376 	.area CABS    (ABS,CODE)
+      004CDC 0A                    1367 	.db 0x0a
+      004CDD 00                    1368 	.db 0x00
+                                   1369 	.area CSEG    (CODE)
+                                   1370 	.area XINIT   (CODE)
+      004D54                       1371 __xinit__char_count:
+      004D54 00                    1372 	.db #0x00	; 0
+      004D55                       1373 __xinit__uart_receive_func_ptr:
+      004D55 00 37                 1374 	.byte _uartGetCharacter_modified, (_uartGetCharacter_modified >> 8)
+      004D57                       1375 __xinit__nrf24_receive_func_ptr:
+      004D57 D6 23                 1376 	.byte _nrf24_receive, (_nrf24_receive >> 8)
+                                   1377 	.area CABS    (ABS,CODE)

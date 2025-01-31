@@ -1264,7 +1264,7 @@
                                    1264 ;	 function protocol_main_loop
                                    1265 ;	-----------------------------------------
       00016D                       1266 _protocol_main_loop:
-                                   1267 ;	protocol.c:64: printf("starting\n");
+                                   1267 ;	protocol.c:64: printf("\nstarting\n");
       00016D 74r4E            [12] 1268 	mov	a,#___str_4
       00016F C0 E0            [24] 1269 	push	acc
       000171 74s00            [12] 1270 	mov	a,#(___str_4 >> 8)
@@ -1370,16 +1370,17 @@
                                    1362 	.area CSEG    (CODE)
                                    1363 	.area CONST   (CODE)
       00004E                       1364 ___str_4:
-      00004E 73 74 61 72 74 69 6E  1365 	.ascii "starting"
+      00004E 0A                    1365 	.db 0x0a
+      00004F 73 74 61 72 74 69 6E  1366 	.ascii "starting"
              67
-      000056 0A                    1366 	.db 0x0a
-      000057 00                    1367 	.db 0x00
-                                   1368 	.area CSEG    (CODE)
-                                   1369 	.area XINIT   (CODE)
-      000000                       1370 __xinit__char_count:
-      000000 00                    1371 	.db #0x00	; 0
-      000001                       1372 __xinit__uart_receive_func_ptr:
-      000001r00s00                 1373 	.byte _uartGetCharacter_modified, (_uartGetCharacter_modified >> 8)
-      000003                       1374 __xinit__nrf24_receive_func_ptr:
-      000003r00s00                 1375 	.byte _nrf24_receive, (_nrf24_receive >> 8)
-                                   1376 	.area CABS    (ABS,CODE)
+      000057 0A                    1367 	.db 0x0a
+      000058 00                    1368 	.db 0x00
+                                   1369 	.area CSEG    (CODE)
+                                   1370 	.area XINIT   (CODE)
+      000000                       1371 __xinit__char_count:
+      000000 00                    1372 	.db #0x00	; 0
+      000001                       1373 __xinit__uart_receive_func_ptr:
+      000001r00s00                 1374 	.byte _uartGetCharacter_modified, (_uartGetCharacter_modified >> 8)
+      000003                       1375 __xinit__nrf24_receive_func_ptr:
+      000003r00s00                 1376 	.byte _nrf24_receive, (_nrf24_receive >> 8)
+                                   1377 	.area CABS    (ABS,CODE)

@@ -927,8 +927,6 @@ _DMA_UR4R_TXAH	=	0xfa3d
 _DMA_UR4R_TXAL	=	0xfa3e
 _uartGetCharacter_result_65536_69:
 	.ds 1
-_global_timer_counter:
-	.ds 4
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -937,6 +935,8 @@ _global_timer_counter:
 ; external initialized ram data
 ;--------------------------------------------------------
 	.area XISEG   (XDATA)
+_global_timer_counter:
+	.ds 4
 	.area HOME    (CODE)
 	.area GSINIT0 (CODE)
 	.area GSINIT1 (CODE)
@@ -1085,4 +1085,6 @@ _timer0_isr:
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area XINIT   (CODE)
+__xinit__global_timer_counter:
+	.byte #0x00, #0x00, #0x00, #0x00	; 0
 	.area CABS    (ABS,CODE)

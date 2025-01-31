@@ -1056,7 +1056,7 @@
       0000CA 8D 82            [24] 1056 	mov	dpl,r5
       0000CC 8E 83            [24] 1057 	mov	dph,r6
       0000CE 8F F0            [24] 1058 	mov	b,r7
-      0000D0 12 49 F9         [24] 1059 	lcall	__gptrget
+      0000D0 12 4A 06         [24] 1059 	lcall	__gptrget
       0000D3 FD               [12] 1060 	mov	r5,a
       0000D4 90 00 05         [24] 1061 	mov	dptr,#__gpio_setBits_portValue_65536_131
       0000D7 E0               [24] 1062 	movx	a,@dptr
@@ -1082,7 +1082,7 @@
       0000EE 8C 82            [24] 1082 	mov	dpl,r4
       0000F0 8D 83            [24] 1083 	mov	dph,r5
       0000F2 8E F0            [24] 1084 	mov	b,r6
-      0000F4 12 49 F9         [24] 1085 	lcall	__gptrget
+      0000F4 12 4A 06         [24] 1085 	lcall	__gptrget
       0000F7 FC               [12] 1086 	mov	r4,a
       0000F8 90 00 05         [24] 1087 	mov	dptr,#__gpio_setBits_portValue_65536_131
       0000FB E0               [24] 1088 	movx	a,@dptr
@@ -1132,7 +1132,7 @@
       000123 8D 82            [24] 1132 	mov	dpl,r5
       000125 8E 83            [24] 1133 	mov	dph,r6
       000127 8F F0            [24] 1134 	mov	b,r7
-      000129 12 49 F9         [24] 1135 	lcall	__gptrget
+      000129 12 4A 06         [24] 1135 	lcall	__gptrget
       00012C FF               [12] 1136 	mov	r7,a
       00012D 60 0E            [24] 1137 	jz	00104$
       00012F BF 01 02         [24] 1138 	cjne	r7,#0x01,00122$
@@ -1189,7 +1189,7 @@
       000164 8D 82            [24] 1189 	mov	dpl,r5
       000166 8E 83            [24] 1190 	mov	dph,r6
       000168 8F F0            [24] 1191 	mov	b,r7
-      00016A 12 49 F9         [24] 1192 	lcall	__gptrget
+      00016A 12 4A 06         [24] 1192 	lcall	__gptrget
       00016D FF               [12] 1193 	mov	r7,a
       00016E 60 09            [24] 1194 	jz	00104$
       000170 BF 02 02         [24] 1195 	cjne	r7,#0x02,00115$
@@ -1263,7 +1263,7 @@
       0001A7 8A 82            [24] 1263 	mov	dpl,r2
       0001A9 8B 83            [24] 1264 	mov	dph,r3
       0001AB 8C F0            [24] 1265 	mov	b,r4
-      0001AD 12 49 F9         [24] 1266 	lcall	__gptrget
+      0001AD 12 4A 06         [24] 1266 	lcall	__gptrget
       0001B0 FC               [12] 1267 	mov	r4,a
       0001B1                       1268 00117$:
       0001B1 EC               [12] 1269 	mov	a,r4
@@ -1300,7 +1300,7 @@
       0001D8 88 82            [24] 1300 	mov	dpl,r0
       0001DA 89 83            [24] 1301 	mov	dph,r1
       0001DC 8C F0            [24] 1302 	mov	b,r4
-      0001DE 12 49 F9         [24] 1303 	lcall	__gptrget
+      0001DE 12 4A 06         [24] 1303 	lcall	__gptrget
       0001E1 F8               [12] 1304 	mov	r0,a
       0001E2 90 00 0F         [24] 1305 	mov	dptr,#_gpioConfigure_mask_65536_138
       0001E5 E0               [24] 1306 	movx	a,@dptr
@@ -1315,7 +1315,7 @@
       0001F2 85 08 82         [24] 1315 	mov	dpl,_gpioConfigure_sloc0_1_0
       0001F5 85 09 83         [24] 1316 	mov	dph,(_gpioConfigure_sloc0_1_0 + 1)
       0001F8 85 0A F0         [24] 1317 	mov	b,(_gpioConfigure_sloc0_1_0 + 2)
-      0001FB 12 3D D2         [24] 1318 	lcall	__gptrput
+      0001FB 12 3D DF         [24] 1318 	lcall	__gptrput
                                    1319 ;	/home/mr-a-717/.stc/uni-stc/hal/gpio-hal.c:61: gpioConfig->__clearMask = ~gpioConfig->__setMask;
       0001FE 74 0C            [12] 1320 	mov	a,#0x0c
       000200 2D               [12] 1321 	add	a,r5
@@ -1330,7 +1330,7 @@
       00020A 8A 82            [24] 1330 	mov	dpl,r2
       00020C 8B 83            [24] 1331 	mov	dph,r3
       00020E 8C F0            [24] 1332 	mov	b,r4
-      000210 12 3D D2         [24] 1333 	lcall	__gptrput
+      000210 12 3D DF         [24] 1333 	lcall	__gptrput
                                    1334 ;	/home/mr-a-717/.stc/uni-stc/hal/gpio-hal.c:63: uint8_t pm1 = 0;
       000213 90 00 10         [24] 1335 	mov	dptr,#_gpioConfigure_pm1_65537_141
       000216 E4               [12] 1336 	clr	a
@@ -1372,7 +1372,7 @@
       000244 8D 82            [24] 1372 	mov	dpl,r5
       000246 8E 83            [24] 1373 	mov	dph,r6
       000248 8F F0            [24] 1374 	mov	b,r7
-      00024A 12 49 F9         [24] 1375 	lcall	__gptrget
+      00024A 12 4A 06         [24] 1375 	lcall	__gptrget
       00024D FF               [12] 1376 	mov	r7,a
       00024E BF 01 02         [24] 1377 	cjne	r7,#0x01,00176$
       000251 80 14            [24] 1378 	sjmp	00102$
@@ -1658,7 +1658,7 @@
       0003F8 89 82            [24] 1658 	mov	dpl,r1
       0003FA 8A 83            [24] 1659 	mov	dph,r2
       0003FC 8B F0            [24] 1660 	mov	b,r3
-      0003FE 12 49 F9         [24] 1661 	lcall	__gptrget
+      0003FE 12 4A 06         [24] 1661 	lcall	__gptrget
       000401 F9               [12] 1662 	mov	r1,a
       000402 90 00 01         [24] 1663 	mov	dptr,#__gpio_setBits_PARM_2
       000405 74 02            [12] 1664 	mov	a,#0x02
@@ -1699,7 +1699,7 @@
       000434 88 82            [24] 1699 	mov	dpl,r0
       000436 89 83            [24] 1700 	mov	dph,r1
       000438 8A F0            [24] 1701 	mov	b,r2
-      00043A 12 49 F9         [24] 1702 	lcall	__gptrget
+      00043A 12 4A 06         [24] 1702 	lcall	__gptrget
       00043D F8               [12] 1703 	mov	r0,a
       00043E 90 00 01         [24] 1704 	mov	dptr,#__gpio_setBits_PARM_2
       000441 74 01            [12] 1705 	mov	a,#0x01
@@ -1763,7 +1763,7 @@
       000495 88 82            [24] 1763 	mov	dpl,r0
       000497 89 83            [24] 1764 	mov	dph,r1
       000499 8E F0            [24] 1765 	mov	b,r6
-      00049B 12 49 F9         [24] 1766 	lcall	__gptrget
+      00049B 12 4A 06         [24] 1766 	lcall	__gptrget
       00049E 90 00 01         [24] 1767 	mov	dptr,#__gpio_setBits_PARM_2
       0004A1 F0               [24] 1768 	movx	@dptr,a
       0004A2 90 00 02         [24] 1769 	mov	dptr,#__gpio_setBits_PARM_3
@@ -1806,7 +1806,7 @@
       0004D7 88 82            [24] 1806 	mov	dpl,r0
       0004D9 89 83            [24] 1807 	mov	dph,r1
       0004DB 8A F0            [24] 1808 	mov	b,r2
-      0004DD 12 49 F9         [24] 1809 	lcall	__gptrget
+      0004DD 12 4A 06         [24] 1809 	lcall	__gptrget
       0004E0 90 00 01         [24] 1810 	mov	dptr,#__gpio_setBits_PARM_2
       0004E3 F0               [24] 1811 	movx	@dptr,a
       0004E4 90 00 02         [24] 1812 	mov	dptr,#__gpio_setBits_PARM_3
@@ -1848,7 +1848,7 @@
       000517 88 82            [24] 1848 	mov	dpl,r0
       000519 89 83            [24] 1849 	mov	dph,r1
       00051B 8A F0            [24] 1850 	mov	b,r2
-      00051D 12 49 F9         [24] 1851 	lcall	__gptrget
+      00051D 12 4A 06         [24] 1851 	lcall	__gptrget
       000520 90 00 01         [24] 1852 	mov	dptr,#__gpio_setBits_PARM_2
       000523 F0               [24] 1853 	movx	@dptr,a
       000524 90 00 02         [24] 1854 	mov	dptr,#__gpio_setBits_PARM_3
@@ -1890,7 +1890,7 @@
       000557 88 82            [24] 1890 	mov	dpl,r0
       000559 89 83            [24] 1891 	mov	dph,r1
       00055B 8A F0            [24] 1892 	mov	b,r2
-      00055D 12 49 F9         [24] 1893 	lcall	__gptrget
+      00055D 12 4A 06         [24] 1893 	lcall	__gptrget
       000560 F8               [12] 1894 	mov	r0,a
       000561 90 00 01         [24] 1895 	mov	dptr,#__gpio_setBits_PARM_2
       000564 74 02            [12] 1896 	mov	a,#0x02
@@ -1935,7 +1935,7 @@
       00059B 88 82            [24] 1935 	mov	dpl,r0
       00059D 89 83            [24] 1936 	mov	dph,r1
       00059F 8A F0            [24] 1937 	mov	b,r2
-      0005A1 12 49 F9         [24] 1938 	lcall	__gptrget
+      0005A1 12 4A 06         [24] 1938 	lcall	__gptrget
       0005A4 F8               [12] 1939 	mov	r0,a
       0005A5 90 00 01         [24] 1940 	mov	dptr,#__gpio_setBits_PARM_2
       0005A8 74 01            [12] 1941 	mov	a,#0x01
@@ -1977,7 +1977,7 @@
       0005DA 89 82            [24] 1977 	mov	dpl,r1
       0005DC 8A 83            [24] 1978 	mov	dph,r2
       0005DE 8B F0            [24] 1979 	mov	b,r3
-      0005E0 12 49 F9         [24] 1980 	lcall	__gptrget
+      0005E0 12 4A 06         [24] 1980 	lcall	__gptrget
       0005E3 F9               [12] 1981 	mov	r1,a
       0005E4 90 00 19         [24] 1982 	mov	dptr,#_gpioConfigure_pintf_65537_141
       0005E7 E0               [24] 1983 	movx	a,@dptr
@@ -1997,7 +1997,7 @@
       0005F8 88 82            [24] 1997 	mov	dpl,r0
       0005FA 89 83            [24] 1998 	mov	dph,r1
       0005FC 8A F0            [24] 1999 	mov	b,r2
-      0005FE 12 49 F9         [24] 2000 	lcall	__gptrget
+      0005FE 12 4A 06         [24] 2000 	lcall	__gptrget
       000601 90 00 01         [24] 2001 	mov	dptr,#__gpio_setBits_PARM_2
       000604 F0               [24] 2002 	movx	@dptr,a
       000605 90 00 02         [24] 2003 	mov	dptr,#__gpio_setBits_PARM_3
@@ -2039,7 +2039,7 @@
       000638 88 82            [24] 2039 	mov	dpl,r0
       00063A 89 83            [24] 2040 	mov	dph,r1
       00063C 8A F0            [24] 2041 	mov	b,r2
-      00063E 12 49 F9         [24] 2042 	lcall	__gptrget
+      00063E 12 4A 06         [24] 2042 	lcall	__gptrget
       000641 90 00 01         [24] 2043 	mov	dptr,#__gpio_setBits_PARM_2
       000644 F0               [24] 2044 	movx	@dptr,a
       000645 90 00 02         [24] 2045 	mov	dptr,#__gpio_setBits_PARM_3
@@ -2109,7 +2109,7 @@
       0006A1 88 82            [24] 2109 	mov	dpl,r0
       0006A3 89 83            [24] 2110 	mov	dph,r1
       0006A5 8E F0            [24] 2111 	mov	b,r6
-      0006A7 12 49 F9         [24] 2112 	lcall	__gptrget
+      0006A7 12 4A 06         [24] 2112 	lcall	__gptrget
       0006AA F8               [12] 2113 	mov	r0,a
       0006AB 90 00 01         [24] 2114 	mov	dptr,#__gpio_setBits_PARM_2
       0006AE 74 01            [12] 2115 	mov	a,#0x01
@@ -2155,7 +2155,7 @@
       0006E7 88 82            [24] 2155 	mov	dpl,r0
       0006E9 89 83            [24] 2156 	mov	dph,r1
       0006EB 8A F0            [24] 2157 	mov	b,r2
-      0006ED 12 49 F9         [24] 2158 	lcall	__gptrget
+      0006ED 12 4A 06         [24] 2158 	lcall	__gptrget
       0006F0 F8               [12] 2159 	mov	r0,a
       0006F1 90 00 01         [24] 2160 	mov	dptr,#__gpio_setBits_PARM_2
       0006F4 74 02            [12] 2161 	mov	a,#0x02
@@ -2195,7 +2195,7 @@
       000721 8B 82            [24] 2195 	mov	dpl,r3
       000723 8C 83            [24] 2196 	mov	dph,r4
       000725 8D F0            [24] 2197 	mov	b,r5
-      000727 12 49 F9         [24] 2198 	lcall	__gptrget
+      000727 12 4A 06         [24] 2198 	lcall	__gptrget
       00072A FD               [12] 2199 	mov	r5,a
       00072B BD 01 02         [24] 2200 	cjne	r5,#0x01,00182$
       00072E 80 12            [24] 2201 	sjmp	00111$
@@ -2548,7 +2548,7 @@
       0008FA 8D 82            [24] 2548 	mov	dpl,r5
       0008FC 8E 83            [24] 2549 	mov	dph,r6
       0008FE 8F F0            [24] 2550 	mov	b,r7
-      000900 12 49 F9         [24] 2551 	lcall	__gptrget
+      000900 12 4A 06         [24] 2551 	lcall	__gptrget
       000903 F5 82            [12] 2552 	mov	dpl,a
       000905 C0 07            [24] 2553 	push	ar7
       000907 C0 06            [24] 2554 	push	ar6
@@ -2568,7 +2568,7 @@
       00091F 89 82            [24] 2568 	mov	dpl,r1
       000921 8A 83            [24] 2569 	mov	dph,r2
       000923 8B F0            [24] 2570 	mov	b,r3
-      000925 12 49 F9         [24] 2571 	lcall	__gptrget
+      000925 12 4A 06         [24] 2571 	lcall	__gptrget
       000928 52 04            [12] 2572 	anl	ar4,a
       00092A 0D               [12] 2573 	inc	r5
       00092B BD 00 01         [24] 2574 	cjne	r5,#0x00,00103$
@@ -2577,7 +2577,7 @@
       00092F 8D 82            [24] 2577 	mov	dpl,r5
       000931 8E 83            [24] 2578 	mov	dph,r6
       000933 8F F0            [24] 2579 	mov	b,r7
-      000935 12 49 F9         [24] 2580 	lcall	__gptrget
+      000935 12 4A 06         [24] 2580 	lcall	__gptrget
       000938 FD               [12] 2581 	mov	r5,a
       000939 8D F0            [24] 2582 	mov	b,r5
       00093B 05 F0            [12] 2583 	inc	b
@@ -2633,7 +2633,7 @@
       00096C 8A 82            [24] 2633 	mov	dpl,r2
       00096E 8B 83            [24] 2634 	mov	dph,r3
       000970 8C F0            [24] 2635 	mov	b,r4
-      000972 12 49 F9         [24] 2636 	lcall	__gptrget
+      000972 12 4A 06         [24] 2636 	lcall	__gptrget
       000975 FA               [12] 2637 	mov	r2,a
       000976 BA 01 15         [24] 2638 	cjne	r2,#0x01,00102$
                                    2639 ;	/home/mr-a-717/.stc/uni-stc/hal/gpio-hal.c:637: value = value ? 1 : 0;
@@ -2662,7 +2662,7 @@
       000997 8A 82            [24] 2662 	mov	dpl,r2
       000999 8B 83            [24] 2663 	mov	dph,r3
       00099B 8C F0            [24] 2664 	mov	b,r4
-      00099D 12 49 F9         [24] 2665 	lcall	__gptrget
+      00099D 12 4A 06         [24] 2665 	lcall	__gptrget
       0009A0 FA               [12] 2666 	mov	r2,a
       0009A1 90 00 21         [24] 2667 	mov	dptr,#_gpioWrite_PARM_2
       0009A4 E0               [24] 2668 	movx	a,@dptr
@@ -2684,7 +2684,7 @@
       0009BA 89 82            [24] 2684 	mov	dpl,r1
       0009BC 8B 83            [24] 2685 	mov	dph,r3
       0009BE 8C F0            [24] 2686 	mov	b,r4
-      0009C0 12 49 F9         [24] 2687 	lcall	__gptrget
+      0009C0 12 4A 06         [24] 2687 	lcall	__gptrget
       0009C3 90 00 21         [24] 2688 	mov	dptr,#_gpioWrite_PARM_2
       0009C6 5A               [12] 2689 	anl	a,r2
       0009C7 F0               [24] 2690 	movx	@dptr,a
@@ -2692,7 +2692,7 @@
       0009C8 8D 82            [24] 2692 	mov	dpl,r5
       0009CA 8E 83            [24] 2693 	mov	dph,r6
       0009CC 8F F0            [24] 2694 	mov	b,r7
-      0009CE 12 49 F9         [24] 2695 	lcall	__gptrget
+      0009CE 12 4A 06         [24] 2695 	lcall	__gptrget
       0009D1 F5 82            [12] 2696 	mov	dpl,a
       0009D3 C0 07            [24] 2697 	push	ar7
       0009D5 C0 06            [24] 2698 	push	ar6
@@ -2712,7 +2712,7 @@
       0009ED 89 82            [24] 2712 	mov	dpl,r1
       0009EF 8A 83            [24] 2713 	mov	dph,r2
       0009F1 8B F0            [24] 2714 	mov	b,r3
-      0009F3 12 49 F9         [24] 2715 	lcall	__gptrget
+      0009F3 12 4A 06         [24] 2715 	lcall	__gptrget
       0009F6 F9               [12] 2716 	mov	r1,a
       0009F7 52 04            [12] 2717 	anl	ar4,a
       0009F9 90 00 21         [24] 2718 	mov	dptr,#_gpioWrite_PARM_2
@@ -2723,7 +2723,7 @@
       0009FF 8D 82            [24] 2723 	mov	dpl,r5
       000A01 8E 83            [24] 2724 	mov	dph,r6
       000A03 8F F0            [24] 2725 	mov	b,r7
-      000A05 12 49 F9         [24] 2726 	lcall	__gptrget
+      000A05 12 4A 06         [24] 2726 	lcall	__gptrget
       000A08 FF               [12] 2727 	mov	r7,a
       000A09 BF 01 02         [24] 2728 	cjne	r7,#0x01,00142$
       000A0C 80 0F            [24] 2729 	sjmp	00103$

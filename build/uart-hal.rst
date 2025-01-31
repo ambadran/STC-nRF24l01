@@ -1048,14 +1048,14 @@
                                    1048 ; external initialized ram data
                                    1049 ;--------------------------------------------------------
                                    1050 	.area XISEG   (XDATA)
-      000322                       1051 __UART1_receiveBuffer::
-      000322                       1052 	.ds 8
-      00032A                       1053 __UART1_transmitBuffer::
-      00032A                       1054 	.ds 8
-      000332                       1055 __UART2_receiveBuffer::
-      000332                       1056 	.ds 8
-      00033A                       1057 __UART2_transmitBuffer::
-      00033A                       1058 	.ds 8
+      00031E                       1051 __UART1_receiveBuffer::
+      00031E                       1052 	.ds 8
+      000326                       1053 __UART1_transmitBuffer::
+      000326                       1054 	.ds 8
+      00032E                       1055 __UART2_receiveBuffer::
+      00032E                       1056 	.ds 8
+      000336                       1057 __UART2_transmitBuffer::
+      000336                       1058 	.ds 8
                                    1059 	.area HOME    (CODE)
                                    1060 	.area GSINIT0 (CODE)
                                    1061 	.area GSINIT1 (CODE)
@@ -1125,7 +1125,7 @@
       001934                       1125 00101$:
                                    1126 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:132: result = &_UART1_receiveBuffer;
       001934 90 01 B1         [24] 1127 	mov	dptr,#__uartReceiveBuffer_result_65536_132
-      001937 74 22            [12] 1128 	mov	a,#__UART1_receiveBuffer
+      001937 74 1E            [12] 1128 	mov	a,#__UART1_receiveBuffer
       001939 F0               [24] 1129 	movx	@dptr,a
       00193A 74 03            [12] 1130 	mov	a,#(__UART1_receiveBuffer >> 8)
       00193C A3               [24] 1131 	inc	dptr
@@ -1139,7 +1139,7 @@
       001943                       1139 00102$:
                                    1140 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:137: result = &_UART2_receiveBuffer;
       001943 90 01 B1         [24] 1141 	mov	dptr,#__uartReceiveBuffer_result_65536_132
-      001946 74 32            [12] 1142 	mov	a,#__UART2_receiveBuffer
+      001946 74 2E            [12] 1142 	mov	a,#__UART2_receiveBuffer
       001948 F0               [24] 1143 	movx	@dptr,a
       001949 74 03            [12] 1144 	mov	a,#(__UART2_receiveBuffer >> 8)
       00194B A3               [24] 1145 	inc	dptr
@@ -1199,7 +1199,7 @@
       001980                       1199 00101$:
                                    1200 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:160: result = &_UART1_transmitBuffer;
       001980 90 01 B5         [24] 1201 	mov	dptr,#__uartTransmitBuffer_result_65536_135
-      001983 74 2A            [12] 1202 	mov	a,#__UART1_transmitBuffer
+      001983 74 26            [12] 1202 	mov	a,#__UART1_transmitBuffer
       001985 F0               [24] 1203 	movx	@dptr,a
       001986 74 03            [12] 1204 	mov	a,#(__UART1_transmitBuffer >> 8)
       001988 A3               [24] 1205 	inc	dptr
@@ -1213,7 +1213,7 @@
       00198F                       1213 00102$:
                                    1214 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:165: result = &_UART2_transmitBuffer;
       00198F 90 01 B5         [24] 1215 	mov	dptr,#__uartTransmitBuffer_result_65536_135
-      001992 74 3A            [12] 1216 	mov	a,#__UART2_transmitBuffer
+      001992 74 36            [12] 1216 	mov	a,#__UART2_transmitBuffer
       001994 F0               [24] 1217 	movx	@dptr,a
       001995 74 03            [12] 1218 	mov	a,#(__UART2_transmitBuffer >> 8)
       001997 A3               [24] 1219 	inc	dptr
@@ -1269,7 +1269,7 @@
       0019C7 8D 82            [24] 1269 	mov	dpl,r5
       0019C9 8E 83            [24] 1270 	mov	dph,r6
       0019CB 8F F0            [24] 1271 	mov	b,r7
-      0019CD 12 49 F9         [24] 1272 	lcall	__gptrget
+      0019CD 12 4A 06         [24] 1272 	lcall	__gptrget
       0019D0 B4 01 00         [24] 1273 	cjne	a,#0x01,00103$
       0019D3                       1274 00103$:
       0019D3 E4               [12] 1275 	clr	a
@@ -1360,7 +1360,7 @@
       001A26 8D 82            [24] 1360 	mov	dpl,r5
       001A28 8E 83            [24] 1361 	mov	dph,r6
       001A2A 8F F0            [24] 1362 	mov	b,r7
-      001A2C 12 49 F9         [24] 1363 	lcall	__gptrget
+      001A2C 12 4A 06         [24] 1363 	lcall	__gptrget
       001A2F FD               [12] 1364 	mov	r5,a
                                    1365 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:200: EA = 1;
                                    1366 ;	assignBit
@@ -1463,7 +1463,7 @@
       001A8B A3               [24] 1463 	inc	dptr
       001A8C E0               [24] 1464 	movx	a,@dptr
       001A8D FE               [12] 1465 	mov	r6,a
-      001A8E 90 02 D1         [24] 1466 	mov	dptr,#__divulong_PARM_2
+      001A8E 90 02 CD         [24] 1466 	mov	dptr,#__divulong_PARM_2
       001A91 EB               [12] 1467 	mov	a,r3
       001A92 F0               [24] 1468 	movx	@dptr,a
       001A93 EC               [12] 1469 	mov	a,r4
@@ -1479,7 +1479,7 @@
       001A9F 75 F0 16         [24] 1479 	mov	b,#0x16
       001AA2 74 02            [12] 1480 	mov	a,#0x02
       001AA4 C0 07            [24] 1481 	push	ar7
-      001AA6 12 3B E9         [24] 1482 	lcall	__divulong
+      001AA6 12 3B F6         [24] 1482 	lcall	__divulong
       001AA9 AB 82            [24] 1483 	mov	r3,dpl
       001AAB AC 83            [24] 1484 	mov	r4,dph
       001AAD AD F0            [24] 1485 	mov	r5,b
@@ -1794,7 +1794,7 @@
       001C40 8E 83            [24] 1794 	mov	dph,r6
       001C42 8F F0            [24] 1795 	mov	b,r7
       001C44 E4               [12] 1796 	clr	a
-      001C45 12 3D D2         [24] 1797 	lcall	__gptrput
+      001C45 12 3D DF         [24] 1797 	lcall	__gptrput
       001C48                       1798 00133$:
                                    1799 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:403: return rc;
       001C48 90 01 C6         [24] 1800 	mov	dptr,#_uartInitialise_rc_65536_151
@@ -1844,7 +1844,7 @@
       001C82 C0 E0            [24] 1844 	push	acc
       001C84 E4               [12] 1845 	clr	a
       001C85 C0 E0            [24] 1846 	push	acc
-      001C87 90 03 2A         [24] 1847 	mov	dptr,#__UART1_transmitBuffer
+      001C87 90 03 26         [24] 1847 	mov	dptr,#__UART1_transmitBuffer
       001C8A 75 F0 00         [24] 1848 	mov	b,#0x00
       001C8D 12 0E B8         [24] 1849 	lcall	_fifoRead
       001C90 AF 82            [24] 1850 	mov	r7,dpl
@@ -1860,7 +1860,7 @@
       001CA1 80 05            [24] 1860 	sjmp	00105$
       001CA3                       1861 00102$:
                                    1862 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:422: _UART1_transmitBuffer.status = STATUS_CLEAR;
-      001CA3 90 03 2E         [24] 1863 	mov	dptr,#(__UART1_transmitBuffer + 0x0004)
+      001CA3 90 03 2A         [24] 1863 	mov	dptr,#(__UART1_transmitBuffer + 0x0004)
       001CA6 E4               [12] 1864 	clr	a
       001CA7 F0               [24] 1865 	movx	@dptr,a
       001CA8                       1866 00105$:
@@ -1882,7 +1882,7 @@
       001CC0 C0 E0            [24] 1882 	push	acc
       001CC2 E4               [12] 1883 	clr	a
       001CC3 C0 E0            [24] 1884 	push	acc
-      001CC5 90 03 22         [24] 1885 	mov	dptr,#__UART1_receiveBuffer
+      001CC5 90 03 1E         [24] 1885 	mov	dptr,#__UART1_receiveBuffer
       001CC8 75 F0 00         [24] 1886 	mov	b,#0x00
       001CCB 12 0D 56         [24] 1887 	lcall	_fifoWrite
       001CCE E5 81            [12] 1888 	mov	a,sp
@@ -1950,7 +1950,7 @@
       001D26 C0 E0            [24] 1950 	push	acc
       001D28 E4               [12] 1951 	clr	a
       001D29 C0 E0            [24] 1952 	push	acc
-      001D2B 90 03 3A         [24] 1953 	mov	dptr,#__UART2_transmitBuffer
+      001D2B 90 03 36         [24] 1953 	mov	dptr,#__UART2_transmitBuffer
       001D2E 75 F0 00         [24] 1954 	mov	b,#0x00
       001D31 12 0E B8         [24] 1955 	lcall	_fifoRead
       001D34 AF 82            [24] 1956 	mov	r7,dpl
@@ -1966,7 +1966,7 @@
       001D45 80 05            [24] 1966 	sjmp	00105$
       001D47                       1967 00102$:
                                    1968 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:447: _UART2_transmitBuffer.status = STATUS_CLEAR;
-      001D47 90 03 3E         [24] 1969 	mov	dptr,#(__UART2_transmitBuffer + 0x0004)
+      001D47 90 03 3A         [24] 1969 	mov	dptr,#(__UART2_transmitBuffer + 0x0004)
       001D4A E4               [12] 1970 	clr	a
       001D4B F0               [24] 1971 	movx	@dptr,a
       001D4C                       1972 00105$:
@@ -1988,7 +1988,7 @@
       001D64 C0 E0            [24] 1988 	push	acc
       001D66 E4               [12] 1989 	clr	a
       001D67 C0 E0            [24] 1990 	push	acc
-      001D69 90 03 32         [24] 1991 	mov	dptr,#__UART2_receiveBuffer
+      001D69 90 03 2E         [24] 1991 	mov	dptr,#__UART2_receiveBuffer
       001D6C 75 F0 00         [24] 1992 	mov	b,#0x00
       001D6F 12 0D 56         [24] 1993 	lcall	_fifoWrite
       001D72 E5 81            [12] 1994 	mov	a,sp
@@ -2200,14 +2200,14 @@
       001E76 89 82            [24] 2200 	mov	dpl,r1
       001E78 8A 83            [24] 2201 	mov	dph,r2
       001E7A 8B F0            [24] 2202 	mov	b,r3
-      001E7C 12 49 F9         [24] 2203 	lcall	__gptrget
+      001E7C 12 4A 06         [24] 2203 	lcall	__gptrget
       001E7F 70 48            [24] 2204 	jnz	00109$
                                    2205 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:535: buffer->status = STATUS_SENDING;
       001E81 89 82            [24] 2206 	mov	dpl,r1
       001E83 8A 83            [24] 2207 	mov	dph,r2
       001E85 8B F0            [24] 2208 	mov	b,r3
       001E87 74 01            [12] 2209 	mov	a,#0x01
-      001E89 12 3D D2         [24] 2210 	lcall	__gptrput
+      001E89 12 3D DF         [24] 2210 	lcall	__gptrput
                                    2211 ;	/home/mr-a-717/.stc/uni-stc/hal/uart-hal.c:537: fifoRead(buffer, &data, 1);
       001E8C C0 04            [24] 2212 	push	ar4
       001E8E C0 E0            [24] 2213 	push	acc
@@ -2257,32 +2257,32 @@
                                    2257 	.area CSEG    (CODE)
                                    2258 	.area CONST   (CODE)
                                    2259 	.area XINIT   (CODE)
-      004CDB                       2260 __xinit___UART1_receiveBuffer:
-      004CDB 10                    2261 	.db #0x10	; 16
-      004CDC 00                    2262 	.db #0x00	; 0
-      004CDD 00                    2263 	.db #0x00	; 0
-      004CDE 00                    2264 	.db #0x00	; 0
-      004CDF 00                    2265 	.db #0x00	; 0
-      004CE0 97 00 00              2266 	.byte __UART1_receiveBufferData, (__UART1_receiveBufferData >> 8),#0x00
-      004CE3                       2267 __xinit___UART1_transmitBuffer:
-      004CE3 10                    2268 	.db #0x10	; 16
-      004CE4 00                    2269 	.db #0x00	; 0
-      004CE5 00                    2270 	.db #0x00	; 0
-      004CE6 00                    2271 	.db #0x00	; 0
-      004CE7 00                    2272 	.db #0x00	; 0
-      004CE8 A7 00 00              2273 	.byte __UART1_transmitBufferData, (__UART1_transmitBufferData >> 8),#0x00
-      004CEB                       2274 __xinit___UART2_receiveBuffer:
-      004CEB E9                    2275 	.db #0xe9	; 233
-      004CEC 00                    2276 	.db #0x00	; 0
-      004CED 00                    2277 	.db #0x00	; 0
-      004CEE 00                    2278 	.db #0x00	; 0
-      004CEF 00                    2279 	.db #0x00	; 0
-      004CF0 B7 00 00              2280 	.byte __UART2_receiveBufferData, (__UART2_receiveBufferData >> 8),#0x00
-      004CF3                       2281 __xinit___UART2_transmitBuffer:
-      004CF3 10                    2282 	.db #0x10	; 16
-      004CF4 00                    2283 	.db #0x00	; 0
-      004CF5 00                    2284 	.db #0x00	; 0
-      004CF6 00                    2285 	.db #0x00	; 0
-      004CF7 00                    2286 	.db #0x00	; 0
-      004CF8 A0 01 00              2287 	.byte __UART2_transmitBufferData, (__UART2_transmitBufferData >> 8),#0x00
+      004CE9                       2260 __xinit___UART1_receiveBuffer:
+      004CE9 10                    2261 	.db #0x10	; 16
+      004CEA 00                    2262 	.db #0x00	; 0
+      004CEB 00                    2263 	.db #0x00	; 0
+      004CEC 00                    2264 	.db #0x00	; 0
+      004CED 00                    2265 	.db #0x00	; 0
+      004CEE 97 00 00              2266 	.byte __UART1_receiveBufferData, (__UART1_receiveBufferData >> 8),#0x00
+      004CF1                       2267 __xinit___UART1_transmitBuffer:
+      004CF1 10                    2268 	.db #0x10	; 16
+      004CF2 00                    2269 	.db #0x00	; 0
+      004CF3 00                    2270 	.db #0x00	; 0
+      004CF4 00                    2271 	.db #0x00	; 0
+      004CF5 00                    2272 	.db #0x00	; 0
+      004CF6 A7 00 00              2273 	.byte __UART1_transmitBufferData, (__UART1_transmitBufferData >> 8),#0x00
+      004CF9                       2274 __xinit___UART2_receiveBuffer:
+      004CF9 E9                    2275 	.db #0xe9	; 233
+      004CFA 00                    2276 	.db #0x00	; 0
+      004CFB 00                    2277 	.db #0x00	; 0
+      004CFC 00                    2278 	.db #0x00	; 0
+      004CFD 00                    2279 	.db #0x00	; 0
+      004CFE B7 00 00              2280 	.byte __UART2_receiveBufferData, (__UART2_receiveBufferData >> 8),#0x00
+      004D01                       2281 __xinit___UART2_transmitBuffer:
+      004D01 10                    2282 	.db #0x10	; 16
+      004D02 00                    2283 	.db #0x00	; 0
+      004D03 00                    2284 	.db #0x00	; 0
+      004D04 00                    2285 	.db #0x00	; 0
+      004D05 00                    2286 	.db #0x00	; 0
+      004D06 A0 01 00              2287 	.byte __UART2_transmitBufferData, (__UART2_transmitBufferData >> 8),#0x00
                                    2288 	.area CABS    (ABS,CODE)

@@ -963,7 +963,7 @@
       000000 02 00 51         [24]  963 	ljmp	__sdcc_gsinit_startup
       000003 32               [24]  964 	reti
       000004                        965 	.ds	7
-      00000B 02 39 06         [24]  966 	ljmp	_timer0_isr
+      00000B 02 39 13         [24]  966 	ljmp	_timer0_isr
       00000E                        967 	.ds	5
       000013 32               [24]  968 	reti
       000014                        969 	.ds	7
@@ -1046,7 +1046,7 @@
       0020F1 75 82 01         [24] 1046 	mov	dpl,#0x01
       0020F4 12 10 1E         [24] 1047 	lcall	_serialConsoleInitialise
                                    1048 ;	main.c:17: global_timer_init();
-      0020F7 12 38 CF         [24] 1049 	lcall	_global_timer_init
+      0020F7 12 38 DC         [24] 1049 	lcall	_global_timer_init
                                    1050 ;	main.c:18: report_init();
       0020FA 12 1F 7A         [24] 1051 	lcall	_report_init
                                    1052 ;	main.c:19: nrf24_device(RECEIVER, RESET);
@@ -1060,7 +1060,7 @@
       00210C 12 1E CC         [24] 1060 	lcall	_delay1ms
                                    1061 ;	main.c:24: protocol_main_loop();
                                    1062 ;	main.c:26: }
-      00210F 02 38 60         [24] 1063 	ljmp	_protocol_main_loop
+      00210F 02 38 6D         [24] 1063 	ljmp	_protocol_main_loop
                                    1064 	.area CSEG    (CODE)
                                    1065 	.area CONST   (CODE)
                                    1066 	.area XINIT   (CODE)

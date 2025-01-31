@@ -98,6 +98,13 @@ LINE_STATUS terminal_execute_line(char* line) {
       return LINE_FAILED;
     }
 
+    // small letter case is not a command, it's parameter
+    if (!(letter >= 'a' && letter < 'z') && \
+        (command.command_type != COMMAND_NOT_SET)) {
+        printf("Can't have >1 command letter in one command!\n");
+        return LINE_FAILED;
+    }
+
     /* [ Step 2: Identify and Initiate command_t variable] */
     switch(letter) {
 
@@ -107,12 +114,7 @@ LINE_STATUS terminal_execute_line(char* line) {
           printf("Bad integer Number Format\n");
           return LINE_FAILED;
 
-        } else if (command.command_type != COMMAND_NOT_SET) {
-          printf("Can't have >1 command letter in one command!\n");
-          return LINE_FAILED;
-
-        }
-
+        } 
         command.command_type = COMMAND_TEST_INT_READING;
         break;
 

@@ -41,15 +41,15 @@
                                      41 	.globl _DPS			; assume DPSEL is in DPS bit0
                                      42 
       00005E                         43 __mcs51_genXINIT::
-      00005E 79 70            [12]   44 	mov	r1,#l_XINIT
+      00005E 79 74            [12]   44 	mov	r1,#l_XINIT
       000060 E9               [12]   45 	mov	a,r1
       000061 44 00            [12]   46 	orl	a,#(l_XINIT >> 8)
       000063 60 1A            [24]   47 	jz	00003$
       000065 7A 01            [12]   48 	mov	r2,#((l_XINIT+255) >> 8)
       000067 43 E3 01         [24]   49 	orl	_DPS,#0x01		; set DPSEL, select DPTR1
-      00006A 90 4C DB         [24]   50 	mov	dptr,#s_XINIT		; DPTR1 for code
+      00006A 90 4C E9         [24]   50 	mov	dptr,#s_XINIT		; DPTR1 for code
       00006D 15 E3            [12]   51 	dec	_DPS			; clear DPSEL, select DPTR0
-      00006F 90 03 22         [24]   52 	mov	dptr,#s_XISEG		; DPTR0 for xdata
+      00006F 90 03 1E         [24]   52 	mov	dptr,#s_XISEG		; DPTR0 for xdata
       000072 E4               [12]   53 00001$:	clr	a
       000073 05 E3            [12]   54 	inc	_DPS			; set DPSEL, select DPTR1
       000075 93               [24]   55 	movc	a,@a+dptr

@@ -1032,7 +1032,7 @@
       000C99 8B 83            [24] 1032 	mov	dph,r3
       000C9B 8C F0            [24] 1033 	mov	b,r4
       000C9D E4               [12] 1034 	clr	a
-      000C9E 12 3D D2         [24] 1035 	lcall	__gptrput
+      000C9E 12 3D DF         [24] 1035 	lcall	__gptrput
                                    1036 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:41: buffer->rIndex = 0;
       000CA1 74 02            [12] 1037 	mov	a,#0x02
       000CA3 2D               [12] 1038 	add	a,r5
@@ -1045,7 +1045,7 @@
       000CAC 8B 83            [24] 1045 	mov	dph,r3
       000CAE 8C F0            [24] 1046 	mov	b,r4
       000CB0 E4               [12] 1047 	clr	a
-      000CB1 12 3D D2         [24] 1048 	lcall	__gptrput
+      000CB1 12 3D DF         [24] 1048 	lcall	__gptrput
                                    1049 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:42: buffer->wIndex = 0;
       000CB4 74 03            [12] 1050 	mov	a,#0x03
       000CB6 2D               [12] 1051 	add	a,r5
@@ -1058,7 +1058,7 @@
       000CBF 8B 83            [24] 1058 	mov	dph,r3
       000CC1 8C F0            [24] 1059 	mov	b,r4
       000CC3 E4               [12] 1060 	clr	a
-      000CC4 12 3D D2         [24] 1061 	lcall	__gptrput
+      000CC4 12 3D DF         [24] 1061 	lcall	__gptrput
                                    1062 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:43: buffer->status = 0;
       000CC7 74 04            [12] 1063 	mov	a,#0x04
       000CC9 2D               [12] 1064 	add	a,r5
@@ -1071,7 +1071,7 @@
       000CD2 8F F0            [24] 1071 	mov	b,r7
       000CD4 E4               [12] 1072 	clr	a
                                    1073 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:44: }
-      000CD5 02 3D D2         [24] 1074 	ljmp	__gptrput
+      000CD5 02 3D DF         [24] 1074 	ljmp	__gptrput
                                    1075 ;------------------------------------------------------------
                                    1076 ;Allocation info for local variables in function 'fifoIsFull'
                                    1077 ;------------------------------------------------------------
@@ -1117,13 +1117,13 @@
       000CFC 8A 82            [24] 1117 	mov	dpl,r2
       000CFE 8B 83            [24] 1118 	mov	dph,r3
       000D00 8C F0            [24] 1119 	mov	b,r4
-      000D02 12 49 F9         [24] 1120 	lcall	__gptrget
+      000D02 12 4A 06         [24] 1120 	lcall	__gptrget
       000D05 FA               [12] 1121 	mov	r2,a
                                    1122 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:47: return fifoLength(fifo) == fifo->size;
       000D06 8D 82            [24] 1123 	mov	dpl,r5
       000D08 8E 83            [24] 1124 	mov	dph,r6
       000D0A 8F F0            [24] 1125 	mov	b,r7
-      000D0C 12 49 F9         [24] 1126 	lcall	__gptrget
+      000D0C 12 4A 06         [24] 1126 	lcall	__gptrget
       000D0F FD               [12] 1127 	mov	r5,a
       000D10 EA               [12] 1128 	mov	a,r2
       000D11 B5 05 04         [24] 1129 	cjne	a,ar5,00104$
@@ -1172,7 +1172,7 @@
       000D37 8D 82            [24] 1172 	mov	dpl,r5
       000D39 8E 83            [24] 1173 	mov	dph,r6
       000D3B 8F F0            [24] 1174 	mov	b,r7
-      000D3D 12 49 F9         [24] 1175 	lcall	__gptrget
+      000D3D 12 4A 06         [24] 1175 	lcall	__gptrget
       000D40 FC               [12] 1176 	mov	r4,a
                                    1177 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.h:78: return buffer->length;
       000D41 0D               [12] 1178 	inc	r5
@@ -1182,7 +1182,7 @@
       000D46 8D 82            [24] 1182 	mov	dpl,r5
       000D48 8E 83            [24] 1183 	mov	dph,r6
       000D4A 8F F0            [24] 1184 	mov	b,r7
-      000D4C 12 49 F9         [24] 1185 	lcall	__gptrget
+      000D4C 12 4A 06         [24] 1185 	lcall	__gptrget
       000D4F FD               [12] 1186 	mov	r5,a
                                    1187 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:51: return fifo->size - fifoLength(fifo);
       000D50 EC               [12] 1188 	mov	a,r4
@@ -1270,7 +1270,7 @@
       000DAD E5 19            [12] 1270 	mov	a,_bp
       000DAF 24 0A            [12] 1271 	add	a,#0x0a
       000DB1 F9               [12] 1272 	mov	r1,a
-      000DB2 12 49 F9         [24] 1273 	lcall	__gptrget
+      000DB2 12 4A 06         [24] 1273 	lcall	__gptrget
       000DB5 F7               [12] 1274 	mov	@r1,a
                                    1275 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:70: for (uint8_t n = 0; n < count; n++) {
       000DB6 A8 19            [24] 1276 	mov	r0,_bp
@@ -1316,7 +1316,7 @@
       000DEC 86 83            [24] 1316 	mov	dph,@r0
       000DEE 08               [12] 1317 	inc	r0
       000DEF 86 F0            [24] 1318 	mov	b,@r0
-      000DF1 12 49 F9         [24] 1319 	lcall	__gptrget
+      000DF1 12 4A 06         [24] 1319 	lcall	__gptrget
       000DF4 FC               [12] 1320 	mov	r4,a
       000DF5 E5 19            [12] 1321 	mov	a,_bp
       000DF7 24 0A            [12] 1322 	add	a,#0x0a
@@ -1345,13 +1345,13 @@
       000E17 86 83            [24] 1345 	mov	dph,@r0
       000E19 08               [12] 1346 	inc	r0
       000E1A 86 F0            [24] 1347 	mov	b,@r0
-      000E1C 12 49 F9         [24] 1348 	lcall	__gptrget
+      000E1C 12 4A 06         [24] 1348 	lcall	__gptrget
       000E1F FA               [12] 1349 	mov	r2,a
       000E20 A3               [24] 1350 	inc	dptr
-      000E21 12 49 F9         [24] 1351 	lcall	__gptrget
+      000E21 12 4A 06         [24] 1351 	lcall	__gptrget
       000E24 FB               [12] 1352 	mov	r3,a
       000E25 A3               [24] 1353 	inc	dptr
-      000E26 12 49 F9         [24] 1354 	lcall	__gptrget
+      000E26 12 4A 06         [24] 1354 	lcall	__gptrget
       000E29 FC               [12] 1355 	mov	r4,a
       000E2A E5 19            [12] 1356 	mov	a,_bp
       000E2C 24 0A            [12] 1357 	add	a,#0x0a
@@ -1382,12 +1382,12 @@
       000E4D 8D 82            [24] 1382 	mov	dpl,r5
       000E4F 8E 83            [24] 1383 	mov	dph,r6
       000E51 8F F0            [24] 1384 	mov	b,r7
-      000E53 12 49 F9         [24] 1385 	lcall	__gptrget
+      000E53 12 4A 06         [24] 1385 	lcall	__gptrget
       000E56 FD               [12] 1386 	mov	r5,a
       000E57 8A 82            [24] 1387 	mov	dpl,r2
       000E59 8B 83            [24] 1388 	mov	dph,r3
       000E5B 8C F0            [24] 1389 	mov	b,r4
-      000E5D 12 3D D2         [24] 1390 	lcall	__gptrput
+      000E5D 12 3D DF         [24] 1390 	lcall	__gptrput
                                    1391 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:76: wIndex++;
       000E60 E5 19            [12] 1392 	mov	a,_bp
       000E62 24 0A            [12] 1393 	add	a,#0x0a
@@ -1414,7 +1414,7 @@
       000E80 24 0A            [12] 1414 	add	a,#0x0a
       000E82 F9               [12] 1415 	mov	r1,a
       000E83 E7               [12] 1416 	mov	a,@r1
-      000E84 12 3D D2         [24] 1417 	lcall	__gptrput
+      000E84 12 3D DF         [24] 1417 	lcall	__gptrput
                                    1418 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:80: buffer->length += count;
       000E87 A8 19            [24] 1419 	mov	r0,_bp
       000E89 08               [12] 1420 	inc	r0
@@ -1430,7 +1430,7 @@
       000E95 8D 82            [24] 1430 	mov	dpl,r5
       000E97 8E 83            [24] 1431 	mov	dph,r6
       000E99 8F F0            [24] 1432 	mov	b,r7
-      000E9B 12 49 F9         [24] 1433 	lcall	__gptrget
+      000E9B 12 4A 06         [24] 1433 	lcall	__gptrget
       000E9E FB               [12] 1434 	mov	r3,a
       000E9F E5 19            [12] 1435 	mov	a,_bp
       000EA1 24 FA            [12] 1436 	add	a,#0xfa
@@ -1441,7 +1441,7 @@
       000EA7 8D 82            [24] 1441 	mov	dpl,r5
       000EA9 8E 83            [24] 1442 	mov	dph,r6
       000EAB 8F F0            [24] 1443 	mov	b,r7
-      000EAD 12 3D D2         [24] 1444 	lcall	__gptrput
+      000EAD 12 3D DF         [24] 1444 	lcall	__gptrput
       000EB0                       1445 00105$:
                                    1446 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:83: return rc;
       000EB0 8C 82            [24] 1447 	mov	dpl,r4
@@ -1493,7 +1493,7 @@
       000ED7 8A 82            [24] 1493 	mov	dpl,r2
       000ED9 8B 83            [24] 1494 	mov	dph,r3
       000EDB 8C F0            [24] 1495 	mov	b,r4
-      000EDD 12 49 F9         [24] 1496 	lcall	__gptrget
+      000EDD 12 4A 06         [24] 1496 	lcall	__gptrget
       000EE0 FF               [12] 1497 	mov	r7,a
       000EE1 E5 19            [12] 1498 	mov	a,_bp
       000EE3 24 FA            [12] 1499 	add	a,#0xfa
@@ -1543,7 +1543,7 @@
       000F1E E5 19            [12] 1543 	mov	a,_bp
       000F20 24 0B            [12] 1544 	add	a,#0x0b
       000F22 F9               [12] 1545 	mov	r1,a
-      000F23 12 49 F9         [24] 1546 	lcall	__gptrget
+      000F23 12 4A 06         [24] 1546 	lcall	__gptrget
       000F26 F7               [12] 1547 	mov	@r1,a
                                    1548 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:92: for (uint8_t n = 0; n < count; n++) {
       000F27 A8 19            [24] 1549 	mov	r0,_bp
@@ -1588,7 +1588,7 @@
       000F5B 86 83            [24] 1588 	mov	dph,@r0
       000F5D 08               [12] 1589 	inc	r0
       000F5E 86 F0            [24] 1590 	mov	b,@r0
-      000F60 12 49 F9         [24] 1591 	lcall	__gptrget
+      000F60 12 4A 06         [24] 1591 	lcall	__gptrget
       000F63 FD               [12] 1592 	mov	r5,a
       000F64 E5 19            [12] 1593 	mov	a,_bp
       000F66 24 0B            [12] 1594 	add	a,#0x0b
@@ -1630,13 +1630,13 @@
       000F9A 86 83            [24] 1630 	mov	dph,@r0
       000F9C 08               [12] 1631 	inc	r0
       000F9D 86 F0            [24] 1632 	mov	b,@r0
-      000F9F 12 49 F9         [24] 1633 	lcall	__gptrget
+      000F9F 12 4A 06         [24] 1633 	lcall	__gptrget
       000FA2 FA               [12] 1634 	mov	r2,a
       000FA3 A3               [24] 1635 	inc	dptr
-      000FA4 12 49 F9         [24] 1636 	lcall	__gptrget
+      000FA4 12 4A 06         [24] 1636 	lcall	__gptrget
       000FA7 FE               [12] 1637 	mov	r6,a
       000FA8 A3               [24] 1638 	inc	dptr
-      000FA9 12 49 F9         [24] 1639 	lcall	__gptrget
+      000FA9 12 4A 06         [24] 1639 	lcall	__gptrget
       000FAC FF               [12] 1640 	mov	r7,a
       000FAD E5 19            [12] 1641 	mov	a,_bp
       000FAF 24 0B            [12] 1642 	add	a,#0x0b
@@ -1650,11 +1650,11 @@
       000FB8 8A 82            [24] 1650 	mov	dpl,r2
       000FBA 8E 83            [24] 1651 	mov	dph,r6
       000FBC 8F F0            [24] 1652 	mov	b,r7
-      000FBE 12 49 F9         [24] 1653 	lcall	__gptrget
+      000FBE 12 4A 06         [24] 1653 	lcall	__gptrget
       000FC1 8B 82            [24] 1654 	mov	dpl,r3
       000FC3 8C 83            [24] 1655 	mov	dph,r4
       000FC5 8D F0            [24] 1656 	mov	b,r5
-      000FC7 12 3D D2         [24] 1657 	lcall	__gptrput
+      000FC7 12 3D DF         [24] 1657 	lcall	__gptrput
                                    1658 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:99: rIndex++;
       000FCA E5 19            [12] 1659 	mov	a,_bp
       000FCC 24 0B            [12] 1660 	add	a,#0x0b
@@ -1683,12 +1683,12 @@
       000FEE 24 0B            [12] 1683 	add	a,#0x0b
       000FF0 F9               [12] 1684 	mov	r1,a
       000FF1 E7               [12] 1685 	mov	a,@r1
-      000FF2 12 3D D2         [24] 1686 	lcall	__gptrput
+      000FF2 12 3D DF         [24] 1686 	lcall	__gptrput
                                    1687 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:103: buffer->length -= count;
       000FF5 8A 82            [24] 1688 	mov	dpl,r2
       000FF7 8B 83            [24] 1689 	mov	dph,r3
       000FF9 8C F0            [24] 1690 	mov	b,r4
-      000FFB 12 49 F9         [24] 1691 	lcall	__gptrget
+      000FFB 12 4A 06         [24] 1691 	lcall	__gptrget
       000FFE FF               [12] 1692 	mov	r7,a
       000FFF E5 19            [12] 1693 	mov	a,_bp
       001001 24 FA            [12] 1694 	add	a,#0xfa
@@ -1700,7 +1700,7 @@
       001008 8A 82            [24] 1700 	mov	dpl,r2
       00100A 8B 83            [24] 1701 	mov	dph,r3
       00100C 8C F0            [24] 1702 	mov	b,r4
-      00100E 12 3D D2         [24] 1703 	lcall	__gptrput
+      00100E 12 3D DF         [24] 1703 	lcall	__gptrput
       001011                       1704 00105$:
                                    1705 ;	/home/mr-a-717/.stc/uni-stc/hal/fifo-buffer.c:106: return rc;
       001011 E5 19            [12] 1706 	mov	a,_bp

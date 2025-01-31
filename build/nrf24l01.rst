@@ -1091,24 +1091,24 @@
                                    1091 ; external initialized ram data
                                    1092 ;--------------------------------------------------------
                                    1093 	.area XISEG   (XDATA)
-      00034F                       1094 _dataReady::
-      00034F                       1095 	.ds 1
-      000350                       1096 _CSN_pin:
-      000350                       1097 	.ds 13
-      00035D                       1098 _CE_pin:
-      00035D                       1099 	.ds 13
-      00036A                       1100 _reset_flag:
-      00036A                       1101 	.ds 1
-      00036B                       1102 _current_mode:
-      00036B                       1103 	.ds 1
-      00036C                       1104 _current_acknowledgement_state:
-      00036C                       1105 	.ds 1
-      00036D                       1106 _dynamic_payload:
-      00036D                       1107 	.ds 1
-      00036E                       1108 _hardwareCheckPassed:
-      00036E                       1109 	.ds 1
-      00036F                       1110 _datapipe_address::
-      00036F                       1111 	.ds 30
+      00034B                       1094 _dataReady::
+      00034B                       1095 	.ds 1
+      00034C                       1096 _CSN_pin:
+      00034C                       1097 	.ds 13
+      000359                       1098 _CE_pin:
+      000359                       1099 	.ds 13
+      000366                       1100 _reset_flag:
+      000366                       1101 	.ds 1
+      000367                       1102 _current_mode:
+      000367                       1103 	.ds 1
+      000368                       1104 _current_acknowledgement_state:
+      000368                       1105 	.ds 1
+      000369                       1106 _dynamic_payload:
+      000369                       1107 	.ds 1
+      00036A                       1108 _hardwareCheckPassed:
+      00036A                       1109 	.ds 1
+      00036B                       1110 _datapipe_address::
+      00036B                       1111 	.ds 30
                                    1112 	.area HOME    (CODE)
                                    1113 	.area GSINIT0 (CODE)
                                    1114 	.area GSINIT1 (CODE)
@@ -1223,25 +1223,25 @@
                                    1223 ;	-----------------------------------------
       002161                       1224 _pinout_Initializer:
                                    1225 ;	nrf24l01.c:69: gpioConfigure(&CSN_pin);
-      002161 90 03 50         [24] 1226 	mov	dptr,#_CSN_pin
+      002161 90 03 4C         [24] 1226 	mov	dptr,#_CSN_pin
       002164 75 F0 00         [24] 1227 	mov	b,#0x00
       002167 12 01 7E         [24] 1228 	lcall	_gpioConfigure
                                    1229 ;	nrf24l01.c:70: gpioConfigure(&CE_pin);
-      00216A 90 03 5D         [24] 1230 	mov	dptr,#_CE_pin
+      00216A 90 03 59         [24] 1230 	mov	dptr,#_CE_pin
       00216D 75 F0 00         [24] 1231 	mov	b,#0x00
       002170 12 01 7E         [24] 1232 	lcall	_gpioConfigure
                                    1233 ;	nrf24l01.c:72: gpioWrite(&CSN_pin, SPI_OFF);
       002173 90 00 21         [24] 1234 	mov	dptr,#_gpioWrite_PARM_2
       002176 74 01            [12] 1235 	mov	a,#0x01
       002178 F0               [24] 1236 	movx	@dptr,a
-      002179 90 03 50         [24] 1237 	mov	dptr,#_CSN_pin
+      002179 90 03 4C         [24] 1237 	mov	dptr,#_CSN_pin
       00217C 75 F0 00         [24] 1238 	mov	b,#0x00
       00217F 12 09 48         [24] 1239 	lcall	_gpioWrite
                                    1240 ;	nrf24l01.c:73: gpioWrite(&CE_pin, CE_OFF);
       002182 90 00 21         [24] 1241 	mov	dptr,#_gpioWrite_PARM_2
       002185 E4               [12] 1242 	clr	a
       002186 F0               [24] 1243 	movx	@dptr,a
-      002187 90 03 5D         [24] 1244 	mov	dptr,#_CE_pin
+      002187 90 03 59         [24] 1244 	mov	dptr,#_CE_pin
       00218A 75 F0 00         [24] 1245 	mov	b,#0x00
                                    1246 ;	nrf24l01.c:75: }
       00218D 02 09 48         [24] 1247 	ljmp	_gpioWrite
@@ -1262,7 +1262,7 @@
       002196 E0               [24] 1262 	movx	a,@dptr
       002197 90 00 21         [24] 1263 	mov	dptr,#_gpioWrite_PARM_2
       00219A F0               [24] 1264 	movx	@dptr,a
-      00219B 90 03 50         [24] 1265 	mov	dptr,#_CSN_pin
+      00219B 90 03 4C         [24] 1265 	mov	dptr,#_CSN_pin
       00219E 75 F0 00         [24] 1266 	mov	b,#0x00
                                    1267 ;	nrf24l01.c:81: }
       0021A1 02 09 48         [24] 1268 	ljmp	_gpioWrite
@@ -1287,7 +1287,7 @@
       0021B1 A3               [24] 1287 	inc	dptr
       0021B2 F0               [24] 1288 	movx	@dptr,a
       0021B3 90 00 78         [24] 1289 	mov	dptr,#_spiSend_PARM_3
-      0021B6 74 4F            [12] 1290 	mov	a,#_dataReady
+      0021B6 74 4B            [12] 1290 	mov	a,#_dataReady
       0021B8 F0               [24] 1291 	movx	@dptr,a
       0021B9 74 03            [12] 1292 	mov	a,#(_dataReady >> 8)
       0021BB A3               [24] 1293 	inc	dptr
@@ -1300,7 +1300,7 @@
       0021C6 12 13 77         [24] 1300 	lcall	_spiSend
                                    1301 ;	nrf24l01.c:88: while(!dataReady);
       0021C9                       1302 00101$:
-      0021C9 90 03 4F         [24] 1303 	mov	dptr,#_dataReady
+      0021C9 90 03 4B         [24] 1303 	mov	dptr,#_dataReady
       0021CC E0               [24] 1304 	movx	a,@dptr
       0021CD 60 FA            [24] 1305 	jz	00101$
                                    1306 ;	nrf24l01.c:90: return command;
@@ -1326,7 +1326,7 @@
       0021DC E0               [24] 1326 	movx	a,@dptr
       0021DD 90 00 21         [24] 1327 	mov	dptr,#_gpioWrite_PARM_2
       0021E0 F0               [24] 1328 	movx	@dptr,a
-      0021E1 90 03 5D         [24] 1329 	mov	dptr,#_CE_pin
+      0021E1 90 03 59         [24] 1329 	mov	dptr,#_CE_pin
       0021E4 75 F0 00         [24] 1330 	mov	b,#0x00
                                    1331 ;	nrf24l01.c:97: }
       0021E7 02 09 48         [24] 1332 	ljmp	_gpioWrite
@@ -1478,14 +1478,14 @@
       0022AA 90 02 3A         [24] 1478 	mov	dptr,#_register_current_value
       0022AD E0               [24] 1479 	movx	a,@dptr
       0022AE 20 E5 30         [24] 1480 	jb	acc.5,00102$
-      0022B1 90 03 6B         [24] 1481 	mov	dptr,#_current_mode
+      0022B1 90 03 67         [24] 1481 	mov	dptr,#_current_mode
       0022B4 E0               [24] 1482 	movx	a,@dptr
       0022B5 FF               [12] 1483 	mov	r7,a
       0022B6 BF 03 28         [24] 1484 	cjne	r7,#0x03,00102$
                                    1485 ;	nrf24l01.c:119: current_acknowledgement_state = acknowledgement_state;      /*setting the acknowledgement state to either NO_ACK or ACK, based on input*/
       0022B9 90 02 48         [24] 1486 	mov	dptr,#_nrf24_transmit_PARM_3
       0022BC E0               [24] 1487 	movx	a,@dptr
-      0022BD 90 03 6C         [24] 1488 	mov	dptr,#_current_acknowledgement_state
+      0022BD 90 03 68         [24] 1488 	mov	dptr,#_current_acknowledgement_state
       0022C0 F0               [24] 1489 	movx	@dptr,a
                                    1490 ;	nrf24l01.c:123: nrf24_send_payload(payload, payload_width);                 /*the actual function to send data*/
       0022C1 90 02 49         [24] 1491 	mov	dptr,#_nrf24_transmit_payload_65536_147
@@ -1539,7 +1539,7 @@
       0022F5 75 82 00         [24] 1539 	mov	dpl,#0x00
       0022F8 12 21 90         [24] 1540 	lcall	_nrf24_SPI
                                    1541 ;	nrf24l01.c:137: if (current_acknowledgement_state == NO_ACK_MODE) {SPI_command = W_TX_PAYLOAD_NOACK;}
-      0022FB 90 03 6C         [24] 1542 	mov	dptr,#_current_acknowledgement_state
+      0022FB 90 03 68         [24] 1542 	mov	dptr,#_current_acknowledgement_state
       0022FE E0               [24] 1543 	movx	a,@dptr
       0022FF FF               [12] 1544 	mov	r7,a
       002300 BF 01 08         [24] 1545 	cjne	r7,#0x01,00102$
@@ -1589,7 +1589,7 @@
       00233B 8A 82            [24] 1589 	mov	dpl,r2
       00233D 89 83            [24] 1590 	mov	dph,r1
       00233F 8B F0            [24] 1591 	mov	b,r3
-      002341 12 49 F9         [24] 1592 	lcall	__gptrget
+      002341 12 4A 06         [24] 1592 	lcall	__gptrget
       002344 FA               [12] 1593 	mov	r2,a
       002345 90 02 39         [24] 1594 	mov	dptr,#_SPI_command
       002348 F0               [24] 1595 	movx	@dptr,a
@@ -1711,7 +1711,7 @@
       0023DD AE 83            [24] 1711 	mov	r6,dph
       0023DF AF F0            [24] 1712 	mov	r7,b
                                    1713 ;	nrf24l01.c:174: if (current_mode == PRX) {
-      0023E1 90 03 6B         [24] 1714 	mov	dptr,#_current_mode
+      0023E1 90 03 67         [24] 1714 	mov	dptr,#_current_mode
       0023E4 E0               [24] 1715 	movx	a,@dptr
       0023E5 FC               [12] 1716 	mov	r4,a
       0023E6 BC 04 02         [24] 1717 	cjne	r4,#0x04,00142$
@@ -1750,7 +1750,7 @@
       00241E 02 24 FE         [24] 1750 	ljmp	00107$
       002421                       1751 00144$:
                                    1752 ;	nrf24l01.c:181: if(dynamic_payload == DISABLE) { payload_width = current_payload_width; }
-      002421 90 03 6D         [24] 1753 	mov	dptr,#_dynamic_payload
+      002421 90 03 69         [24] 1753 	mov	dptr,#_dynamic_payload
       002424 E0               [24] 1754 	movx	a,@dptr
       002425 70 0C            [24] 1755 	jnz	00102$
       002427 90 02 3E         [24] 1756 	mov	dptr,#_current_payload_width
@@ -1805,7 +1805,7 @@
       00247B 8E 83            [24] 1805 	mov	dph,r6
       00247D 8F F0            [24] 1806 	mov	b,r7
       00247F EB               [12] 1807 	mov	a,r3
-      002480 12 3D D2         [24] 1808 	lcall	__gptrput
+      002480 12 3D DF         [24] 1808 	lcall	__gptrput
       002483 A3               [24] 1809 	inc	dptr
       002484 AD 82            [24] 1810 	mov	r5,dpl
       002486 AE 83            [24] 1811 	mov	r6,dph
@@ -1915,7 +1915,7 @@
       002511 60 2B            [24] 1915 	jz	00105$
       002513 BF 01 50         [24] 1916 	cjne	r7,#0x01,00109$
                                    1917 ;	nrf24l01.c:214: if (current_mode == PTX) {
-      002516 90 03 6B         [24] 1918 	mov	dptr,#_current_mode
+      002516 90 03 67         [24] 1918 	mov	dptr,#_current_mode
       002519 E0               [24] 1919 	movx	a,@dptr
       00251A FF               [12] 1920 	mov	r7,a
       00251B BF 03 1C         [24] 1921 	cjne	r7,#0x03,00103$
@@ -1942,7 +1942,7 @@
       00253D 22               [24] 1942 	ret
       00253E                       1943 00105$:
                                    1944 ;	nrf24l01.c:225: if (current_mode == PRX) {
-      00253E 90 03 6B         [24] 1945 	mov	dptr,#_current_mode
+      00253E 90 03 67         [24] 1945 	mov	dptr,#_current_mode
       002541 E0               [24] 1946 	movx	a,@dptr
       002542 FF               [12] 1947 	mov	r7,a
       002543 BF 04 1C         [24] 1948 	cjne	r7,#0x04,00107$
@@ -1982,7 +1982,7 @@
                                    1982 ;	-----------------------------------------
       00256A                       1983 _nrf24_reset:
                                    1984 ;	nrf24l01.c:243: reset_flag = 1;
-      00256A 90 03 6A         [24] 1985 	mov	dptr,#_reset_flag
+      00256A 90 03 66         [24] 1985 	mov	dptr,#_reset_flag
       00256D 74 01            [12] 1986 	mov	a,#0x01
       00256F F0               [24] 1987 	movx	@dptr,a
                                    1988 ;	nrf24l01.c:244: nrf24_CE(CE_OFF);
@@ -2257,7 +2257,7 @@
       00271F 90 02 52         [24] 2257 	mov	dptr,#_nrf24_device_device_mode_65536_181
       002722 F0               [24] 2258 	movx	@dptr,a
                                    2259 ;	nrf24l01.c:296: if(!hardwareCheckPassed) {
-      002723 90 03 6E         [24] 2260 	mov	dptr,#_hardwareCheckPassed
+      002723 90 03 6A         [24] 2260 	mov	dptr,#_hardwareCheckPassed
       002726 E0               [24] 2261 	movx	a,@dptr
       002727 70 0F            [24] 2262 	jnz	00102$
                                    2263 ;	nrf24l01.c:297: SPI_Initializer();
@@ -2275,7 +2275,7 @@
       00273B 12 21 D6         [24] 2275 	lcall	_nrf24_CE
                                    2276 ;	nrf24l01.c:305: while (!hardwareCheckPassed) {
       00273E                       2277 00106$:
-      00273E 90 03 6E         [24] 2278 	mov	dptr,#_hardwareCheckPassed
+      00273E 90 03 6A         [24] 2278 	mov	dptr,#_hardwareCheckPassed
       002741 E0               [24] 2279 	movx	a,@dptr
       002742 60 03            [24] 2280 	jz	00145$
       002744 02 27 DF         [24] 2281 	ljmp	00108$
@@ -2358,19 +2358,19 @@
       0027BA EF               [12] 2358 	mov	a,r7
       0027BB B5 06 09         [24] 2359 	cjne	a,ar6,00104$
                                    2360 ;	nrf24l01.c:330: hardwareCheckPassed = true;
-      0027BE 90 03 6E         [24] 2361 	mov	dptr,#_hardwareCheckPassed
+      0027BE 90 03 6A         [24] 2361 	mov	dptr,#_hardwareCheckPassed
       0027C1 74 01            [12] 2362 	mov	a,#0x01
       0027C3 F0               [24] 2363 	movx	@dptr,a
       0027C4 02 27 3E         [24] 2364 	ljmp	00106$
       0027C7                       2365 00104$:
                                    2366 ;	nrf24l01.c:332: printf("\rnrf24l01 Failed to Initialize:\nRead value doesn't match the newly written value ;(\n");
-      0027C7 74 9F            [12] 2367 	mov	a,#___str_0
+      0027C7 74 AC            [12] 2367 	mov	a,#___str_0
       0027C9 C0 E0            [24] 2368 	push	acc
       0027CB 74 4A            [12] 2369 	mov	a,#(___str_0 >> 8)
       0027CD C0 E0            [24] 2370 	push	acc
       0027CF 74 80            [12] 2371 	mov	a,#0x80
       0027D1 C0 E0            [24] 2372 	push	acc
-      0027D3 12 3F B7         [24] 2373 	lcall	_printf
+      0027D3 12 3F C4         [24] 2373 	lcall	_printf
       0027D6 15 81            [12] 2374 	dec	sp
       0027D8 15 81            [12] 2375 	dec	sp
       0027DA 15 81            [12] 2376 	dec	sp
@@ -2383,7 +2383,7 @@
       0027E4 BF 01 02         [24] 2383 	cjne	r7,#0x01,00148$
       0027E7 80 06            [24] 2384 	sjmp	00109$
       0027E9                       2385 00148$:
-      0027E9 90 03 6A         [24] 2386 	mov	dptr,#_reset_flag
+      0027E9 90 03 66         [24] 2386 	mov	dptr,#_reset_flag
       0027EC E0               [24] 2387 	movx	a,@dptr
       0027ED 70 03            [24] 2388 	jnz	00110$
       0027EF                       2389 00109$:
@@ -2552,13 +2552,13 @@
       0028CE C0 01            [24] 2552 	push	ar1
       0028D0 C0 06            [24] 2553 	push	ar6
       0028D2 C0 07            [24] 2554 	push	ar7
-      0028D4 74 F4            [12] 2555 	mov	a,#___str_1
+      0028D4 74 01            [12] 2555 	mov	a,#___str_1
       0028D6 C0 E0            [24] 2556 	push	acc
-      0028D8 74 4A            [12] 2557 	mov	a,#(___str_1 >> 8)
+      0028D8 74 4B            [12] 2557 	mov	a,#(___str_1 >> 8)
       0028DA C0 E0            [24] 2558 	push	acc
       0028DC 74 80            [12] 2559 	mov	a,#0x80
       0028DE C0 E0            [24] 2560 	push	acc
-      0028E0 12 3F B7         [24] 2561 	lcall	_printf
+      0028E0 12 3F C4         [24] 2561 	lcall	_printf
       0028E3 E5 81            [12] 2562 	mov	a,sp
       0028E5 24 F1            [12] 2563 	add	a,#0xf1
       0028E7 F5 81            [12] 2564 	mov	sp,a
@@ -2600,13 +2600,13 @@
       002922 C0 04            [24] 2600 	push	ar4
       002924 C0 06            [24] 2601 	push	ar6
       002926 C0 07            [24] 2602 	push	ar7
-      002928 74 2A            [12] 2603 	mov	a,#___str_2
+      002928 74 37            [12] 2603 	mov	a,#___str_2
       00292A C0 E0            [24] 2604 	push	acc
       00292C 74 4B            [12] 2605 	mov	a,#(___str_2 >> 8)
       00292E C0 E0            [24] 2606 	push	acc
       002930 74 80            [12] 2607 	mov	a,#0x80
       002932 C0 E0            [24] 2608 	push	acc
-      002934 12 3F B7         [24] 2609 	lcall	_printf
+      002934 12 3F C4         [24] 2609 	lcall	_printf
       002937 E5 81            [12] 2610 	mov	a,sp
       002939 24 F9            [12] 2611 	add	a,#0xf9
       00293B F5 81            [12] 2612 	mov	sp,a
@@ -2652,13 +2652,13 @@
       002979 7E 00            [12] 2652 	mov	r6,#0x00
       00297B C0 07            [24] 2653 	push	ar7
       00297D C0 06            [24] 2654 	push	ar6
-      00297F 74 40            [12] 2655 	mov	a,#___str_3
+      00297F 74 4D            [12] 2655 	mov	a,#___str_3
       002981 C0 E0            [24] 2656 	push	acc
       002983 74 4B            [12] 2657 	mov	a,#(___str_3 >> 8)
       002985 C0 E0            [24] 2658 	push	acc
       002987 74 80            [12] 2659 	mov	a,#0x80
       002989 C0 E0            [24] 2660 	push	acc
-      00298B 12 3F B7         [24] 2661 	lcall	_printf
+      00298B 12 3F C4         [24] 2661 	lcall	_printf
       00298E E5 81            [12] 2662 	mov	a,sp
       002990 24 FB            [12] 2663 	add	a,#0xfb
       002992 F5 81            [12] 2664 	mov	sp,a
@@ -2690,13 +2690,13 @@
       0029BC 7E 00            [12] 2690 	mov	r6,#0x00
       0029BE C0 07            [24] 2691 	push	ar7
       0029C0 C0 06            [24] 2692 	push	ar6
-      0029C2 74 54            [12] 2693 	mov	a,#___str_4
+      0029C2 74 61            [12] 2693 	mov	a,#___str_4
       0029C4 C0 E0            [24] 2694 	push	acc
       0029C6 74 4B            [12] 2695 	mov	a,#(___str_4 >> 8)
       0029C8 C0 E0            [24] 2696 	push	acc
       0029CA 74 80            [12] 2697 	mov	a,#0x80
       0029CC C0 E0            [24] 2698 	push	acc
-      0029CE 12 3F B7         [24] 2699 	lcall	_printf
+      0029CE 12 3F C4         [24] 2699 	lcall	_printf
       0029D1 E5 81            [12] 2700 	mov	a,sp
       0029D3 24 FB            [12] 2701 	add	a,#0xfb
       0029D5 F5 81            [12] 2702 	mov	sp,a
@@ -2704,13 +2704,13 @@
       0029D7 90 00 14         [24] 2704 	mov	dptr,#0x0014
       0029DA 12 1E CC         [24] 2705 	lcall	_delay1ms
                                    2706 ;	nrf24l01.c:408: printf("\n\n");
-      0029DD 74 68            [12] 2707 	mov	a,#___str_5
+      0029DD 74 75            [12] 2707 	mov	a,#___str_5
       0029DF C0 E0            [24] 2708 	push	acc
       0029E1 74 4B            [12] 2709 	mov	a,#(___str_5 >> 8)
       0029E3 C0 E0            [24] 2710 	push	acc
       0029E5 74 80            [12] 2711 	mov	a,#0x80
       0029E7 C0 E0            [24] 2712 	push	acc
-      0029E9 12 3F B7         [24] 2713 	lcall	_printf
+      0029E9 12 3F C4         [24] 2713 	lcall	_printf
       0029EC 15 81            [12] 2714 	dec	sp
       0029EE 15 81            [12] 2715 	dec	sp
       0029F0 15 81            [12] 2716 	dec	sp
@@ -2976,7 +2976,7 @@
       002B3A 75 82 1C         [24] 2976 	mov	dpl,#0x1c
       002B3D 12 30 C6         [24] 2977 	lcall	_nrf24_write
                                    2978 ;	nrf24l01.c:442: dynamic_payload = ENABLE;
-      002B40 90 03 6D         [24] 2979 	mov	dptr,#_dynamic_payload
+      002B40 90 03 69         [24] 2979 	mov	dptr,#_dynamic_payload
       002B43 74 01            [12] 2980 	mov	a,#0x01
       002B45 F0               [24] 2981 	movx	@dptr,a
       002B46 22               [24] 2982 	ret
@@ -3006,7 +3006,7 @@
       002B68 75 82 1D         [24] 3006 	mov	dpl,#0x1d
       002B6B 12 30 C6         [24] 3007 	lcall	_nrf24_write
                                    3008 ;	nrf24l01.c:446: dynamic_payload = DISABLE;
-      002B6E 90 03 6D         [24] 3009 	mov	dptr,#_dynamic_payload
+      002B6E 90 03 69         [24] 3009 	mov	dptr,#_dynamic_payload
       002B71 E4               [12] 3010 	clr	a
       002B72 F0               [24] 3011 	movx	@dptr,a
                                    3012 ;	nrf24l01.c:448: }
@@ -3045,7 +3045,7 @@
       002B94 34 00            [12] 3045 	addc	a,#0x00
       002B96 C5 F0            [12] 3046 	xch	a,b
       002B98                       3047 00104$:
-      002B98 24 6F            [12] 3048 	add	a,#_datapipe_address
+      002B98 24 6B            [12] 3048 	add	a,#_datapipe_address
       002B9A FE               [12] 3049 	mov	r6,a
       002B9B 74 03            [12] 3050 	mov	a,#(_datapipe_address >> 8)
       002B9D 35 F0            [12] 3051 	addc	a,b
@@ -3094,7 +3094,7 @@
       002BCB EE               [12] 3094 	mov	a,r6
       002BCC 75 F0 05         [24] 3095 	mov	b,#0x05
       002BCF A4               [48] 3096 	mul	ab
-      002BD0 24 6F            [12] 3097 	add	a,#_datapipe_address
+      002BD0 24 6B            [12] 3097 	add	a,#_datapipe_address
       002BD2 FC               [12] 3098 	mov	r4,a
       002BD3 74 03            [12] 3099 	mov	a,#(_datapipe_address >> 8)
       002BD5 35 F0            [12] 3100 	addc	a,b
@@ -3969,7 +3969,7 @@
       00304F 12 30 C6         [24] 3969 	lcall	_nrf24_write
       003052 D0 07            [24] 3970 	pop	ar7
                                    3971 ;	nrf24l01.c:633: current_mode = mode;
-      003054 90 03 6B         [24] 3972 	mov	dptr,#_current_mode
+      003054 90 03 67         [24] 3972 	mov	dptr,#_current_mode
       003057 EF               [12] 3973 	mov	a,r7
       003058 F0               [24] 3974 	movx	@dptr,a
                                    3975 ;	nrf24l01.c:634: }
@@ -4040,7 +4040,7 @@
       0030A9 8E 83            [24] 4040 	mov	dph,r6
       0030AB 8F F0            [24] 4041 	mov	b,r7
       0030AD EB               [12] 4042 	mov	a,r3
-      0030AE 12 3D D2         [24] 4043 	lcall	__gptrput
+      0030AE 12 3D DF         [24] 4043 	lcall	__gptrput
       0030B1 A3               [24] 4044 	inc	dptr
       0030B2 AD 82            [24] 4045 	mov	r5,dpl
       0030B4 AE 83            [24] 4046 	mov	r6,dph
@@ -4108,7 +4108,7 @@
       0030F5 8D 82            [24] 4108 	mov	dpl,r5
       0030F7 8E 83            [24] 4109 	mov	dph,r6
       0030F9 8F F0            [24] 4110 	mov	b,r7
-      0030FB 12 49 F9         [24] 4111 	lcall	__gptrget
+      0030FB 12 4A 06         [24] 4111 	lcall	__gptrget
       0030FE FB               [12] 4112 	mov	r3,a
       0030FF A3               [24] 4113 	inc	dptr
       003100 AD 82            [24] 4114 	mov	r5,dpl
@@ -4146,15 +4146,15 @@
                                    4146 	.area CSEG    (CODE)
                                    4147 	.area CONST   (CODE)
                                    4148 	.area CONST   (CODE)
-      004A9F                       4149 ___str_0:
-      004A9F 0D                    4150 	.db 0x0d
-      004AA0 6E 72 66 32 34 6C 30  4151 	.ascii "nrf24l01 Failed to Initialize:"
+      004AAC                       4149 ___str_0:
+      004AAC 0D                    4150 	.db 0x0d
+      004AAD 6E 72 66 32 34 6C 30  4151 	.ascii "nrf24l01 Failed to Initialize:"
              31 20 46 61 69 6C 65
              64 20 74 6F 20 49 6E
              69 74 69 61 6C 69 7A
              65 3A
-      004ABE 0A                    4152 	.db 0x0a
-      004ABF 52 65 61 64 20 76 61  4153 	.ascii "Read value doesn't match the newly written value ;("
+      004ACB 0A                    4152 	.db 0x0a
+      004ACC 52 65 61 64 20 76 61  4153 	.ascii "Read value doesn't match the newly written value ;("
              6C 75 65 20 64 6F 65
              73 6E 27 74 20 6D 61
              74 63 68 20 74 68 65
@@ -4162,13 +4162,13 @@
              77 72 69 74 74 65 6E
              20 76 61 6C 75 65 20
              3B 28
-      004AF2 0A                    4154 	.db 0x0a
-      004AF3 00                    4155 	.db 0x00
+      004AFF 0A                    4154 	.db 0x0a
+      004B00 00                    4155 	.db 0x00
                                    4156 	.area CSEG    (CODE)
                                    4157 	.area CONST   (CODE)
-      004AF4                       4158 ___str_1:
-      004AF4 0D                    4159 	.db 0x0d
-      004AF5 52 65 67 69 73 74 65  4160 	.ascii "Register 0x%02x: 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x"
+      004B01                       4158 ___str_1:
+      004B01 0D                    4159 	.db 0x0d
+      004B02 52 65 67 69 73 74 65  4160 	.ascii "Register 0x%02x: 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x"
              72 20 30 78 25 30 32
              78 3A 20 30 78 25 30
              32 78 20 30 78 25 30
@@ -4176,112 +4176,112 @@
              32 78 20 30 78 25 30
              32 78 20 30 78 25 30
              32 78
-      004B28 0A                    4161 	.db 0x0a
-      004B29 00                    4162 	.db 0x00
+      004B35 0A                    4161 	.db 0x0a
+      004B36 00                    4162 	.db 0x00
                                    4163 	.area CSEG    (CODE)
                                    4164 	.area CONST   (CODE)
-      004B2A                       4165 ___str_2:
-      004B2A 0D                    4166 	.db 0x0d
-      004B2B 52 65 67 69 73 74 65  4167 	.ascii "Register 0x%02x: %d"
+      004B37                       4165 ___str_2:
+      004B37 0D                    4166 	.db 0x0d
+      004B38 52 65 67 69 73 74 65  4167 	.ascii "Register 0x%02x: %d"
              72 20 30 78 25 30 32
              78 3A 20 25 64
-      004B3E 0A                    4168 	.db 0x0a
-      004B3F 00                    4169 	.db 0x00
+      004B4B 0A                    4168 	.db 0x0a
+      004B4C 00                    4169 	.db 0x00
                                    4170 	.area CSEG    (CODE)
                                    4171 	.area CONST   (CODE)
-      004B40                       4172 ___str_3:
-      004B40 0D                    4173 	.db 0x0d
-      004B41 52 65 67 69 73 74 65  4174 	.ascii "Register 0x1C: %d"
+      004B4D                       4172 ___str_3:
+      004B4D 0D                    4173 	.db 0x0d
+      004B4E 52 65 67 69 73 74 65  4174 	.ascii "Register 0x1C: %d"
              72 20 30 78 31 43 3A
              20 25 64
-      004B52 0A                    4175 	.db 0x0a
-      004B53 00                    4176 	.db 0x00
+      004B5F 0A                    4175 	.db 0x0a
+      004B60 00                    4176 	.db 0x00
                                    4177 	.area CSEG    (CODE)
                                    4178 	.area CONST   (CODE)
-      004B54                       4179 ___str_4:
-      004B54 0D                    4180 	.db 0x0d
-      004B55 52 65 67 69 73 74 65  4181 	.ascii "Register 0x1D: %d"
+      004B61                       4179 ___str_4:
+      004B61 0D                    4180 	.db 0x0d
+      004B62 52 65 67 69 73 74 65  4181 	.ascii "Register 0x1D: %d"
              72 20 30 78 31 44 3A
              20 25 64
-      004B66 0A                    4182 	.db 0x0a
-      004B67 00                    4183 	.db 0x00
+      004B73 0A                    4182 	.db 0x0a
+      004B74 00                    4183 	.db 0x00
                                    4184 	.area CSEG    (CODE)
                                    4185 	.area CONST   (CODE)
-      004B68                       4186 ___str_5:
-      004B68 0A                    4187 	.db 0x0a
-      004B69 0A                    4188 	.db 0x0a
-      004B6A 00                    4189 	.db 0x00
+      004B75                       4186 ___str_5:
+      004B75 0A                    4187 	.db 0x0a
+      004B76 0A                    4188 	.db 0x0a
+      004B77 00                    4189 	.db 0x00
                                    4190 	.area CSEG    (CODE)
                                    4191 	.area XINIT   (CODE)
-      004D08                       4192 __xinit__dataReady:
-      004D08 00                    4193 	.db #0x00	;  0
-      004D09                       4194 __xinit__CSN_pin:
-      004D09 02                    4195 	.db #0x02	; 2
-      004D0A 02                    4196 	.db #0x02	; 2
-      004D0B 01                    4197 	.db #0x01	; 1
-      004D0C 00                    4198 	.db #0x00	; 0
-      004D0D 01                    4199 	.db #0x01	; 1
-      004D0E 00                    4200 	.db #0x00	; 0
-      004D0F 03                    4201 	.db #0x03	; 3
-      004D10 01                    4202 	.db #0x01	; 1
-      004D11 00                    4203 	.db #0x00	; 0
-      004D12 00                    4204 	.db #0x00	; 0
-      004D13 00                    4205 	.db #0x00	; 0
-      004D14 00                    4206 	.db #0x00	; 0
-      004D15 00                    4207 	.db #0x00	; 0
-      004D16                       4208 __xinit__CE_pin:
-      004D16 02                    4209 	.db #0x02	; 2
-      004D17 06                    4210 	.db #0x06	; 6
-      004D18 01                    4211 	.db #0x01	; 1
-      004D19 00                    4212 	.db #0x00	; 0
-      004D1A 01                    4213 	.db #0x01	; 1
-      004D1B 00                    4214 	.db #0x00	; 0
-      004D1C 03                    4215 	.db #0x03	; 3
-      004D1D 01                    4216 	.db #0x01	; 1
-      004D1E 00                    4217 	.db #0x00	; 0
-      004D1F 00                    4218 	.db #0x00	; 0
-      004D20 00                    4219 	.db #0x00	; 0
-      004D21 00                    4220 	.db #0x00	; 0
-      004D22 00                    4221 	.db #0x00	; 0
-      004D23                       4222 __xinit__reset_flag:
-      004D23 00                    4223 	.db #0x00	; 0
-      004D24                       4224 __xinit__current_mode:
-      004D24 05                    4225 	.db #0x05	; 5
-      004D25                       4226 __xinit__current_acknowledgement_state:
-      004D25 01                    4227 	.db #0x01	; 1
-      004D26                       4228 __xinit__dynamic_payload:
-      004D26 00                    4229 	.db #0x00	; 0
-      004D27                       4230 __xinit__hardwareCheckPassed:
-      004D27 00                    4231 	.db #0x00	;  0
-      004D28                       4232 __xinit__datapipe_address:
-      004D28 E1                    4233 	.db #0xe1	; 225
-      004D29 F0                    4234 	.db #0xf0	; 240
-      004D2A F0                    4235 	.db #0xf0	; 240
-      004D2B F0                    4236 	.db #0xf0	; 240
-      004D2C F0                    4237 	.db #0xf0	; 240
-      004D2D D2                    4238 	.db #0xd2	; 210
-      004D2E F0                    4239 	.db #0xf0	; 240
-      004D2F F0                    4240 	.db #0xf0	; 240
-      004D30 F0                    4241 	.db #0xf0	; 240
-      004D31 F0                    4242 	.db #0xf0	; 240
-      004D32 F0                    4243 	.db #0xf0	; 240
-      004D33 F0                    4244 	.db #0xf0	; 240
-      004D34 F0                    4245 	.db #0xf0	; 240
-      004D35 F0                    4246 	.db #0xf0	; 240
-      004D36 F0                    4247 	.db #0xf0	; 240
-      004D37 F0                    4248 	.db #0xf0	; 240
-      004D38 F0                    4249 	.db #0xf0	; 240
-      004D39 F0                    4250 	.db #0xf0	; 240
-      004D3A F0                    4251 	.db #0xf0	; 240
-      004D3B F0                    4252 	.db #0xf0	; 240
-      004D3C F0                    4253 	.db #0xf0	; 240
-      004D3D F0                    4254 	.db #0xf0	; 240
-      004D3E F0                    4255 	.db #0xf0	; 240
-      004D3F F0                    4256 	.db #0xf0	; 240
-      004D40 F0                    4257 	.db #0xf0	; 240
-      004D41 F0                    4258 	.db #0xf0	; 240
-      004D42 F0                    4259 	.db #0xf0	; 240
-      004D43 F0                    4260 	.db #0xf0	; 240
-      004D44 F0                    4261 	.db #0xf0	; 240
-      004D45 F0                    4262 	.db #0xf0	; 240
+      004D16                       4192 __xinit__dataReady:
+      004D16 00                    4193 	.db #0x00	;  0
+      004D17                       4194 __xinit__CSN_pin:
+      004D17 02                    4195 	.db #0x02	; 2
+      004D18 02                    4196 	.db #0x02	; 2
+      004D19 01                    4197 	.db #0x01	; 1
+      004D1A 00                    4198 	.db #0x00	; 0
+      004D1B 01                    4199 	.db #0x01	; 1
+      004D1C 00                    4200 	.db #0x00	; 0
+      004D1D 03                    4201 	.db #0x03	; 3
+      004D1E 01                    4202 	.db #0x01	; 1
+      004D1F 00                    4203 	.db #0x00	; 0
+      004D20 00                    4204 	.db #0x00	; 0
+      004D21 00                    4205 	.db #0x00	; 0
+      004D22 00                    4206 	.db #0x00	; 0
+      004D23 00                    4207 	.db #0x00	; 0
+      004D24                       4208 __xinit__CE_pin:
+      004D24 02                    4209 	.db #0x02	; 2
+      004D25 06                    4210 	.db #0x06	; 6
+      004D26 01                    4211 	.db #0x01	; 1
+      004D27 00                    4212 	.db #0x00	; 0
+      004D28 01                    4213 	.db #0x01	; 1
+      004D29 00                    4214 	.db #0x00	; 0
+      004D2A 03                    4215 	.db #0x03	; 3
+      004D2B 01                    4216 	.db #0x01	; 1
+      004D2C 00                    4217 	.db #0x00	; 0
+      004D2D 00                    4218 	.db #0x00	; 0
+      004D2E 00                    4219 	.db #0x00	; 0
+      004D2F 00                    4220 	.db #0x00	; 0
+      004D30 00                    4221 	.db #0x00	; 0
+      004D31                       4222 __xinit__reset_flag:
+      004D31 00                    4223 	.db #0x00	; 0
+      004D32                       4224 __xinit__current_mode:
+      004D32 05                    4225 	.db #0x05	; 5
+      004D33                       4226 __xinit__current_acknowledgement_state:
+      004D33 01                    4227 	.db #0x01	; 1
+      004D34                       4228 __xinit__dynamic_payload:
+      004D34 00                    4229 	.db #0x00	; 0
+      004D35                       4230 __xinit__hardwareCheckPassed:
+      004D35 00                    4231 	.db #0x00	;  0
+      004D36                       4232 __xinit__datapipe_address:
+      004D36 E1                    4233 	.db #0xe1	; 225
+      004D37 F0                    4234 	.db #0xf0	; 240
+      004D38 F0                    4235 	.db #0xf0	; 240
+      004D39 F0                    4236 	.db #0xf0	; 240
+      004D3A F0                    4237 	.db #0xf0	; 240
+      004D3B D2                    4238 	.db #0xd2	; 210
+      004D3C F0                    4239 	.db #0xf0	; 240
+      004D3D F0                    4240 	.db #0xf0	; 240
+      004D3E F0                    4241 	.db #0xf0	; 240
+      004D3F F0                    4242 	.db #0xf0	; 240
+      004D40 F0                    4243 	.db #0xf0	; 240
+      004D41 F0                    4244 	.db #0xf0	; 240
+      004D42 F0                    4245 	.db #0xf0	; 240
+      004D43 F0                    4246 	.db #0xf0	; 240
+      004D44 F0                    4247 	.db #0xf0	; 240
+      004D45 F0                    4248 	.db #0xf0	; 240
+      004D46 F0                    4249 	.db #0xf0	; 240
+      004D47 F0                    4250 	.db #0xf0	; 240
+      004D48 F0                    4251 	.db #0xf0	; 240
+      004D49 F0                    4252 	.db #0xf0	; 240
+      004D4A F0                    4253 	.db #0xf0	; 240
+      004D4B F0                    4254 	.db #0xf0	; 240
+      004D4C F0                    4255 	.db #0xf0	; 240
+      004D4D F0                    4256 	.db #0xf0	; 240
+      004D4E F0                    4257 	.db #0xf0	; 240
+      004D4F F0                    4258 	.db #0xf0	; 240
+      004D50 F0                    4259 	.db #0xf0	; 240
+      004D51 F0                    4260 	.db #0xf0	; 240
+      004D52 F0                    4261 	.db #0xf0	; 240
+      004D53 F0                    4262 	.db #0xf0	; 240
                                    4263 	.area CABS    (ABS,CODE)

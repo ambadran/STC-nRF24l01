@@ -1264,7 +1264,7 @@ _protocol_execute_line:
 ;	 function protocol_main_loop
 ;	-----------------------------------------
 _protocol_main_loop:
-;	protocol.c:64: printf("starting\n");
+;	protocol.c:64: printf("\nstarting\n");
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1362,6 +1362,7 @@ ___str_3:
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_4:
+	.db 0x0a
 	.ascii "starting"
 	.db 0x0a
 	.db 0x00

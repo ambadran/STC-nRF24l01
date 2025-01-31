@@ -1089,7 +1089,7 @@
       00157E 74 01            [12] 1089 	mov	a,#0x01
       001580 F0               [24] 1090 	movx	@dptr,a
                                    1091 ;	/home/mr-a-717/.stc/uni-stc/hal/timer-hal.c:75: sysclkDivisor /= 12;
-      001581 90 02 D1         [24] 1092 	mov	dptr,#__divulong_PARM_2
+      001581 90 02 CD         [24] 1092 	mov	dptr,#__divulong_PARM_2
       001584 74 0C            [12] 1093 	mov	a,#0x0c
       001586 F0               [24] 1094 	movx	@dptr,a
       001587 E4               [12] 1095 	clr	a
@@ -1103,7 +1103,7 @@
       001590 8D 83            [24] 1103 	mov	dph,r5
       001592 8E F0            [24] 1104 	mov	b,r6
       001594 EF               [12] 1105 	mov	a,r7
-      001595 12 3B E9         [24] 1106 	lcall	__divulong
+      001595 12 3B F6         [24] 1106 	lcall	__divulong
       001598 A8 82            [24] 1107 	mov	r0,dpl
       00159A A9 83            [24] 1108 	mov	r1,dph
       00159C AA F0            [24] 1109 	mov	r2,b
@@ -1164,7 +1164,7 @@
       0015DF 74 01            [12] 1164 	mov	a,#0x01
       0015E1 F0               [24] 1165 	movx	@dptr,a
                                    1166 ;	/home/mr-a-717/.stc/uni-stc/hal/timer-hal.c:91: prescaler /= 12;
-      0015E2 90 02 C1         [24] 1167 	mov	dptr,#__divuint_PARM_2
+      0015E2 90 02 BD         [24] 1167 	mov	dptr,#__divuint_PARM_2
       0015E5 74 0C            [12] 1168 	mov	a,#0x0c
       0015E7 F0               [24] 1169 	movx	@dptr,a
       0015E8 E4               [12] 1170 	clr	a
@@ -1176,7 +1176,7 @@
       0015F1 C0 06            [24] 1176 	push	ar6
       0015F3 C0 05            [24] 1177 	push	ar5
       0015F5 C0 04            [24] 1178 	push	ar4
-      0015F7 12 39 4B         [24] 1179 	lcall	__divuint
+      0015F7 12 39 58         [24] 1179 	lcall	__divuint
       0015FA AA 82            [24] 1180 	mov	r2,dpl
       0015FC AB 83            [24] 1181 	mov	r3,dph
       0015FE D0 04            [24] 1182 	pop	ar4
@@ -1190,7 +1190,7 @@
       00160C A3               [24] 1190 	inc	dptr
       00160D F0               [24] 1191 	movx	@dptr,a
                                    1192 ;	/home/mr-a-717/.stc/uni-stc/hal/timer-hal.c:92: sysclkDivisor /= 12;
-      00160E 90 02 D1         [24] 1193 	mov	dptr,#__divulong_PARM_2
+      00160E 90 02 CD         [24] 1193 	mov	dptr,#__divulong_PARM_2
       001611 74 0C            [12] 1194 	mov	a,#0x0c
       001613 F0               [24] 1195 	movx	@dptr,a
       001614 E4               [12] 1196 	clr	a
@@ -1204,7 +1204,7 @@
       00161D 8D 83            [24] 1204 	mov	dph,r5
       00161F 8E F0            [24] 1205 	mov	b,r6
       001621 EF               [12] 1206 	mov	a,r7
-      001622 12 3B E9         [24] 1207 	lcall	__divulong
+      001622 12 3B F6         [24] 1207 	lcall	__divulong
       001625 AC 82            [24] 1208 	mov	r4,dpl
       001627 AD 83            [24] 1209 	mov	r5,dph
       001629 AE F0            [24] 1210 	mov	r6,b
@@ -1241,7 +1241,7 @@
       00164F A3               [24] 1241 	inc	dptr
       001650 E0               [24] 1242 	movx	a,@dptr
       001651 FD               [12] 1243 	mov	r5,a
-      001652 90 02 C8         [24] 1244 	mov	dptr,#__modulong_PARM_2
+      001652 90 02 C4         [24] 1244 	mov	dptr,#__modulong_PARM_2
       001655 E5 0B            [12] 1245 	mov	a,_startTimer_sloc0_1_0
       001657 F0               [24] 1246 	movx	@dptr,a
       001658 E5 0C            [12] 1247 	mov	a,(_startTimer_sloc0_1_0 + 1)
@@ -1260,7 +1260,7 @@
       00166A C0 04            [24] 1260 	push	ar4
       00166C C0 03            [24] 1261 	push	ar3
       00166E C0 02            [24] 1262 	push	ar2
-      001670 12 39 D8         [24] 1263 	lcall	__modulong
+      001670 12 39 E5         [24] 1263 	lcall	__modulong
       001673 A8 82            [24] 1264 	mov	r0,dpl
       001675 A9 83            [24] 1265 	mov	r1,dph
       001677 AE F0            [24] 1266 	mov	r6,b
@@ -1291,7 +1291,7 @@
       00169A A3               [24] 1291 	inc	dptr
       00169B E0               [24] 1292 	movx	a,@dptr
       00169C FF               [12] 1293 	mov	r7,a
-      00169D 90 02 D1         [24] 1294 	mov	dptr,#__divulong_PARM_2
+      00169D 90 02 CD         [24] 1294 	mov	dptr,#__divulong_PARM_2
       0016A0 EE               [12] 1295 	mov	a,r6
       0016A1 F0               [24] 1296 	movx	@dptr,a
       0016A2 EF               [12] 1297 	mov	a,r7
@@ -1308,7 +1308,7 @@
       0016B0 ED               [12] 1308 	mov	a,r5
       0016B1 C0 07            [24] 1309 	push	ar7
       0016B3 C0 06            [24] 1310 	push	ar6
-      0016B5 12 3B E9         [24] 1311 	lcall	__divulong
+      0016B5 12 3B F6         [24] 1311 	lcall	__divulong
       0016B8 AA 82            [24] 1312 	mov	r2,dpl
       0016BA AB 83            [24] 1313 	mov	r3,dph
       0016BC AC F0            [24] 1314 	mov	r4,b

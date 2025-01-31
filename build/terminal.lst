@@ -1600,7 +1600,7 @@
       000313 A3               [24] 1600 	inc	dptr
       000314 E0               [24] 1601 	movx	a,@dptr
       000315 FF               [12] 1602 	mov	r7,a
-      000316                       1603 00122$:
+      000316                       1603 00123$:
       000316 90r00r20         [24] 1604 	mov	dptr,#_terminal_execute_line_char_count_65536_149
       000319 E0               [24] 1605 	movx	a,@dptr
       00031A FC               [12] 1606 	mov	r4,a
@@ -1615,9 +1615,9 @@
       000326 8B F0            [24] 1615 	mov	b,r3
       000328 12r00r00         [24] 1616 	lcall	__gptrget
       00032B FB               [12] 1617 	mov	r3,a
-      00032C 70 03            [24] 1618 	jnz	00217$
-      00032E 02r05r17         [24] 1619 	ljmp	00124$
-      000331                       1620 00217$:
+      00032C 70 03            [24] 1618 	jnz	00222$
+      00032E 02r05r24         [24] 1619 	ljmp	00125$
+      000331                       1620 00222$:
                                    1621 ;	terminal.c:87: letter = line[char_count];
       000331 90r00r21         [24] 1622 	mov	dptr,#_terminal_execute_line_letter_65536_149
       000334 EB               [12] 1623 	mov	a,r3
@@ -1631,8 +1631,8 @@
       00033C 90r00r21         [24] 1631 	mov	dptr,#_terminal_execute_line_letter_65536_149
       00033F E0               [24] 1632 	movx	a,@dptr
       000340 FC               [12] 1633 	mov	r4,a
-      000341 BC 41 00         [24] 1634 	cjne	r4,#0x41,00218$
-      000344                       1635 00218$:
+      000341 BC 41 00         [24] 1634 	cjne	r4,#0x41,00223$
+      000344                       1635 00223$:
       000344 40 0F            [24] 1636 	jc	00101$
       000346 EC               [12] 1637 	mov	a,r4
       000347 24 85            [12] 1638 	add	a,#0xff - 0x7a
@@ -1640,8 +1640,8 @@
       00034B EC               [12] 1640 	mov	a,r4
       00034C 24 A5            [12] 1641 	add	a,#0xff - 0x5a
       00034E 50 1E            [24] 1642 	jnc	00102$
-      000350 BC 61 00         [24] 1643 	cjne	r4,#0x61,00222$
-      000353                       1644 00222$:
+      000350 BC 61 00         [24] 1643 	cjne	r4,#0x61,00227$
+      000353                       1644 00227$:
       000353 50 19            [24] 1645 	jnc	00102$
       000355                       1646 00101$:
                                    1647 ;	terminal.c:97: printf("\rExpected a letter!\n"); 
@@ -1659,488 +1659,498 @@
       00036A 75 82 01         [24] 1659 	mov	dpl,#0x01
       00036D 22               [24] 1660 	ret
       00036E                       1661 00102$:
-                                   1662 ;	terminal.c:102: switch(letter) {
+                                   1662 ;	terminal.c:102: if (!(letter >= 'a' && letter < 'z') && \
       00036E 90r00r21         [24] 1663 	mov	dptr,#_terminal_execute_line_letter_65536_149
       000371 E0               [24] 1664 	movx	a,@dptr
       000372 FC               [12] 1665 	mov	r4,a
-      000373 BC 41 02         [24] 1666 	cjne	r4,#0x41,00224$
-      000376 80 1B            [24] 1667 	sjmp	00106$
-      000378                       1668 00224$:
-      000378 BC 4E 03         [24] 1669 	cjne	r4,#0x4e,00225$
-      00037B 02r04r12         [24] 1670 	ljmp	00112$
-      00037E                       1671 00225$:
-      00037E BC 54 03         [24] 1672 	cjne	r4,#0x54,00226$
-      000381 02r04r1B         [24] 1673 	ljmp	00113$
-      000384                       1674 00226$:
-      000384 BC 69 03         [24] 1675 	cjne	r4,#0x69,00227$
-      000387 02r04r24         [24] 1676 	ljmp	00114$
-      00038A                       1677 00227$:
-      00038A BC 6A 03         [24] 1678 	cjne	r4,#0x6a,00228$
-      00038D 02r04r8E         [24] 1679 	ljmp	00117$
-      000390                       1680 00228$:
-      000390 02r04rF8         [24] 1681 	ljmp	00120$
-                                   1682 ;	terminal.c:104: case 'A':
-      000393                       1683 00106$:
-                                   1684 ;	terminal.c:106: if (!read_int(line, &char_count, &int_value)) {
-      000393 90r00r1D         [24] 1685 	mov	dptr,#_terminal_execute_line_line_65536_148
-      000396 E0               [24] 1686 	movx	a,@dptr
-      000397 F9               [12] 1687 	mov	r1,a
-      000398 A3               [24] 1688 	inc	dptr
-      000399 E0               [24] 1689 	movx	a,@dptr
-      00039A FA               [12] 1690 	mov	r2,a
-      00039B A3               [24] 1691 	inc	dptr
-      00039C E0               [24] 1692 	movx	a,@dptr
-      00039D FB               [12] 1693 	mov	r3,a
-      00039E 90r00r07         [24] 1694 	mov	dptr,#_read_int_PARM_2
-      0003A1 74r20            [12] 1695 	mov	a,#_terminal_execute_line_char_count_65536_149
-      0003A3 F0               [24] 1696 	movx	@dptr,a
-      0003A4 74s00            [12] 1697 	mov	a,#(_terminal_execute_line_char_count_65536_149 >> 8)
-      0003A6 A3               [24] 1698 	inc	dptr
-      0003A7 F0               [24] 1699 	movx	@dptr,a
-      0003A8 E4               [12] 1700 	clr	a
-      0003A9 A3               [24] 1701 	inc	dptr
-      0003AA F0               [24] 1702 	movx	@dptr,a
-      0003AB 90r00r0A         [24] 1703 	mov	dptr,#_read_int_PARM_3
-      0003AE 74r22            [12] 1704 	mov	a,#_terminal_execute_line_int_value_65536_149
-      0003B0 F0               [24] 1705 	movx	@dptr,a
-      0003B1 74s00            [12] 1706 	mov	a,#(_terminal_execute_line_int_value_65536_149 >> 8)
-      0003B3 A3               [24] 1707 	inc	dptr
-      0003B4 F0               [24] 1708 	movx	@dptr,a
-      0003B5 E4               [12] 1709 	clr	a
-      0003B6 A3               [24] 1710 	inc	dptr
-      0003B7 F0               [24] 1711 	movx	@dptr,a
-      0003B8 89 82            [24] 1712 	mov	dpl,r1
-      0003BA 8A 83            [24] 1713 	mov	dph,r2
-      0003BC 8B F0            [24] 1714 	mov	b,r3
-      0003BE C0 07            [24] 1715 	push	ar7
-      0003C0 C0 06            [24] 1716 	push	ar6
-      0003C2 C0 05            [24] 1717 	push	ar5
-      0003C4 12r00r00         [24] 1718 	lcall	_read_int
-      0003C7 E5 82            [12] 1719 	mov	a,dpl
-      0003C9 D0 05            [24] 1720 	pop	ar5
-      0003CB D0 06            [24] 1721 	pop	ar6
-      0003CD D0 07            [24] 1722 	pop	ar7
-      0003CF 70 19            [24] 1723 	jnz	00110$
-                                   1724 ;	terminal.c:107: printf("Bad integer Number Format\n");
-      0003D1 74r15            [12] 1725 	mov	a,#___str_1
-      0003D3 C0 E0            [24] 1726 	push	acc
-      0003D5 74s00            [12] 1727 	mov	a,#(___str_1 >> 8)
-      0003D7 C0 E0            [24] 1728 	push	acc
-      0003D9 74 80            [12] 1729 	mov	a,#0x80
-      0003DB C0 E0            [24] 1730 	push	acc
-      0003DD 12r00r00         [24] 1731 	lcall	_printf
-      0003E0 15 81            [12] 1732 	dec	sp
-      0003E2 15 81            [12] 1733 	dec	sp
-      0003E4 15 81            [12] 1734 	dec	sp
-                                   1735 ;	terminal.c:108: return LINE_FAILED;
-      0003E6 75 82 01         [24] 1736 	mov	dpl,#0x01
-      0003E9 22               [24] 1737 	ret
-      0003EA                       1738 00110$:
-                                   1739 ;	terminal.c:110: } else if (command.command_type != COMMAND_NOT_SET) {
-      0003EA 90r00r01         [24] 1740 	mov	dptr,#_command
-      0003ED E0               [24] 1741 	movx	a,@dptr
-      0003EE 60 19            [24] 1742 	jz	00111$
-                                   1743 ;	terminal.c:111: printf("Can't have >1 command letter in one command!\n");
-      0003F0 74r30            [12] 1744 	mov	a,#___str_2
-      0003F2 C0 E0            [24] 1745 	push	acc
-      0003F4 74s00            [12] 1746 	mov	a,#(___str_2 >> 8)
-      0003F6 C0 E0            [24] 1747 	push	acc
-      0003F8 74 80            [12] 1748 	mov	a,#0x80
-      0003FA C0 E0            [24] 1749 	push	acc
-      0003FC 12r00r00         [24] 1750 	lcall	_printf
-      0003FF 15 81            [12] 1751 	dec	sp
-      000401 15 81            [12] 1752 	dec	sp
-      000403 15 81            [12] 1753 	dec	sp
-                                   1754 ;	terminal.c:112: return LINE_FAILED;
-      000405 75 82 01         [24] 1755 	mov	dpl,#0x01
-      000408 22               [24] 1756 	ret
-      000409                       1757 00111$:
-                                   1758 ;	terminal.c:116: command.command_type = COMMAND_TEST_INT_READING;
-      000409 90r00r01         [24] 1759 	mov	dptr,#_command
-      00040C 74 01            [12] 1760 	mov	a,#0x01
-      00040E F0               [24] 1761 	movx	@dptr,a
-                                   1762 ;	terminal.c:117: break;
-      00040F 02r03r16         [24] 1763 	ljmp	00122$
-                                   1764 ;	terminal.c:119: case 'N':
-      000412                       1765 00112$:
-                                   1766 ;	terminal.c:120: command.command_type = COMMAND_GET_NRF24_REGISTERS;
-      000412 90r00r01         [24] 1767 	mov	dptr,#_command
-      000415 74 02            [12] 1768 	mov	a,#0x02
-      000417 F0               [24] 1769 	movx	@dptr,a
-                                   1770 ;	terminal.c:121: break;
-      000418 02r03r16         [24] 1771 	ljmp	00122$
-                                   1772 ;	terminal.c:123: case 'T':
-      00041B                       1773 00113$:
-                                   1774 ;	terminal.c:124: command.command_type = COMMAND_GET_CURRENT_TIME;
-      00041B 90r00r01         [24] 1775 	mov	dptr,#_command
-      00041E 74 03            [12] 1776 	mov	a,#0x03
-      000420 F0               [24] 1777 	movx	@dptr,a
-                                   1778 ;	terminal.c:125: break;
-      000421 02r03r16         [24] 1779 	ljmp	00122$
-                                   1780 ;	terminal.c:127: case 'i':
-      000424                       1781 00114$:
-                                   1782 ;	terminal.c:129: if (!read_int(line, &char_count, &int_value)) {
-      000424 90r00r1D         [24] 1783 	mov	dptr,#_terminal_execute_line_line_65536_148
-      000427 E0               [24] 1784 	movx	a,@dptr
-      000428 F9               [12] 1785 	mov	r1,a
-      000429 A3               [24] 1786 	inc	dptr
-      00042A E0               [24] 1787 	movx	a,@dptr
-      00042B FA               [12] 1788 	mov	r2,a
-      00042C A3               [24] 1789 	inc	dptr
-      00042D E0               [24] 1790 	movx	a,@dptr
-      00042E FB               [12] 1791 	mov	r3,a
-      00042F 90r00r07         [24] 1792 	mov	dptr,#_read_int_PARM_2
-      000432 74r20            [12] 1793 	mov	a,#_terminal_execute_line_char_count_65536_149
-      000434 F0               [24] 1794 	movx	@dptr,a
-      000435 74s00            [12] 1795 	mov	a,#(_terminal_execute_line_char_count_65536_149 >> 8)
-      000437 A3               [24] 1796 	inc	dptr
-      000438 F0               [24] 1797 	movx	@dptr,a
-      000439 E4               [12] 1798 	clr	a
-      00043A A3               [24] 1799 	inc	dptr
-      00043B F0               [24] 1800 	movx	@dptr,a
-      00043C 90r00r0A         [24] 1801 	mov	dptr,#_read_int_PARM_3
-      00043F 74r22            [12] 1802 	mov	a,#_terminal_execute_line_int_value_65536_149
-      000441 F0               [24] 1803 	movx	@dptr,a
-      000442 74s00            [12] 1804 	mov	a,#(_terminal_execute_line_int_value_65536_149 >> 8)
-      000444 A3               [24] 1805 	inc	dptr
-      000445 F0               [24] 1806 	movx	@dptr,a
-      000446 E4               [12] 1807 	clr	a
-      000447 A3               [24] 1808 	inc	dptr
-      000448 F0               [24] 1809 	movx	@dptr,a
-      000449 89 82            [24] 1810 	mov	dpl,r1
-      00044B 8A 83            [24] 1811 	mov	dph,r2
-      00044D 8B F0            [24] 1812 	mov	b,r3
-      00044F C0 07            [24] 1813 	push	ar7
-      000451 C0 06            [24] 1814 	push	ar6
-      000453 C0 05            [24] 1815 	push	ar5
-      000455 12r00r00         [24] 1816 	lcall	_read_int
-      000458 E5 82            [12] 1817 	mov	a,dpl
-      00045A D0 05            [24] 1818 	pop	ar5
-      00045C D0 06            [24] 1819 	pop	ar6
-      00045E D0 07            [24] 1820 	pop	ar7
-      000460 70 19            [24] 1821 	jnz	00116$
-                                   1822 ;	terminal.c:130: printf("Bad int Number Format\n");
-      000462 74r5E            [12] 1823 	mov	a,#___str_3
-      000464 C0 E0            [24] 1824 	push	acc
-      000466 74s00            [12] 1825 	mov	a,#(___str_3 >> 8)
-      000468 C0 E0            [24] 1826 	push	acc
-      00046A 74 80            [12] 1827 	mov	a,#0x80
-      00046C C0 E0            [24] 1828 	push	acc
-      00046E 12r00r00         [24] 1829 	lcall	_printf
-      000471 15 81            [12] 1830 	dec	sp
-      000473 15 81            [12] 1831 	dec	sp
-      000475 15 81            [12] 1832 	dec	sp
-                                   1833 ;	terminal.c:131: return LINE_FAILED;
-      000477 75 82 01         [24] 1834 	mov	dpl,#0x01
-      00047A 22               [24] 1835 	ret
-      00047B                       1836 00116$:
-                                   1837 ;	terminal.c:133: command.i = int_value;
-      00047B 90r00r22         [24] 1838 	mov	dptr,#_terminal_execute_line_int_value_65536_149
-      00047E E0               [24] 1839 	movx	a,@dptr
-      00047F FA               [12] 1840 	mov	r2,a
-      000480 A3               [24] 1841 	inc	dptr
-      000481 E0               [24] 1842 	movx	a,@dptr
-      000482 FB               [12] 1843 	mov	r3,a
-      000483 90r00r02         [24] 1844 	mov	dptr,#(_command + 0x0001)
-      000486 EA               [12] 1845 	mov	a,r2
-      000487 F0               [24] 1846 	movx	@dptr,a
-      000488 EB               [12] 1847 	mov	a,r3
-      000489 A3               [24] 1848 	inc	dptr
-      00048A F0               [24] 1849 	movx	@dptr,a
-                                   1850 ;	terminal.c:134: break;
-      00048B 02r03r16         [24] 1851 	ljmp	00122$
-                                   1852 ;	terminal.c:136: case 'j':
-      00048E                       1853 00117$:
-                                   1854 ;	terminal.c:138: if (!read_int(line, &char_count, &int_value)) {
-      00048E 90r00r1D         [24] 1855 	mov	dptr,#_terminal_execute_line_line_65536_148
-      000491 E0               [24] 1856 	movx	a,@dptr
-      000492 F9               [12] 1857 	mov	r1,a
-      000493 A3               [24] 1858 	inc	dptr
-      000494 E0               [24] 1859 	movx	a,@dptr
-      000495 FA               [12] 1860 	mov	r2,a
-      000496 A3               [24] 1861 	inc	dptr
-      000497 E0               [24] 1862 	movx	a,@dptr
-      000498 FB               [12] 1863 	mov	r3,a
-      000499 90r00r07         [24] 1864 	mov	dptr,#_read_int_PARM_2
-      00049C 74r20            [12] 1865 	mov	a,#_terminal_execute_line_char_count_65536_149
-      00049E F0               [24] 1866 	movx	@dptr,a
-      00049F 74s00            [12] 1867 	mov	a,#(_terminal_execute_line_char_count_65536_149 >> 8)
-      0004A1 A3               [24] 1868 	inc	dptr
-      0004A2 F0               [24] 1869 	movx	@dptr,a
-      0004A3 E4               [12] 1870 	clr	a
-      0004A4 A3               [24] 1871 	inc	dptr
-      0004A5 F0               [24] 1872 	movx	@dptr,a
-      0004A6 90r00r0A         [24] 1873 	mov	dptr,#_read_int_PARM_3
-      0004A9 74r22            [12] 1874 	mov	a,#_terminal_execute_line_int_value_65536_149
-      0004AB F0               [24] 1875 	movx	@dptr,a
-      0004AC 74s00            [12] 1876 	mov	a,#(_terminal_execute_line_int_value_65536_149 >> 8)
-      0004AE A3               [24] 1877 	inc	dptr
-      0004AF F0               [24] 1878 	movx	@dptr,a
-      0004B0 E4               [12] 1879 	clr	a
-      0004B1 A3               [24] 1880 	inc	dptr
-      0004B2 F0               [24] 1881 	movx	@dptr,a
-      0004B3 89 82            [24] 1882 	mov	dpl,r1
-      0004B5 8A 83            [24] 1883 	mov	dph,r2
-      0004B7 8B F0            [24] 1884 	mov	b,r3
-      0004B9 C0 07            [24] 1885 	push	ar7
-      0004BB C0 06            [24] 1886 	push	ar6
-      0004BD C0 05            [24] 1887 	push	ar5
-      0004BF 12r00r00         [24] 1888 	lcall	_read_int
-      0004C2 E5 82            [12] 1889 	mov	a,dpl
-      0004C4 D0 05            [24] 1890 	pop	ar5
-      0004C6 D0 06            [24] 1891 	pop	ar6
-      0004C8 D0 07            [24] 1892 	pop	ar7
-      0004CA 70 19            [24] 1893 	jnz	00119$
-                                   1894 ;	terminal.c:139: printf("Bad int Number Format\n");
-      0004CC 74r5E            [12] 1895 	mov	a,#___str_3
-      0004CE C0 E0            [24] 1896 	push	acc
-      0004D0 74s00            [12] 1897 	mov	a,#(___str_3 >> 8)
-      0004D2 C0 E0            [24] 1898 	push	acc
-      0004D4 74 80            [12] 1899 	mov	a,#0x80
-      0004D6 C0 E0            [24] 1900 	push	acc
-      0004D8 12r00r00         [24] 1901 	lcall	_printf
-      0004DB 15 81            [12] 1902 	dec	sp
-      0004DD 15 81            [12] 1903 	dec	sp
-      0004DF 15 81            [12] 1904 	dec	sp
-                                   1905 ;	terminal.c:140: return LINE_FAILED;
-      0004E1 75 82 01         [24] 1906 	mov	dpl,#0x01
-      0004E4 22               [24] 1907 	ret
-      0004E5                       1908 00119$:
-                                   1909 ;	terminal.c:142: command.j = int_value;
-      0004E5 90r00r22         [24] 1910 	mov	dptr,#_terminal_execute_line_int_value_65536_149
-      0004E8 E0               [24] 1911 	movx	a,@dptr
-      0004E9 FA               [12] 1912 	mov	r2,a
-      0004EA A3               [24] 1913 	inc	dptr
-      0004EB E0               [24] 1914 	movx	a,@dptr
-      0004EC FB               [12] 1915 	mov	r3,a
-      0004ED 90r00r04         [24] 1916 	mov	dptr,#(_command + 0x0003)
-      0004F0 EA               [12] 1917 	mov	a,r2
-      0004F1 F0               [24] 1918 	movx	@dptr,a
-      0004F2 EB               [12] 1919 	mov	a,r3
-      0004F3 A3               [24] 1920 	inc	dptr
-      0004F4 F0               [24] 1921 	movx	@dptr,a
-                                   1922 ;	terminal.c:143: break;
-      0004F5 02r03r16         [24] 1923 	ljmp	00122$
-                                   1924 ;	terminal.c:145: default:
-      0004F8                       1925 00120$:
-                                   1926 ;	terminal.c:146: printf("Command Letter '%c' Not Implemented\n", letter);
-      0004F8 7F 00            [12] 1927 	mov	r7,#0x00
-      0004FA C0 04            [24] 1928 	push	ar4
-      0004FC C0 07            [24] 1929 	push	ar7
-      0004FE 74r75            [12] 1930 	mov	a,#___str_4
-      000500 C0 E0            [24] 1931 	push	acc
-      000502 74s00            [12] 1932 	mov	a,#(___str_4 >> 8)
-      000504 C0 E0            [24] 1933 	push	acc
-      000506 74 80            [12] 1934 	mov	a,#0x80
-      000508 C0 E0            [24] 1935 	push	acc
-      00050A 12r00r00         [24] 1936 	lcall	_printf
-      00050D E5 81            [12] 1937 	mov	a,sp
-      00050F 24 FB            [12] 1938 	add	a,#0xfb
-      000511 F5 81            [12] 1939 	mov	sp,a
-                                   1940 ;	terminal.c:147: return LINE_FAILED;
-      000513 75 82 01         [24] 1941 	mov	dpl,#0x01
-      000516 22               [24] 1942 	ret
-                                   1943 ;	terminal.c:148: }
-      000517                       1944 00124$:
-                                   1945 ;	terminal.c:152: switch(command.command_type) {
-      000517 90r00r01         [24] 1946 	mov	dptr,#_command
-      00051A E0               [24] 1947 	movx	a,@dptr
-      00051B FF               [12] 1948 	mov	r7,a
-      00051C BF 01 02         [24] 1949 	cjne	r7,#0x01,00233$
-      00051F 80 23            [24] 1950 	sjmp	00129$
-      000521                       1951 00233$:
-      000521 BF 02 02         [24] 1952 	cjne	r7,#0x02,00234$
-      000524 80 1E            [24] 1953 	sjmp	00129$
-      000526                       1954 00234$:
-      000526 BF 03 02         [24] 1955 	cjne	r7,#0x03,00235$
-      000529 80 19            [24] 1956 	sjmp	00129$
-      00052B                       1957 00235$:
-                                   1958 ;	terminal.c:164: printf("SHOULD NEVER REACH HERE IN ERROR CHECKING.\n");
-      00052B 74r9A            [12] 1959 	mov	a,#___str_5
-      00052D C0 E0            [24] 1960 	push	acc
-      00052F 74s00            [12] 1961 	mov	a,#(___str_5 >> 8)
-      000531 C0 E0            [24] 1962 	push	acc
-      000533 74 80            [12] 1963 	mov	a,#0x80
-      000535 C0 E0            [24] 1964 	push	acc
-      000537 12r00r00         [24] 1965 	lcall	_printf
-      00053A 15 81            [12] 1966 	dec	sp
-      00053C 15 81            [12] 1967 	dec	sp
-      00053E 15 81            [12] 1968 	dec	sp
-                                   1969 ;	terminal.c:165: return LINE_FAILED;
-      000540 75 82 01         [24] 1970 	mov	dpl,#0x01
-      000543 22               [24] 1971 	ret
-                                   1972 ;	terminal.c:166: }
-      000544                       1973 00129$:
-                                   1974 ;	terminal.c:169: switch(command.command_type) {
-      000544 90r00r01         [24] 1975 	mov	dptr,#_command
-      000547 E0               [24] 1976 	movx	a,@dptr
-      000548 FF               [12] 1977 	mov	r7,a
-      000549 BF 01 02         [24] 1978 	cjne	r7,#0x01,00236$
-      00054C 80 0A            [24] 1979 	sjmp	00130$
-      00054E                       1980 00236$:
-      00054E BF 02 02         [24] 1981 	cjne	r7,#0x02,00237$
-      000551 80 26            [24] 1982 	sjmp	00131$
-      000553                       1983 00237$:
-                                   1984 ;	terminal.c:171: case COMMAND_TEST_INT_READING:
-      000553 BF 03 51         [24] 1985 	cjne	r7,#0x03,00133$
-      000556 80 26            [24] 1986 	sjmp	00132$
-      000558                       1987 00130$:
-                                   1988 ;	terminal.c:172: printf("Read INT value: %d\n", int_value);
-      000558 90r00r22         [24] 1989 	mov	dptr,#_terminal_execute_line_int_value_65536_149
-      00055B E0               [24] 1990 	movx	a,@dptr
-      00055C C0 E0            [24] 1991 	push	acc
-      00055E A3               [24] 1992 	inc	dptr
-      00055F E0               [24] 1993 	movx	a,@dptr
-      000560 C0 E0            [24] 1994 	push	acc
-      000562 74rC6            [12] 1995 	mov	a,#___str_6
-      000564 C0 E0            [24] 1996 	push	acc
-      000566 74s00            [12] 1997 	mov	a,#(___str_6 >> 8)
-      000568 C0 E0            [24] 1998 	push	acc
-      00056A 74 80            [12] 1999 	mov	a,#0x80
-      00056C C0 E0            [24] 2000 	push	acc
-      00056E 12r00r00         [24] 2001 	lcall	_printf
-      000571 E5 81            [12] 2002 	mov	a,sp
-      000573 24 FB            [12] 2003 	add	a,#0xfb
-      000575 F5 81            [12] 2004 	mov	sp,a
-                                   2005 ;	terminal.c:173: break;
-                                   2006 ;	terminal.c:175: case COMMAND_GET_NRF24_REGISTERS:
-      000577 80 47            [24] 2007 	sjmp	00134$
-      000579                       2008 00131$:
-                                   2009 ;	terminal.c:176: nrf24_print_internal_register_values();
-      000579 12r00r00         [24] 2010 	lcall	_nrf24_print_internal_register_values
-                                   2011 ;	terminal.c:177: break;
-                                   2012 ;	terminal.c:179: case COMMAND_GET_CURRENT_TIME:
-      00057C 80 42            [24] 2013 	sjmp	00134$
-      00057E                       2014 00132$:
-                                   2015 ;	terminal.c:180: report("Current Time Passed: %lu\n", get_current_time());
-      00057E 12r00r00         [24] 2016 	lcall	_get_current_time
-      000581 AC 82            [24] 2017 	mov	r4,dpl
-      000583 AD 83            [24] 2018 	mov	r5,dph
-      000585 AE F0            [24] 2019 	mov	r6,b
-      000587 FF               [12] 2020 	mov	r7,a
-      000588 C0 04            [24] 2021 	push	ar4
-      00058A C0 05            [24] 2022 	push	ar5
-      00058C C0 06            [24] 2023 	push	ar6
-      00058E C0 07            [24] 2024 	push	ar7
-      000590 74rDA            [12] 2025 	mov	a,#___str_7
-      000592 C0 E0            [24] 2026 	push	acc
-      000594 74s00            [12] 2027 	mov	a,#(___str_7 >> 8)
-      000596 C0 E0            [24] 2028 	push	acc
-      000598 74 80            [12] 2029 	mov	a,#0x80
-      00059A C0 E0            [24] 2030 	push	acc
-      00059C 12r00r00         [24] 2031 	lcall	_report
-      00059F E5 81            [12] 2032 	mov	a,sp
-      0005A1 24 F9            [12] 2033 	add	a,#0xf9
-      0005A3 F5 81            [12] 2034 	mov	sp,a
-                                   2035 ;	terminal.c:181: break;
-                                   2036 ;	terminal.c:183: default:
-      0005A5 80 19            [24] 2037 	sjmp	00134$
-      0005A7                       2038 00133$:
-                                   2039 ;	terminal.c:188: printf("SHOULD NEVER REACH HERE.");
-      0005A7 74rF4            [12] 2040 	mov	a,#___str_8
-      0005A9 C0 E0            [24] 2041 	push	acc
-      0005AB 74s00            [12] 2042 	mov	a,#(___str_8 >> 8)
-      0005AD C0 E0            [24] 2043 	push	acc
-      0005AF 74 80            [12] 2044 	mov	a,#0x80
-      0005B1 C0 E0            [24] 2045 	push	acc
-      0005B3 12r00r00         [24] 2046 	lcall	_printf
-      0005B6 15 81            [12] 2047 	dec	sp
-      0005B8 15 81            [12] 2048 	dec	sp
-      0005BA 15 81            [12] 2049 	dec	sp
-                                   2050 ;	terminal.c:189: return LINE_FAILED;
-      0005BC 75 82 01         [24] 2051 	mov	dpl,#0x01
-                                   2052 ;	terminal.c:190: }
-      0005BF 22               [24] 2053 	ret
-      0005C0                       2054 00134$:
-                                   2055 ;	terminal.c:192: return LINE_PASSED;
-      0005C0 75 82 00         [24] 2056 	mov	dpl,#0x00
-                                   2057 ;	terminal.c:194: }
-      0005C3 22               [24] 2058 	ret
-                                   2059 	.area CSEG    (CODE)
-                                   2060 	.area CONST   (CODE)
-                                   2061 	.area CONST   (CODE)
-      000000                       2062 ___str_0:
-      000000 0D                    2063 	.db 0x0d
-      000001 45 78 70 65 63 74 65  2064 	.ascii "Expected a letter!"
+      000373 BC 61 00         [24] 1666 	cjne	r4,#0x61,00229$
+      000376                       1667 00229$:
+      000376 40 05            [24] 1668 	jc	00109$
+      000378 BC 7A 00         [24] 1669 	cjne	r4,#0x7a,00231$
+      00037B                       1670 00231$:
+      00037B 40 1F            [24] 1671 	jc	00107$
+      00037D                       1672 00109$:
+      00037D 90r00r01         [24] 1673 	mov	dptr,#_command
+      000380 E0               [24] 1674 	movx	a,@dptr
+      000381 60 19            [24] 1675 	jz	00107$
+                                   1676 ;	terminal.c:104: printf("Can't have >1 command letter in one command!\n");
+      000383 74r15            [12] 1677 	mov	a,#___str_1
+      000385 C0 E0            [24] 1678 	push	acc
+      000387 74s00            [12] 1679 	mov	a,#(___str_1 >> 8)
+      000389 C0 E0            [24] 1680 	push	acc
+      00038B 74 80            [12] 1681 	mov	a,#0x80
+      00038D C0 E0            [24] 1682 	push	acc
+      00038F 12r00r00         [24] 1683 	lcall	_printf
+      000392 15 81            [12] 1684 	dec	sp
+      000394 15 81            [12] 1685 	dec	sp
+      000396 15 81            [12] 1686 	dec	sp
+                                   1687 ;	terminal.c:105: return LINE_FAILED;
+      000398 75 82 01         [24] 1688 	mov	dpl,#0x01
+      00039B 22               [24] 1689 	ret
+      00039C                       1690 00107$:
+                                   1691 ;	terminal.c:109: switch(letter) {
+      00039C 90r00r21         [24] 1692 	mov	dptr,#_terminal_execute_line_letter_65536_149
+      00039F E0               [24] 1693 	movx	a,@dptr
+      0003A0 FC               [12] 1694 	mov	r4,a
+      0003A1 BC 41 02         [24] 1695 	cjne	r4,#0x41,00234$
+      0003A4 80 19            [24] 1696 	sjmp	00110$
+      0003A6                       1697 00234$:
+      0003A6 BC 4E 02         [24] 1698 	cjne	r4,#0x4e,00235$
+      0003A9 80 74            [24] 1699 	sjmp	00113$
+      0003AB                       1700 00235$:
+      0003AB BC 54 02         [24] 1701 	cjne	r4,#0x54,00236$
+      0003AE 80 78            [24] 1702 	sjmp	00114$
+      0003B0                       1703 00236$:
+      0003B0 BC 69 03         [24] 1704 	cjne	r4,#0x69,00237$
+      0003B3 02r04r31         [24] 1705 	ljmp	00115$
+      0003B6                       1706 00237$:
+      0003B6 BC 6A 03         [24] 1707 	cjne	r4,#0x6a,00238$
+      0003B9 02r04r9B         [24] 1708 	ljmp	00118$
+      0003BC                       1709 00238$:
+      0003BC 02r05r05         [24] 1710 	ljmp	00121$
+                                   1711 ;	terminal.c:111: case 'A':
+      0003BF                       1712 00110$:
+                                   1713 ;	terminal.c:113: if (!read_int(line, &char_count, &int_value)) {
+      0003BF 90r00r1D         [24] 1714 	mov	dptr,#_terminal_execute_line_line_65536_148
+      0003C2 E0               [24] 1715 	movx	a,@dptr
+      0003C3 F9               [12] 1716 	mov	r1,a
+      0003C4 A3               [24] 1717 	inc	dptr
+      0003C5 E0               [24] 1718 	movx	a,@dptr
+      0003C6 FA               [12] 1719 	mov	r2,a
+      0003C7 A3               [24] 1720 	inc	dptr
+      0003C8 E0               [24] 1721 	movx	a,@dptr
+      0003C9 FB               [12] 1722 	mov	r3,a
+      0003CA 90r00r07         [24] 1723 	mov	dptr,#_read_int_PARM_2
+      0003CD 74r20            [12] 1724 	mov	a,#_terminal_execute_line_char_count_65536_149
+      0003CF F0               [24] 1725 	movx	@dptr,a
+      0003D0 74s00            [12] 1726 	mov	a,#(_terminal_execute_line_char_count_65536_149 >> 8)
+      0003D2 A3               [24] 1727 	inc	dptr
+      0003D3 F0               [24] 1728 	movx	@dptr,a
+      0003D4 E4               [12] 1729 	clr	a
+      0003D5 A3               [24] 1730 	inc	dptr
+      0003D6 F0               [24] 1731 	movx	@dptr,a
+      0003D7 90r00r0A         [24] 1732 	mov	dptr,#_read_int_PARM_3
+      0003DA 74r22            [12] 1733 	mov	a,#_terminal_execute_line_int_value_65536_149
+      0003DC F0               [24] 1734 	movx	@dptr,a
+      0003DD 74s00            [12] 1735 	mov	a,#(_terminal_execute_line_int_value_65536_149 >> 8)
+      0003DF A3               [24] 1736 	inc	dptr
+      0003E0 F0               [24] 1737 	movx	@dptr,a
+      0003E1 E4               [12] 1738 	clr	a
+      0003E2 A3               [24] 1739 	inc	dptr
+      0003E3 F0               [24] 1740 	movx	@dptr,a
+      0003E4 89 82            [24] 1741 	mov	dpl,r1
+      0003E6 8A 83            [24] 1742 	mov	dph,r2
+      0003E8 8B F0            [24] 1743 	mov	b,r3
+      0003EA C0 07            [24] 1744 	push	ar7
+      0003EC C0 06            [24] 1745 	push	ar6
+      0003EE C0 05            [24] 1746 	push	ar5
+      0003F0 12r00r00         [24] 1747 	lcall	_read_int
+      0003F3 E5 82            [12] 1748 	mov	a,dpl
+      0003F5 D0 05            [24] 1749 	pop	ar5
+      0003F7 D0 06            [24] 1750 	pop	ar6
+      0003F9 D0 07            [24] 1751 	pop	ar7
+      0003FB 70 19            [24] 1752 	jnz	00112$
+                                   1753 ;	terminal.c:114: printf("Bad integer Number Format\n");
+      0003FD 74r43            [12] 1754 	mov	a,#___str_2
+      0003FF C0 E0            [24] 1755 	push	acc
+      000401 74s00            [12] 1756 	mov	a,#(___str_2 >> 8)
+      000403 C0 E0            [24] 1757 	push	acc
+      000405 74 80            [12] 1758 	mov	a,#0x80
+      000407 C0 E0            [24] 1759 	push	acc
+      000409 12r00r00         [24] 1760 	lcall	_printf
+      00040C 15 81            [12] 1761 	dec	sp
+      00040E 15 81            [12] 1762 	dec	sp
+      000410 15 81            [12] 1763 	dec	sp
+                                   1764 ;	terminal.c:115: return LINE_FAILED;
+      000412 75 82 01         [24] 1765 	mov	dpl,#0x01
+      000415 22               [24] 1766 	ret
+      000416                       1767 00112$:
+                                   1768 ;	terminal.c:118: command.command_type = COMMAND_TEST_INT_READING;
+      000416 90r00r01         [24] 1769 	mov	dptr,#_command
+      000419 74 01            [12] 1770 	mov	a,#0x01
+      00041B F0               [24] 1771 	movx	@dptr,a
+                                   1772 ;	terminal.c:119: break;
+      00041C 02r03r16         [24] 1773 	ljmp	00123$
+                                   1774 ;	terminal.c:121: case 'N':
+      00041F                       1775 00113$:
+                                   1776 ;	terminal.c:122: command.command_type = COMMAND_GET_NRF24_REGISTERS;
+      00041F 90r00r01         [24] 1777 	mov	dptr,#_command
+      000422 74 02            [12] 1778 	mov	a,#0x02
+      000424 F0               [24] 1779 	movx	@dptr,a
+                                   1780 ;	terminal.c:123: break;
+      000425 02r03r16         [24] 1781 	ljmp	00123$
+                                   1782 ;	terminal.c:125: case 'T':
+      000428                       1783 00114$:
+                                   1784 ;	terminal.c:126: command.command_type = COMMAND_GET_CURRENT_TIME;
+      000428 90r00r01         [24] 1785 	mov	dptr,#_command
+      00042B 74 03            [12] 1786 	mov	a,#0x03
+      00042D F0               [24] 1787 	movx	@dptr,a
+                                   1788 ;	terminal.c:127: break;
+      00042E 02r03r16         [24] 1789 	ljmp	00123$
+                                   1790 ;	terminal.c:129: case 'i':
+      000431                       1791 00115$:
+                                   1792 ;	terminal.c:131: if (!read_int(line, &char_count, &int_value)) {
+      000431 90r00r1D         [24] 1793 	mov	dptr,#_terminal_execute_line_line_65536_148
+      000434 E0               [24] 1794 	movx	a,@dptr
+      000435 F9               [12] 1795 	mov	r1,a
+      000436 A3               [24] 1796 	inc	dptr
+      000437 E0               [24] 1797 	movx	a,@dptr
+      000438 FA               [12] 1798 	mov	r2,a
+      000439 A3               [24] 1799 	inc	dptr
+      00043A E0               [24] 1800 	movx	a,@dptr
+      00043B FB               [12] 1801 	mov	r3,a
+      00043C 90r00r07         [24] 1802 	mov	dptr,#_read_int_PARM_2
+      00043F 74r20            [12] 1803 	mov	a,#_terminal_execute_line_char_count_65536_149
+      000441 F0               [24] 1804 	movx	@dptr,a
+      000442 74s00            [12] 1805 	mov	a,#(_terminal_execute_line_char_count_65536_149 >> 8)
+      000444 A3               [24] 1806 	inc	dptr
+      000445 F0               [24] 1807 	movx	@dptr,a
+      000446 E4               [12] 1808 	clr	a
+      000447 A3               [24] 1809 	inc	dptr
+      000448 F0               [24] 1810 	movx	@dptr,a
+      000449 90r00r0A         [24] 1811 	mov	dptr,#_read_int_PARM_3
+      00044C 74r22            [12] 1812 	mov	a,#_terminal_execute_line_int_value_65536_149
+      00044E F0               [24] 1813 	movx	@dptr,a
+      00044F 74s00            [12] 1814 	mov	a,#(_terminal_execute_line_int_value_65536_149 >> 8)
+      000451 A3               [24] 1815 	inc	dptr
+      000452 F0               [24] 1816 	movx	@dptr,a
+      000453 E4               [12] 1817 	clr	a
+      000454 A3               [24] 1818 	inc	dptr
+      000455 F0               [24] 1819 	movx	@dptr,a
+      000456 89 82            [24] 1820 	mov	dpl,r1
+      000458 8A 83            [24] 1821 	mov	dph,r2
+      00045A 8B F0            [24] 1822 	mov	b,r3
+      00045C C0 07            [24] 1823 	push	ar7
+      00045E C0 06            [24] 1824 	push	ar6
+      000460 C0 05            [24] 1825 	push	ar5
+      000462 12r00r00         [24] 1826 	lcall	_read_int
+      000465 E5 82            [12] 1827 	mov	a,dpl
+      000467 D0 05            [24] 1828 	pop	ar5
+      000469 D0 06            [24] 1829 	pop	ar6
+      00046B D0 07            [24] 1830 	pop	ar7
+      00046D 70 19            [24] 1831 	jnz	00117$
+                                   1832 ;	terminal.c:132: printf("Bad int Number Format\n");
+      00046F 74r5E            [12] 1833 	mov	a,#___str_3
+      000471 C0 E0            [24] 1834 	push	acc
+      000473 74s00            [12] 1835 	mov	a,#(___str_3 >> 8)
+      000475 C0 E0            [24] 1836 	push	acc
+      000477 74 80            [12] 1837 	mov	a,#0x80
+      000479 C0 E0            [24] 1838 	push	acc
+      00047B 12r00r00         [24] 1839 	lcall	_printf
+      00047E 15 81            [12] 1840 	dec	sp
+      000480 15 81            [12] 1841 	dec	sp
+      000482 15 81            [12] 1842 	dec	sp
+                                   1843 ;	terminal.c:133: return LINE_FAILED;
+      000484 75 82 01         [24] 1844 	mov	dpl,#0x01
+      000487 22               [24] 1845 	ret
+      000488                       1846 00117$:
+                                   1847 ;	terminal.c:135: command.i = int_value;
+      000488 90r00r22         [24] 1848 	mov	dptr,#_terminal_execute_line_int_value_65536_149
+      00048B E0               [24] 1849 	movx	a,@dptr
+      00048C FA               [12] 1850 	mov	r2,a
+      00048D A3               [24] 1851 	inc	dptr
+      00048E E0               [24] 1852 	movx	a,@dptr
+      00048F FB               [12] 1853 	mov	r3,a
+      000490 90r00r02         [24] 1854 	mov	dptr,#(_command + 0x0001)
+      000493 EA               [12] 1855 	mov	a,r2
+      000494 F0               [24] 1856 	movx	@dptr,a
+      000495 EB               [12] 1857 	mov	a,r3
+      000496 A3               [24] 1858 	inc	dptr
+      000497 F0               [24] 1859 	movx	@dptr,a
+                                   1860 ;	terminal.c:136: break;
+      000498 02r03r16         [24] 1861 	ljmp	00123$
+                                   1862 ;	terminal.c:138: case 'j':
+      00049B                       1863 00118$:
+                                   1864 ;	terminal.c:140: if (!read_int(line, &char_count, &int_value)) {
+      00049B 90r00r1D         [24] 1865 	mov	dptr,#_terminal_execute_line_line_65536_148
+      00049E E0               [24] 1866 	movx	a,@dptr
+      00049F F9               [12] 1867 	mov	r1,a
+      0004A0 A3               [24] 1868 	inc	dptr
+      0004A1 E0               [24] 1869 	movx	a,@dptr
+      0004A2 FA               [12] 1870 	mov	r2,a
+      0004A3 A3               [24] 1871 	inc	dptr
+      0004A4 E0               [24] 1872 	movx	a,@dptr
+      0004A5 FB               [12] 1873 	mov	r3,a
+      0004A6 90r00r07         [24] 1874 	mov	dptr,#_read_int_PARM_2
+      0004A9 74r20            [12] 1875 	mov	a,#_terminal_execute_line_char_count_65536_149
+      0004AB F0               [24] 1876 	movx	@dptr,a
+      0004AC 74s00            [12] 1877 	mov	a,#(_terminal_execute_line_char_count_65536_149 >> 8)
+      0004AE A3               [24] 1878 	inc	dptr
+      0004AF F0               [24] 1879 	movx	@dptr,a
+      0004B0 E4               [12] 1880 	clr	a
+      0004B1 A3               [24] 1881 	inc	dptr
+      0004B2 F0               [24] 1882 	movx	@dptr,a
+      0004B3 90r00r0A         [24] 1883 	mov	dptr,#_read_int_PARM_3
+      0004B6 74r22            [12] 1884 	mov	a,#_terminal_execute_line_int_value_65536_149
+      0004B8 F0               [24] 1885 	movx	@dptr,a
+      0004B9 74s00            [12] 1886 	mov	a,#(_terminal_execute_line_int_value_65536_149 >> 8)
+      0004BB A3               [24] 1887 	inc	dptr
+      0004BC F0               [24] 1888 	movx	@dptr,a
+      0004BD E4               [12] 1889 	clr	a
+      0004BE A3               [24] 1890 	inc	dptr
+      0004BF F0               [24] 1891 	movx	@dptr,a
+      0004C0 89 82            [24] 1892 	mov	dpl,r1
+      0004C2 8A 83            [24] 1893 	mov	dph,r2
+      0004C4 8B F0            [24] 1894 	mov	b,r3
+      0004C6 C0 07            [24] 1895 	push	ar7
+      0004C8 C0 06            [24] 1896 	push	ar6
+      0004CA C0 05            [24] 1897 	push	ar5
+      0004CC 12r00r00         [24] 1898 	lcall	_read_int
+      0004CF E5 82            [12] 1899 	mov	a,dpl
+      0004D1 D0 05            [24] 1900 	pop	ar5
+      0004D3 D0 06            [24] 1901 	pop	ar6
+      0004D5 D0 07            [24] 1902 	pop	ar7
+      0004D7 70 19            [24] 1903 	jnz	00120$
+                                   1904 ;	terminal.c:141: printf("Bad int Number Format\n");
+      0004D9 74r5E            [12] 1905 	mov	a,#___str_3
+      0004DB C0 E0            [24] 1906 	push	acc
+      0004DD 74s00            [12] 1907 	mov	a,#(___str_3 >> 8)
+      0004DF C0 E0            [24] 1908 	push	acc
+      0004E1 74 80            [12] 1909 	mov	a,#0x80
+      0004E3 C0 E0            [24] 1910 	push	acc
+      0004E5 12r00r00         [24] 1911 	lcall	_printf
+      0004E8 15 81            [12] 1912 	dec	sp
+      0004EA 15 81            [12] 1913 	dec	sp
+      0004EC 15 81            [12] 1914 	dec	sp
+                                   1915 ;	terminal.c:142: return LINE_FAILED;
+      0004EE 75 82 01         [24] 1916 	mov	dpl,#0x01
+      0004F1 22               [24] 1917 	ret
+      0004F2                       1918 00120$:
+                                   1919 ;	terminal.c:144: command.j = int_value;
+      0004F2 90r00r22         [24] 1920 	mov	dptr,#_terminal_execute_line_int_value_65536_149
+      0004F5 E0               [24] 1921 	movx	a,@dptr
+      0004F6 FA               [12] 1922 	mov	r2,a
+      0004F7 A3               [24] 1923 	inc	dptr
+      0004F8 E0               [24] 1924 	movx	a,@dptr
+      0004F9 FB               [12] 1925 	mov	r3,a
+      0004FA 90r00r04         [24] 1926 	mov	dptr,#(_command + 0x0003)
+      0004FD EA               [12] 1927 	mov	a,r2
+      0004FE F0               [24] 1928 	movx	@dptr,a
+      0004FF EB               [12] 1929 	mov	a,r3
+      000500 A3               [24] 1930 	inc	dptr
+      000501 F0               [24] 1931 	movx	@dptr,a
+                                   1932 ;	terminal.c:145: break;
+      000502 02r03r16         [24] 1933 	ljmp	00123$
+                                   1934 ;	terminal.c:147: default:
+      000505                       1935 00121$:
+                                   1936 ;	terminal.c:148: printf("Command Letter '%c' Not Implemented\n", letter);
+      000505 7F 00            [12] 1937 	mov	r7,#0x00
+      000507 C0 04            [24] 1938 	push	ar4
+      000509 C0 07            [24] 1939 	push	ar7
+      00050B 74r75            [12] 1940 	mov	a,#___str_4
+      00050D C0 E0            [24] 1941 	push	acc
+      00050F 74s00            [12] 1942 	mov	a,#(___str_4 >> 8)
+      000511 C0 E0            [24] 1943 	push	acc
+      000513 74 80            [12] 1944 	mov	a,#0x80
+      000515 C0 E0            [24] 1945 	push	acc
+      000517 12r00r00         [24] 1946 	lcall	_printf
+      00051A E5 81            [12] 1947 	mov	a,sp
+      00051C 24 FB            [12] 1948 	add	a,#0xfb
+      00051E F5 81            [12] 1949 	mov	sp,a
+                                   1950 ;	terminal.c:149: return LINE_FAILED;
+      000520 75 82 01         [24] 1951 	mov	dpl,#0x01
+      000523 22               [24] 1952 	ret
+                                   1953 ;	terminal.c:150: }
+      000524                       1954 00125$:
+                                   1955 ;	terminal.c:154: switch(command.command_type) {
+      000524 90r00r01         [24] 1956 	mov	dptr,#_command
+      000527 E0               [24] 1957 	movx	a,@dptr
+      000528 FF               [12] 1958 	mov	r7,a
+      000529 BF 01 02         [24] 1959 	cjne	r7,#0x01,00242$
+      00052C 80 23            [24] 1960 	sjmp	00130$
+      00052E                       1961 00242$:
+      00052E BF 02 02         [24] 1962 	cjne	r7,#0x02,00243$
+      000531 80 1E            [24] 1963 	sjmp	00130$
+      000533                       1964 00243$:
+      000533 BF 03 02         [24] 1965 	cjne	r7,#0x03,00244$
+      000536 80 19            [24] 1966 	sjmp	00130$
+      000538                       1967 00244$:
+                                   1968 ;	terminal.c:166: printf("SHOULD NEVER REACH HERE IN ERROR CHECKING.\n");
+      000538 74r9A            [12] 1969 	mov	a,#___str_5
+      00053A C0 E0            [24] 1970 	push	acc
+      00053C 74s00            [12] 1971 	mov	a,#(___str_5 >> 8)
+      00053E C0 E0            [24] 1972 	push	acc
+      000540 74 80            [12] 1973 	mov	a,#0x80
+      000542 C0 E0            [24] 1974 	push	acc
+      000544 12r00r00         [24] 1975 	lcall	_printf
+      000547 15 81            [12] 1976 	dec	sp
+      000549 15 81            [12] 1977 	dec	sp
+      00054B 15 81            [12] 1978 	dec	sp
+                                   1979 ;	terminal.c:167: return LINE_FAILED;
+      00054D 75 82 01         [24] 1980 	mov	dpl,#0x01
+      000550 22               [24] 1981 	ret
+                                   1982 ;	terminal.c:168: }
+      000551                       1983 00130$:
+                                   1984 ;	terminal.c:171: switch(command.command_type) {
+      000551 90r00r01         [24] 1985 	mov	dptr,#_command
+      000554 E0               [24] 1986 	movx	a,@dptr
+      000555 FF               [12] 1987 	mov	r7,a
+      000556 BF 01 02         [24] 1988 	cjne	r7,#0x01,00245$
+      000559 80 0A            [24] 1989 	sjmp	00131$
+      00055B                       1990 00245$:
+      00055B BF 02 02         [24] 1991 	cjne	r7,#0x02,00246$
+      00055E 80 26            [24] 1992 	sjmp	00132$
+      000560                       1993 00246$:
+                                   1994 ;	terminal.c:173: case COMMAND_TEST_INT_READING:
+      000560 BF 03 51         [24] 1995 	cjne	r7,#0x03,00134$
+      000563 80 26            [24] 1996 	sjmp	00133$
+      000565                       1997 00131$:
+                                   1998 ;	terminal.c:174: printf("Read INT value: %d\n", int_value);
+      000565 90r00r22         [24] 1999 	mov	dptr,#_terminal_execute_line_int_value_65536_149
+      000568 E0               [24] 2000 	movx	a,@dptr
+      000569 C0 E0            [24] 2001 	push	acc
+      00056B A3               [24] 2002 	inc	dptr
+      00056C E0               [24] 2003 	movx	a,@dptr
+      00056D C0 E0            [24] 2004 	push	acc
+      00056F 74rC6            [12] 2005 	mov	a,#___str_6
+      000571 C0 E0            [24] 2006 	push	acc
+      000573 74s00            [12] 2007 	mov	a,#(___str_6 >> 8)
+      000575 C0 E0            [24] 2008 	push	acc
+      000577 74 80            [12] 2009 	mov	a,#0x80
+      000579 C0 E0            [24] 2010 	push	acc
+      00057B 12r00r00         [24] 2011 	lcall	_printf
+      00057E E5 81            [12] 2012 	mov	a,sp
+      000580 24 FB            [12] 2013 	add	a,#0xfb
+      000582 F5 81            [12] 2014 	mov	sp,a
+                                   2015 ;	terminal.c:175: break;
+                                   2016 ;	terminal.c:177: case COMMAND_GET_NRF24_REGISTERS:
+      000584 80 47            [24] 2017 	sjmp	00135$
+      000586                       2018 00132$:
+                                   2019 ;	terminal.c:178: nrf24_print_internal_register_values();
+      000586 12r00r00         [24] 2020 	lcall	_nrf24_print_internal_register_values
+                                   2021 ;	terminal.c:179: break;
+                                   2022 ;	terminal.c:181: case COMMAND_GET_CURRENT_TIME:
+      000589 80 42            [24] 2023 	sjmp	00135$
+      00058B                       2024 00133$:
+                                   2025 ;	terminal.c:182: report("Current Time Passed: %lu\n", get_current_time());
+      00058B 12r00r00         [24] 2026 	lcall	_get_current_time
+      00058E AC 82            [24] 2027 	mov	r4,dpl
+      000590 AD 83            [24] 2028 	mov	r5,dph
+      000592 AE F0            [24] 2029 	mov	r6,b
+      000594 FF               [12] 2030 	mov	r7,a
+      000595 C0 04            [24] 2031 	push	ar4
+      000597 C0 05            [24] 2032 	push	ar5
+      000599 C0 06            [24] 2033 	push	ar6
+      00059B C0 07            [24] 2034 	push	ar7
+      00059D 74rDA            [12] 2035 	mov	a,#___str_7
+      00059F C0 E0            [24] 2036 	push	acc
+      0005A1 74s00            [12] 2037 	mov	a,#(___str_7 >> 8)
+      0005A3 C0 E0            [24] 2038 	push	acc
+      0005A5 74 80            [12] 2039 	mov	a,#0x80
+      0005A7 C0 E0            [24] 2040 	push	acc
+      0005A9 12r00r00         [24] 2041 	lcall	_report
+      0005AC E5 81            [12] 2042 	mov	a,sp
+      0005AE 24 F9            [12] 2043 	add	a,#0xf9
+      0005B0 F5 81            [12] 2044 	mov	sp,a
+                                   2045 ;	terminal.c:183: break;
+                                   2046 ;	terminal.c:185: default:
+      0005B2 80 19            [24] 2047 	sjmp	00135$
+      0005B4                       2048 00134$:
+                                   2049 ;	terminal.c:190: printf("SHOULD NEVER REACH HERE.");
+      0005B4 74rF4            [12] 2050 	mov	a,#___str_8
+      0005B6 C0 E0            [24] 2051 	push	acc
+      0005B8 74s00            [12] 2052 	mov	a,#(___str_8 >> 8)
+      0005BA C0 E0            [24] 2053 	push	acc
+      0005BC 74 80            [12] 2054 	mov	a,#0x80
+      0005BE C0 E0            [24] 2055 	push	acc
+      0005C0 12r00r00         [24] 2056 	lcall	_printf
+      0005C3 15 81            [12] 2057 	dec	sp
+      0005C5 15 81            [12] 2058 	dec	sp
+      0005C7 15 81            [12] 2059 	dec	sp
+                                   2060 ;	terminal.c:191: return LINE_FAILED;
+      0005C9 75 82 01         [24] 2061 	mov	dpl,#0x01
+                                   2062 ;	terminal.c:192: }
+      0005CC 22               [24] 2063 	ret
+      0005CD                       2064 00135$:
+                                   2065 ;	terminal.c:194: return LINE_PASSED;
+      0005CD 75 82 00         [24] 2066 	mov	dpl,#0x00
+                                   2067 ;	terminal.c:196: }
+      0005D0 22               [24] 2068 	ret
+                                   2069 	.area CSEG    (CODE)
+                                   2070 	.area CONST   (CODE)
+                                   2071 	.area CONST   (CODE)
+      000000                       2072 ___str_0:
+      000000 0D                    2073 	.db 0x0d
+      000001 45 78 70 65 63 74 65  2074 	.ascii "Expected a letter!"
              64 20 61 20 6C 65 74
              74 65 72 21
-      000013 0A                    2065 	.db 0x0a
-      000014 00                    2066 	.db 0x00
-                                   2067 	.area CSEG    (CODE)
-                                   2068 	.area CONST   (CODE)
-      000015                       2069 ___str_1:
-      000015 42 61 64 20 69 6E 74  2070 	.ascii "Bad integer Number Format"
-             65 67 65 72 20 4E 75
-             6D 62 65 72 20 46 6F
-             72 6D 61 74
-      00002E 0A                    2071 	.db 0x0a
-      00002F 00                    2072 	.db 0x00
-                                   2073 	.area CSEG    (CODE)
-                                   2074 	.area CONST   (CODE)
-      000030                       2075 ___str_2:
-      000030 43 61 6E 27 74 20 68  2076 	.ascii "Can't have >1 command letter in one command!"
+      000013 0A                    2075 	.db 0x0a
+      000014 00                    2076 	.db 0x00
+                                   2077 	.area CSEG    (CODE)
+                                   2078 	.area CONST   (CODE)
+      000015                       2079 ___str_1:
+      000015 43 61 6E 27 74 20 68  2080 	.ascii "Can't have >1 command letter in one command!"
              61 76 65 20 3E 31 20
              63 6F 6D 6D 61 6E 64
              20 6C 65 74 74 65 72
              20 69 6E 20 6F 6E 65
              20 63 6F 6D 6D 61 6E
              64 21
-      00005C 0A                    2077 	.db 0x0a
-      00005D 00                    2078 	.db 0x00
-                                   2079 	.area CSEG    (CODE)
-                                   2080 	.area CONST   (CODE)
-      00005E                       2081 ___str_3:
-      00005E 42 61 64 20 69 6E 74  2082 	.ascii "Bad int Number Format"
+      000041 0A                    2081 	.db 0x0a
+      000042 00                    2082 	.db 0x00
+                                   2083 	.area CSEG    (CODE)
+                                   2084 	.area CONST   (CODE)
+      000043                       2085 ___str_2:
+      000043 42 61 64 20 69 6E 74  2086 	.ascii "Bad integer Number Format"
+             65 67 65 72 20 4E 75
+             6D 62 65 72 20 46 6F
+             72 6D 61 74
+      00005C 0A                    2087 	.db 0x0a
+      00005D 00                    2088 	.db 0x00
+                                   2089 	.area CSEG    (CODE)
+                                   2090 	.area CONST   (CODE)
+      00005E                       2091 ___str_3:
+      00005E 42 61 64 20 69 6E 74  2092 	.ascii "Bad int Number Format"
              20 4E 75 6D 62 65 72
              20 46 6F 72 6D 61 74
-      000073 0A                    2083 	.db 0x0a
-      000074 00                    2084 	.db 0x00
-                                   2085 	.area CSEG    (CODE)
-                                   2086 	.area CONST   (CODE)
-      000075                       2087 ___str_4:
-      000075 43 6F 6D 6D 61 6E 64  2088 	.ascii "Command Letter '%c' Not Implemented"
+      000073 0A                    2093 	.db 0x0a
+      000074 00                    2094 	.db 0x00
+                                   2095 	.area CSEG    (CODE)
+                                   2096 	.area CONST   (CODE)
+      000075                       2097 ___str_4:
+      000075 43 6F 6D 6D 61 6E 64  2098 	.ascii "Command Letter '%c' Not Implemented"
              20 4C 65 74 74 65 72
              20 27 25 63 27 20 4E
              6F 74 20 49 6D 70 6C
              65 6D 65 6E 74 65 64
-      000098 0A                    2089 	.db 0x0a
-      000099 00                    2090 	.db 0x00
-                                   2091 	.area CSEG    (CODE)
-                                   2092 	.area CONST   (CODE)
-      00009A                       2093 ___str_5:
-      00009A 53 48 4F 55 4C 44 20  2094 	.ascii "SHOULD NEVER REACH HERE IN ERROR CHECKING."
+      000098 0A                    2099 	.db 0x0a
+      000099 00                    2100 	.db 0x00
+                                   2101 	.area CSEG    (CODE)
+                                   2102 	.area CONST   (CODE)
+      00009A                       2103 ___str_5:
+      00009A 53 48 4F 55 4C 44 20  2104 	.ascii "SHOULD NEVER REACH HERE IN ERROR CHECKING."
              4E 45 56 45 52 20 52
              45 41 43 48 20 48 45
              52 45 20 49 4E 20 45
              52 52 4F 52 20 43 48
              45 43 4B 49 4E 47 2E
-      0000C4 0A                    2095 	.db 0x0a
-      0000C5 00                    2096 	.db 0x00
-                                   2097 	.area CSEG    (CODE)
-                                   2098 	.area CONST   (CODE)
-      0000C6                       2099 ___str_6:
-      0000C6 52 65 61 64 20 49 4E  2100 	.ascii "Read INT value: %d"
+      0000C4 0A                    2105 	.db 0x0a
+      0000C5 00                    2106 	.db 0x00
+                                   2107 	.area CSEG    (CODE)
+                                   2108 	.area CONST   (CODE)
+      0000C6                       2109 ___str_6:
+      0000C6 52 65 61 64 20 49 4E  2110 	.ascii "Read INT value: %d"
              54 20 76 61 6C 75 65
              3A 20 25 64
-      0000D8 0A                    2101 	.db 0x0a
-      0000D9 00                    2102 	.db 0x00
-                                   2103 	.area CSEG    (CODE)
-                                   2104 	.area CONST   (CODE)
-      0000DA                       2105 ___str_7:
-      0000DA 43 75 72 72 65 6E 74  2106 	.ascii "Current Time Passed: %lu"
+      0000D8 0A                    2111 	.db 0x0a
+      0000D9 00                    2112 	.db 0x00
+                                   2113 	.area CSEG    (CODE)
+                                   2114 	.area CONST   (CODE)
+      0000DA                       2115 ___str_7:
+      0000DA 43 75 72 72 65 6E 74  2116 	.ascii "Current Time Passed: %lu"
              20 54 69 6D 65 20 50
              61 73 73 65 64 3A 20
              25 6C 75
-      0000F2 0A                    2107 	.db 0x0a
-      0000F3 00                    2108 	.db 0x00
-                                   2109 	.area CSEG    (CODE)
-                                   2110 	.area CONST   (CODE)
-      0000F4                       2111 ___str_8:
-      0000F4 53 48 4F 55 4C 44 20  2112 	.ascii "SHOULD NEVER REACH HERE."
+      0000F2 0A                    2117 	.db 0x0a
+      0000F3 00                    2118 	.db 0x00
+                                   2119 	.area CSEG    (CODE)
+                                   2120 	.area CONST   (CODE)
+      0000F4                       2121 ___str_8:
+      0000F4 53 48 4F 55 4C 44 20  2122 	.ascii "SHOULD NEVER REACH HERE."
              4E 45 56 45 52 20 52
              45 41 43 48 20 48 45
              52 45 2E
-      00010C 00                    2113 	.db 0x00
-                                   2114 	.area CSEG    (CODE)
-                                   2115 	.area XINIT   (CODE)
-                                   2116 	.area CABS    (ABS,CODE)
+      00010C 00                    2123 	.db 0x00
+                                   2124 	.area CSEG    (CODE)
+                                   2125 	.area XINIT   (CODE)
+                                   2126 	.area CABS    (ABS,CODE)

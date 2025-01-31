@@ -1051,7 +1051,7 @@
       00111E A4               [48] 1051 	mul	ab
       00111F FD               [12] 1052 	mov	r5,a
       001120 AE F0            [24] 1053 	mov	r6,b
-      001122 24 65            [12] 1054 	add	a,#__pinConfigurations
+      001122 24 72            [12] 1054 	add	a,#__pinConfigurations
       001124 F5 82            [12] 1055 	mov	dpl,a
       001126 EE               [12] 1056 	mov	a,r6
       001127 34 4A            [12] 1057 	addc	a,#(__pinConfigurations >> 8)
@@ -1118,7 +1118,7 @@
       00118B F0               [24] 1118 	movx	@dptr,a
                                    1119 ;	/home/mr-a-717/.stc/uni-stc/hal/spi-hal.c:111: pinDefinition = _pinConfigurations[i][SPI_MISO_PIN];
       00118C ED               [12] 1120 	mov	a,r5
-      00118D 24 65            [12] 1121 	add	a,#__pinConfigurations
+      00118D 24 72            [12] 1121 	add	a,#__pinConfigurations
       00118F FD               [12] 1122 	mov	r5,a
       001190 EE               [12] 1123 	mov	a,r6
       001191 34 4A            [12] 1124 	addc	a,#(__pinConfigurations >> 8)
@@ -1257,7 +1257,7 @@
       00123A A3               [24] 1257 	inc	dptr
       00123B E0               [24] 1258 	movx	a,@dptr
       00123C FF               [12] 1259 	mov	r7,a
-      00123D 90 02 D1         [24] 1260 	mov	dptr,#__divulong_PARM_2
+      00123D 90 02 CD         [24] 1260 	mov	dptr,#__divulong_PARM_2
       001240 EC               [12] 1261 	mov	a,r4
       001241 F0               [24] 1262 	movx	@dptr,a
       001242 ED               [12] 1263 	mov	a,r5
@@ -1276,7 +1276,7 @@
       001255 C0 06            [24] 1276 	push	ar6
       001257 C0 05            [24] 1277 	push	ar5
       001259 C0 04            [24] 1278 	push	ar4
-      00125B 12 3B E9         [24] 1279 	lcall	__divulong
+      00125B 12 3B F6         [24] 1279 	lcall	__divulong
       00125E A8 82            [24] 1280 	mov	r0,dpl
       001260 A9 83            [24] 1281 	mov	r1,dph
       001262 D0 04            [24] 1282 	pop	ar4
@@ -1290,7 +1290,7 @@
       001270 A3               [24] 1290 	inc	dptr
       001271 F0               [24] 1291 	movx	@dptr,a
                                    1292 ;	/home/mr-a-717/.stc/uni-stc/hal/spi-hal.c:172: if (MCU_FREQ % maxDeviceRate) {
-      001272 90 02 C8         [24] 1293 	mov	dptr,#__modulong_PARM_2
+      001272 90 02 C4         [24] 1293 	mov	dptr,#__modulong_PARM_2
       001275 EC               [12] 1294 	mov	a,r4
       001276 F0               [24] 1295 	movx	@dptr,a
       001277 ED               [12] 1296 	mov	a,r5
@@ -1307,7 +1307,7 @@
       001286 74 02            [12] 1307 	mov	a,#0x02
       001288 C0 01            [24] 1308 	push	ar1
       00128A C0 00            [24] 1309 	push	ar0
-      00128C 12 39 D8         [24] 1310 	lcall	__modulong
+      00128C 12 39 E5         [24] 1310 	lcall	__modulong
       00128F AC 82            [24] 1311 	mov	r4,dpl
       001291 AD 83            [24] 1312 	mov	r5,dph
       001293 AE F0            [24] 1313 	mov	r6,b
@@ -1565,7 +1565,7 @@
       0013C2 8E 83            [24] 1565 	mov	dph,r6
       0013C4 8F F0            [24] 1566 	mov	b,r7
       0013C6 E4               [12] 1567 	clr	a
-      0013C7 12 3D D2         [24] 1568 	lcall	__gptrput
+      0013C7 12 3D DF         [24] 1568 	lcall	__gptrput
                                    1569 ;	/home/mr-a-717/.stc/uni-stc/hal/spi-hal.c:240: _spiState.index = 0;
       0013CA 78 36            [12] 1570 	mov	r0,#(__spiState + 0x0003)
       0013CC 76 00            [12] 1571 	mov	@r0,#0x00
@@ -1591,7 +1591,7 @@
       0013E8 8D 82            [24] 1591 	mov	dpl,r5
       0013EA 8E 83            [24] 1592 	mov	dph,r6
       0013EC 8F F0            [24] 1593 	mov	b,r7
-      0013EE 12 49 F9         [24] 1594 	lcall	__gptrget
+      0013EE 12 4A 06         [24] 1594 	lcall	__gptrget
       0013F1 F5 CF            [12] 1595 	mov	_SPDAT,a
                                    1596 ;	/home/mr-a-717/.stc/uni-stc/hal/spi-hal.c:245: }
       0013F3 22               [24] 1597 	ret
@@ -1637,10 +1637,10 @@
       00141A A3               [24] 1637 	inc	dptr
       00141B E0               [24] 1638 	movx	a,@dptr
       00141C F9               [12] 1639 	mov	r1,a
-      00141D 90 02 DE         [24] 1640 	mov	dptr,#_memset_PARM_2
+      00141D 90 02 DA         [24] 1640 	mov	dptr,#_memset_PARM_2
       001420 E4               [12] 1641 	clr	a
       001421 F0               [24] 1642 	movx	@dptr,a
-      001422 90 02 DF         [24] 1643 	mov	dptr,#_memset_PARM_3
+      001422 90 02 DB         [24] 1643 	mov	dptr,#_memset_PARM_3
       001425 E8               [12] 1644 	mov	a,r0
       001426 F0               [24] 1645 	movx	@dptr,a
       001427 E9               [12] 1646 	mov	a,r1
@@ -1654,7 +1654,7 @@
       001434 C0 05            [24] 1654 	push	ar5
       001436 C0 01            [24] 1655 	push	ar1
       001438 C0 00            [24] 1656 	push	ar0
-      00143A 12 3D 10         [24] 1657 	lcall	_memset
+      00143A 12 3D 1D         [24] 1657 	lcall	_memset
       00143D D0 00            [24] 1658 	pop	ar0
       00143F D0 01            [24] 1659 	pop	ar1
       001441 D0 05            [24] 1660 	pop	ar5
@@ -1734,7 +1734,7 @@
       0014A5 8E 83            [24] 1734 	mov	dph,r6
       0014A7 8F F0            [24] 1735 	mov	b,r7
       0014A9 E5 CF            [12] 1736 	mov	a,_SPDAT
-      0014AB 12 3D D2         [24] 1737 	lcall	__gptrput
+      0014AB 12 3D DF         [24] 1737 	lcall	__gptrput
                                    1738 ;	/home/mr-a-717/.stc/uni-stc/hal/spi-hal.c:257: _spiState.index++;
       0014AE 78 36            [12] 1739 	mov	r0,#(__spiState + 0x0003)
       0014B0 86 06            [24] 1740 	mov	ar6,@r0
@@ -1780,7 +1780,7 @@
       0014E8 8C 82            [24] 1780 	mov	dpl,r4
       0014EA 8D 83            [24] 1781 	mov	dph,r5
       0014EC 8A F0            [24] 1782 	mov	b,r2
-      0014EE 12 49 F9         [24] 1783 	lcall	__gptrget
+      0014EE 12 4A 06         [24] 1783 	lcall	__gptrget
       0014F1 F5 CF            [12] 1784 	mov	_SPDAT,a
       0014F3 80 15            [24] 1785 	sjmp	00104$
       0014F5                       1786 00102$:
@@ -1795,7 +1795,7 @@
       001501 8E 83            [24] 1795 	mov	dph,r6
       001503 8F F0            [24] 1796 	mov	b,r7
       001505 74 01            [12] 1797 	mov	a,#0x01
-      001507 12 3D D2         [24] 1798 	lcall	__gptrput
+      001507 12 3D DF         [24] 1798 	lcall	__gptrput
       00150A                       1799 00104$:
                                    1800 ;	/home/mr-a-717/.stc/uni-stc/hal/spi-hal.c:279: }
       00150A D0 D0            [24] 1801 	pop	psw
@@ -1814,21 +1814,21 @@
                                    1814 ;	eliminated unneeded push/pop ar1
                                    1815 	.area CSEG    (CODE)
                                    1816 	.area CONST   (CODE)
-      004A65                       1817 __pinConfigurations:
-      004A65 00                    1818 	.db #0x00	; 0
-      004A66 54                    1819 	.db #0x54	; 84	'T'
-      004A67 13                    1820 	.db #0x13	; 19
-      004A68 14                    1821 	.db #0x14	; 20
-      004A69 15                    1822 	.db #0x15	; 21
-      004A6A 01                    1823 	.db #0x01	; 1
-      004A6B 22                    1824 	.db #0x22	; 34
-      004A6C 23                    1825 	.db #0x23	; 35
-      004A6D 24                    1826 	.db #0x24	; 36
-      004A6E 25                    1827 	.db #0x25	; 37
-      004A6F 03                    1828 	.db #0x03	; 3
-      004A70 35                    1829 	.db #0x35	; 53	'5'
-      004A71 34                    1830 	.db #0x34	; 52	'4'
-      004A72 33                    1831 	.db #0x33	; 51	'3'
-      004A73 32                    1832 	.db #0x32	; 50	'2'
+      004A72                       1817 __pinConfigurations:
+      004A72 00                    1818 	.db #0x00	; 0
+      004A73 54                    1819 	.db #0x54	; 84	'T'
+      004A74 13                    1820 	.db #0x13	; 19
+      004A75 14                    1821 	.db #0x14	; 20
+      004A76 15                    1822 	.db #0x15	; 21
+      004A77 01                    1823 	.db #0x01	; 1
+      004A78 22                    1824 	.db #0x22	; 34
+      004A79 23                    1825 	.db #0x23	; 35
+      004A7A 24                    1826 	.db #0x24	; 36
+      004A7B 25                    1827 	.db #0x25	; 37
+      004A7C 03                    1828 	.db #0x03	; 3
+      004A7D 35                    1829 	.db #0x35	; 53	'5'
+      004A7E 34                    1830 	.db #0x34	; 52	'4'
+      004A7F 33                    1831 	.db #0x33	; 51	'3'
+      004A80 32                    1832 	.db #0x32	; 50	'2'
                                    1833 	.area XINIT   (CODE)
                                    1834 	.area CABS    (ABS,CODE)

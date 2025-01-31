@@ -1030,7 +1030,7 @@
       000A4B A4               [48] 1030 	mul	ab
       000A4C FD               [12] 1031 	mov	r5,a
       000A4D AE F0            [24] 1032 	mov	r6,b
-      000A4F 24 5C            [12] 1033 	add	a,#__pinConfigurations
+      000A4F 24 69            [12] 1033 	add	a,#__pinConfigurations
       000A51 F5 82            [12] 1034 	mov	dpl,a
       000A53 EE               [12] 1035 	mov	a,r6
       000A54 34 4A            [12] 1036 	addc	a,#(__pinConfigurations >> 8)
@@ -1097,7 +1097,7 @@
       000ABA F0               [24] 1097 	movx	@dptr,a
                                    1098 ;	/home/mr-a-717/.stc/uni-stc/hal/i2c-hal.c:89: pinDefinition = _pinConfigurations[i][CFG_SDA_PIN];
       000ABB ED               [12] 1099 	mov	a,r5
-      000ABC 24 5C            [12] 1100 	add	a,#__pinConfigurations
+      000ABC 24 69            [12] 1100 	add	a,#__pinConfigurations
       000ABE FD               [12] 1101 	mov	r5,a
       000ABF EE               [12] 1102 	mov	a,r6
       000AC0 34 4A            [12] 1103 	addc	a,#(__pinConfigurations >> 8)
@@ -1186,7 +1186,7 @@
       000B27 A3               [24] 1186 	inc	dptr
       000B28 E0               [24] 1187 	movx	a,@dptr
       000B29 FF               [12] 1188 	mov	r7,a
-      000B2A 90 02 D1         [24] 1189 	mov	dptr,#__divulong_PARM_2
+      000B2A 90 02 CD         [24] 1189 	mov	dptr,#__divulong_PARM_2
       000B2D EC               [12] 1190 	mov	a,r4
       000B2E F0               [24] 1191 	movx	@dptr,a
       000B2F ED               [12] 1192 	mov	a,r5
@@ -1201,7 +1201,7 @@
       000B38 90 0E C0         [24] 1201 	mov	dptr,#0x0ec0
       000B3B 75 F0 16         [24] 1202 	mov	b,#0x16
       000B3E 74 02            [12] 1203 	mov	a,#0x02
-      000B40 12 3B E9         [24] 1204 	lcall	__divulong
+      000B40 12 3B F6         [24] 1204 	lcall	__divulong
       000B43 AC 82            [24] 1205 	mov	r4,dpl
       000B45 AD 83            [24] 1206 	mov	r5,dph
       000B47 ED               [12] 1207 	mov	a,r5
@@ -1530,15 +1530,15 @@
       000C72 22               [24] 1530 	ret
                                    1531 	.area CSEG    (CODE)
                                    1532 	.area CONST   (CODE)
-      004A5C                       1533 __pinConfigurations:
-      004A5C 00                    1534 	.db #0x00	; 0
-      004A5D 15                    1535 	.db #0x15	; 21
-      004A5E 14                    1536 	.db #0x14	; 20
-      004A5F 01                    1537 	.db #0x01	; 1
-      004A60 25                    1538 	.db #0x25	; 37
-      004A61 24                    1539 	.db #0x24	; 36
-      004A62 03                    1540 	.db #0x03	; 3
-      004A63 32                    1541 	.db #0x32	; 50	'2'
-      004A64 33                    1542 	.db #0x33	; 51	'3'
+      004A69                       1533 __pinConfigurations:
+      004A69 00                    1534 	.db #0x00	; 0
+      004A6A 15                    1535 	.db #0x15	; 21
+      004A6B 14                    1536 	.db #0x14	; 20
+      004A6C 01                    1537 	.db #0x01	; 1
+      004A6D 25                    1538 	.db #0x25	; 37
+      004A6E 24                    1539 	.db #0x24	; 36
+      004A6F 03                    1540 	.db #0x03	; 3
+      004A70 32                    1541 	.db #0x32	; 50	'2'
+      004A71 33                    1542 	.db #0x33	; 51	'3'
                                    1543 	.area XINIT   (CODE)
                                    1544 	.area CABS    (ABS,CODE)

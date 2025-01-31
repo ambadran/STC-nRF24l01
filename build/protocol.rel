@@ -477,7 +477,7 @@ A GSINIT size 0 flags 20 addr 0
 A GSFINAL size 0 flags 20 addr 0
 A CSEG size 1DC flags 20 addr 0
 S _protocol_main_loop Def00016D
-A CONST size 58 flags 20 addr 0
+A CONST size 59 flags 20 addr 0
 A XINIT size 5 flags 20 addr 0
 A CABS size 0 flags 28 addr 0
 T 00 00 00
@@ -692,7 +692,7 @@ T 00 00 48 64 2E 2E 0A 0A 00
 R 00 00 00 17
 T 00 00 4E
 R 00 00 00 17
-T 00 00 4E 73 74 61 72 74 69 6E 67 0A 00
+T 00 00 4E 0A 73 74 61 72 74 69 6E 67 0A 00
 R 00 00 00 17
 T 00 00 00
 R 00 00 00 18

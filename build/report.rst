@@ -952,8 +952,8 @@
                                     952 ; external initialized ram data
                                     953 ;--------------------------------------------------------
                                     954 	.area XISEG   (XDATA)
-      000342                        955 _led_pin:
-      000342                        956 	.ds 13
+      00033E                        955 _led_pin:
+      00033E                        956 	.ds 13
                                     957 	.area HOME    (CODE)
                                     958 	.area GSINIT0 (CODE)
                                     959 	.area GSINIT1 (CODE)
@@ -1033,7 +1033,7 @@
       001F63 88 82            [24] 1033 	mov	dpl,r0
       001F65 89 83            [24] 1034 	mov	dph,r1
       001F67 8A F0            [24] 1035 	mov	b,r2
-      001F69 12 49 F9         [24] 1036 	lcall	__gptrget
+      001F69 12 4A 06         [24] 1036 	lcall	__gptrget
       001F6C 60 07            [24] 1037 	jz	00103$
                                    1038 ;	report.c:9: length++;
       001F6E 0B               [12] 1039 	inc	r3
@@ -1055,11 +1055,11 @@
                                    1055 ;	-----------------------------------------
       001F7A                       1056 _report_init:
                                    1057 ;	report.c:16: gpioConfigure(&led_pin);
-      001F7A 90 03 42         [24] 1058 	mov	dptr,#_led_pin
+      001F7A 90 03 3E         [24] 1058 	mov	dptr,#_led_pin
       001F7D 75 F0 00         [24] 1059 	mov	b,#0x00
       001F80 12 01 7E         [24] 1060 	lcall	_gpioConfigure
                                    1061 ;	report.c:17: led_timer_count = get_current_time();
-      001F83 12 38 F2         [24] 1062 	lcall	_get_current_time
+      001F83 12 38 FF         [24] 1062 	lcall	_get_current_time
       001F86 AC 82            [24] 1063 	mov	r4,dpl
       001F88 AD 83            [24] 1064 	mov	r5,dph
       001F8A AE F0            [24] 1065 	mov	r6,b
@@ -1090,7 +1090,7 @@
                                    1090 ;	-----------------------------------------
       001F9C                       1091 _report_toggle_led:
                                    1092 ;	report.c:22: if ((get_current_time() - led_timer_count) >= LED_BLINK_PERIOD) {
-      001F9C 12 38 F2         [24] 1093 	lcall	_get_current_time
+      001F9C 12 38 FF         [24] 1093 	lcall	_get_current_time
       001F9F AC 82            [24] 1094 	mov	r4,dpl
       001FA1 AD 83            [24] 1095 	mov	r5,dph
       001FA3 AE F0            [24] 1096 	mov	r6,b
@@ -1132,7 +1132,7 @@
       001FCE 40 35            [24] 1132 	jc	00104$
                                    1133 ;	report.c:24: gpioToggle(&led_pin);
                                    1134 ;	/home/mr-a-717/.stc/uni-stc/hal/gpio-hal.h:206: gpioWrite(config, !gpioRead(config));
-      001FD0 90 03 42         [24] 1135 	mov	dptr,#_led_pin
+      001FD0 90 03 3E         [24] 1135 	mov	dptr,#_led_pin
       001FD3 75 F0 00         [24] 1136 	mov	b,#0x00
       001FD6 12 08 DF         [24] 1137 	lcall	_gpioRead
       001FD9 E5 82            [12] 1138 	mov	a,dpl
@@ -1142,11 +1142,11 @@
       001FDF 33               [12] 1142 	rlc	a
       001FE0 90 00 21         [24] 1143 	mov	dptr,#_gpioWrite_PARM_2
       001FE3 F0               [24] 1144 	movx	@dptr,a
-      001FE4 90 03 42         [24] 1145 	mov	dptr,#_led_pin
+      001FE4 90 03 3E         [24] 1145 	mov	dptr,#_led_pin
       001FE7 75 F0 00         [24] 1146 	mov	b,#0x00
       001FEA 12 09 48         [24] 1147 	lcall	_gpioWrite
                                    1148 ;	report.c:25: led_timer_count = get_current_time();                          
-      001FED 12 38 F2         [24] 1149 	lcall	_get_current_time
+      001FED 12 38 FF         [24] 1149 	lcall	_get_current_time
       001FF0 AC 82            [24] 1150 	mov	r4,dpl
       001FF2 AD 83            [24] 1151 	mov	r5,dph
       001FF4 AE F0            [24] 1152 	mov	r6,b
@@ -1187,7 +1187,7 @@
       00200F E5 19            [12] 1187 	mov	a,_bp
       002011 24 FB            [12] 1188 	add	a,#0xfb
       002013 F8               [12] 1189 	mov	r0,a
-      002014 90 02 E2         [24] 1190 	mov	dptr,#_vsprintf_PARM_2
+      002014 90 02 DE         [24] 1190 	mov	dptr,#_vsprintf_PARM_2
       002017 E6               [12] 1191 	mov	a,@r0
       002018 F0               [24] 1192 	movx	@dptr,a
       002019 08               [12] 1193 	inc	r0
@@ -1198,12 +1198,12 @@
       00201E E6               [12] 1198 	mov	a,@r0
       00201F A3               [24] 1199 	inc	dptr
       002020 F0               [24] 1200 	movx	@dptr,a
-      002021 90 02 E5         [24] 1201 	mov	dptr,#_vsprintf_PARM_3
+      002021 90 02 E1         [24] 1201 	mov	dptr,#_vsprintf_PARM_3
       002024 EF               [12] 1202 	mov	a,r7
       002025 F0               [24] 1203 	movx	@dptr,a
       002026 90 01 E6         [24] 1204 	mov	dptr,#__buffer
       002029 75 F0 00         [24] 1205 	mov	b,#0x00
-      00202C 12 3E 5D         [24] 1206 	lcall	_vsprintf
+      00202C 12 3E 6A         [24] 1206 	lcall	_vsprintf
                                    1207 ;	report.c:40: nrf24_device(TRANSMITTER, RESET);
       00202F 90 02 51         [24] 1208 	mov	dptr,#_nrf24_device_PARM_2
       002032 74 01            [12] 1209 	mov	a,#0x01
@@ -1221,18 +1221,18 @@
       002047 90 02 48         [24] 1221 	mov	dptr,#_nrf24_transmit_PARM_3
       00204A E4               [12] 1222 	clr	a
       00204B F0               [24] 1223 	movx	@dptr,a
-      00204C 90 4A 74         [24] 1224 	mov	dptr,#___str_0
+      00204C 90 4A 81         [24] 1224 	mov	dptr,#___str_0
       00204F 75 F0 80         [24] 1225 	mov	b,#0x80
       002052 12 22 7D         [24] 1226 	lcall	_nrf24_transmit
       002055 E5 82            [12] 1227 	mov	a,dpl
       002057 70 17            [24] 1228 	jnz	00103$
-      002059 74 85            [12] 1229 	mov	a,#___str_1
+      002059 74 92            [12] 1229 	mov	a,#___str_1
       00205B C0 E0            [24] 1230 	push	acc
       00205D 74 4A            [12] 1231 	mov	a,#(___str_1 >> 8)
       00205F C0 E0            [24] 1232 	push	acc
       002061 74 80            [12] 1233 	mov	a,#0x80
       002063 C0 E0            [24] 1234 	push	acc
-      002065 12 3F B7         [24] 1235 	lcall	_printf
+      002065 12 3F C4         [24] 1235 	lcall	_printf
       002068 15 81            [12] 1236 	dec	sp
       00206A 15 81            [12] 1237 	dec	sp
       00206C 15 81            [12] 1238 	dec	sp
@@ -1244,34 +1244,34 @@
                                    1244 ;	report.c:46: delay10us(2); //TODO: remove this
       002076 75 82 02         [24] 1245 	mov	dpl,#0x02
       002079 12 1E FD         [24] 1246 	lcall	_delay10us
-                                   1247 ;	report.c:48: while(nrf24_transmit_status() == TRANSMIT_IN_PROGRESS) {printf(".");}
-      00207C                       1248 00104$:
-      00207C 12 23 67         [24] 1249 	lcall	_nrf24_transmit_status
-      00207F E5 82            [12] 1250 	mov	a,dpl
-      002081 70 17            [24] 1251 	jnz	00106$
-      002083 74 9B            [12] 1252 	mov	a,#___str_2
-      002085 C0 E0            [24] 1253 	push	acc
-      002087 74 4A            [12] 1254 	mov	a,#(___str_2 >> 8)
-      002089 C0 E0            [24] 1255 	push	acc
-      00208B 74 80            [12] 1256 	mov	a,#0x80
-      00208D C0 E0            [24] 1257 	push	acc
-      00208F 12 3F B7         [24] 1258 	lcall	_printf
-      002092 15 81            [12] 1259 	dec	sp
-      002094 15 81            [12] 1260 	dec	sp
-      002096 15 81            [12] 1261 	dec	sp
-      002098 80 E2            [24] 1262 	sjmp	00104$
-      00209A                       1263 00106$:
-                                   1264 ;	report.c:50: nrf24_CE(0);
-      00209A 75 82 00         [24] 1265 	mov	dpl,#0x00
-      00209D 12 21 D6         [24] 1266 	lcall	_nrf24_CE
+                                   1247 ;	report.c:47: nrf24_CE(0);
+      00207C 75 82 00         [24] 1248 	mov	dpl,#0x00
+      00207F 12 21 D6         [24] 1249 	lcall	_nrf24_CE
+                                   1250 ;	report.c:49: while(nrf24_transmit_status() == TRANSMIT_IN_PROGRESS) {printf(".");}
+      002082                       1251 00104$:
+      002082 12 23 67         [24] 1252 	lcall	_nrf24_transmit_status
+      002085 E5 82            [12] 1253 	mov	a,dpl
+      002087 70 17            [24] 1254 	jnz	00106$
+      002089 74 A8            [12] 1255 	mov	a,#___str_2
+      00208B C0 E0            [24] 1256 	push	acc
+      00208D 74 4A            [12] 1257 	mov	a,#(___str_2 >> 8)
+      00208F C0 E0            [24] 1258 	push	acc
+      002091 74 80            [12] 1259 	mov	a,#0x80
+      002093 C0 E0            [24] 1260 	push	acc
+      002095 12 3F C4         [24] 1261 	lcall	_printf
+      002098 15 81            [12] 1262 	dec	sp
+      00209A 15 81            [12] 1263 	dec	sp
+      00209C 15 81            [12] 1264 	dec	sp
+      00209E 80 E2            [24] 1265 	sjmp	00104$
+      0020A0                       1266 00106$:
                                    1267 ;	report.c:52: printf("\n");
-      0020A0 74 9D            [12] 1268 	mov	a,#___str_3
+      0020A0 74 AA            [12] 1268 	mov	a,#___str_3
       0020A2 C0 E0            [24] 1269 	push	acc
       0020A4 74 4A            [12] 1270 	mov	a,#(___str_3 >> 8)
       0020A6 C0 E0            [24] 1271 	push	acc
       0020A8 74 80            [12] 1272 	mov	a,#0x80
       0020AA C0 E0            [24] 1273 	push	acc
-      0020AC 12 3F B7         [24] 1274 	lcall	_printf
+      0020AC 12 3F C4         [24] 1274 	lcall	_printf
       0020AF 15 81            [12] 1275 	dec	sp
       0020B1 15 81            [12] 1276 	dec	sp
       0020B3 15 81            [12] 1277 	dec	sp
@@ -1288,7 +1288,7 @@
       0020C7 C0 E0            [24] 1288 	push	acc
       0020C9 E4               [12] 1289 	clr	a
       0020CA C0 E0            [24] 1290 	push	acc
-      0020CC 12 3F B7         [24] 1291 	lcall	_printf
+      0020CC 12 3F C4         [24] 1291 	lcall	_printf
       0020CF 15 81            [12] 1292 	dec	sp
       0020D1 15 81            [12] 1293 	dec	sp
       0020D3 15 81            [12] 1294 	dec	sp
@@ -1298,42 +1298,42 @@
                                    1298 	.area CSEG    (CODE)
                                    1299 	.area CONST   (CODE)
                                    1300 	.area CONST   (CODE)
-      004A74                       1301 ___str_0:
-      004A74 74 65 73 74 74 65 73  1302 	.ascii "testtesttesttest"
+      004A81                       1301 ___str_0:
+      004A81 74 65 73 74 74 65 73  1302 	.ascii "testtesttesttest"
              74 74 65 73 74 74 65
              73 74
-      004A84 00                    1303 	.db 0x00
+      004A91 00                    1303 	.db 0x00
                                    1304 	.area CSEG    (CODE)
                                    1305 	.area CONST   (CODE)
-      004A85                       1306 ___str_1:
-      004A85 6E 72 66 32 34 20 66  1307 	.ascii "nrf24 failed to send!"
+      004A92                       1306 ___str_1:
+      004A92 6E 72 66 32 34 20 66  1307 	.ascii "nrf24 failed to send!"
              61 69 6C 65 64 20 74
              6F 20 73 65 6E 64 21
-      004A9A 00                    1308 	.db 0x00
+      004AA7 00                    1308 	.db 0x00
                                    1309 	.area CSEG    (CODE)
                                    1310 	.area CONST   (CODE)
-      004A9B                       1311 ___str_2:
-      004A9B 2E                    1312 	.ascii "."
-      004A9C 00                    1313 	.db 0x00
+      004AA8                       1311 ___str_2:
+      004AA8 2E                    1312 	.ascii "."
+      004AA9 00                    1313 	.db 0x00
                                    1314 	.area CSEG    (CODE)
                                    1315 	.area CONST   (CODE)
-      004A9D                       1316 ___str_3:
-      004A9D 0A                    1317 	.db 0x0a
-      004A9E 00                    1318 	.db 0x00
+      004AAA                       1316 ___str_3:
+      004AAA 0A                    1317 	.db 0x0a
+      004AAB 00                    1318 	.db 0x00
                                    1319 	.area CSEG    (CODE)
                                    1320 	.area XINIT   (CODE)
-      004CFB                       1321 __xinit__led_pin:
-      004CFB 01                    1322 	.db #0x01	; 1
-      004CFC 03                    1323 	.db #0x03	; 3
-      004CFD 01                    1324 	.db #0x01	; 1
-      004CFE 00                    1325 	.db #0x00	; 0
-      004CFF 01                    1326 	.db #0x01	; 1
-      004D00 00                    1327 	.db #0x00	; 0
-      004D01 03                    1328 	.db #0x03	; 3
-      004D02 01                    1329 	.db #0x01	; 1
-      004D03 00                    1330 	.db #0x00	; 0
-      004D04 00                    1331 	.db #0x00	; 0
-      004D05 00                    1332 	.db #0x00	; 0
-      004D06 00                    1333 	.db #0x00	; 0
-      004D07 00                    1334 	.db #0x00	; 0
+      004D09                       1321 __xinit__led_pin:
+      004D09 01                    1322 	.db #0x01	; 1
+      004D0A 03                    1323 	.db #0x03	; 3
+      004D0B 01                    1324 	.db #0x01	; 1
+      004D0C 00                    1325 	.db #0x00	; 0
+      004D0D 01                    1326 	.db #0x01	; 1
+      004D0E 00                    1327 	.db #0x00	; 0
+      004D0F 03                    1328 	.db #0x03	; 3
+      004D10 01                    1329 	.db #0x01	; 1
+      004D11 00                    1330 	.db #0x00	; 0
+      004D12 00                    1331 	.db #0x00	; 0
+      004D13 00                    1332 	.db #0x00	; 0
+      004D14 00                    1333 	.db #0x00	; 0
+      004D15 00                    1334 	.db #0x00	; 0
                                    1335 	.area CABS    (ABS,CODE)
