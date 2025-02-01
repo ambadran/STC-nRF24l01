@@ -1,7 +1,7 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
-#define LINE_BUFFER_SIZE 20  // number of characters in one command
+#define LINE_BUFFER_SIZE 30  // number of characters in one command
 #define UART_RECEIVE_EMPTY 0
 
 static uint8_t uartGetCharacter_modified(uint8_t* data, uint8_t size) __reentrant;

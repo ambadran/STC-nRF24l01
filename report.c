@@ -36,21 +36,8 @@ void report(const char* __fmt, ...) {
 	vsprintf(_buffer, __fmt, vaList);
 	va_end(vaList);
 
-  // report to Station through nrf24l01
-  nrf24_device(TRANSMITTER, RESET);
-  nrf24_CE(0);
-  /* nrf24_print_internal_register_values(); */
-  while(nrf24_transmit("testtesttesttest", 16, ACK_MODE) == TRANSMIT_FAIL) { printf("nrf24 failed to send!"); }
-
-  nrf24_CE(1);
-  delay10us(2); //TODO: remove this
-  nrf24_CE(0);
-
-  while(nrf24_transmit_status() == TRANSMIT_IN_PROGRESS) {printf(".");}
-
-
-  printf("\n");
-  nrf24_device(RECEIVER, RESET);
+  // report to nRF24L01
+  nrf24_send_string(_buffer);
 
   // report to serial monitor
   printf(_buffer);

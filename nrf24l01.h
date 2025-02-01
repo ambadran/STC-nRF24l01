@@ -1,20 +1,20 @@
-#ifndef NRF24l01_H
-#define NRF24l01_H
-
-#define HARDWARE_TEST_REGISTER 0x00 // register to write to test hardware
+#ifndef NRF24L01_H
+#define NRF24L01_H
+/*nrf24l01: MSbit to LSbit, LSbyte to MSbyte*/
+#include <stdio.h>
+#include <stdint.h>
 
 #define STARTUP_DELAY                 150             /*in milliseconds*/
 #define POWER_DOWN_DELAY              2
 #define STANDBYI_DELAY                2
-#define PTX_MODE_DELAY                150
 #define PRX_MODE_DELAY                100
 #define ADDRESS_WIDTH_DEFAULT         5               /*address width in bytes, for default value*/
 #define RF_DATARATE_DEFAULT           1000            /*250, 1000, 2000*/
-#define RF_PWR_DEFAULT                0               /*0, -6, -12, -18*/
-#define STATIC_PAYLOAD_WIDTH_DEFAULT  16               /*for static payload mode, configurable between 1 and 32 bytes for PRX device ONLY (RX_PW_Pn, n for data pipe n)(no register for payload length in PTX device)*/
-#define NUMBER_OF_DP_DEFAULT          2               /*number of datapipes, 1 to 6*/ 
-#define RETRANSMIT_DELAY_DEFAULT      1750
-#define RETRANSMIT_COUNT_DEFAULT      8
+#define RF_PWR_DEFAULT                6               /*0, -6, -12, -18*/
+#define STATIC_PAYLOAD_WIDTH_DEFAULT  32               /*for static payload mode, configurable between 1 and 32 bytes for PRX device ONLY (RX_PW_Pn, n for data pipe n)(no register for payload length in PTX device)*/
+#define NUMBER_OF_DP_DEFAULT          1               /*number of datapipes, 1 to 6*/ 
+#define RETRANSMIT_DELAY_DEFAULT      500
+#define RETRANSMIT_COUNT_DEFAULT      2
  
 #define OPEN                          1
 #define CLOSE                         0
@@ -31,7 +31,7 @@
 #define SETUP_AW_REGISTER_DEFAULT     0X03
 #define SETUP_RETR_REGISTER_DEFAULT   0X03
 #define RF_CH_REGISTER_DEFAULT        0X02
-#define RF_SETUP_REGISTER_DEFAULT     0X27 // modified!!
+#define RF_SETUP_REGISTER_DEFAULT     0X0E
 #define STATUS_REGISTER_DEFAULT       0X0E
 #define MAXIMUM_NUMBER_OF_DATAPIPES   6
 
@@ -177,18 +177,34 @@
 #define W_TX_PAYLOAD_NOACK  0XB0              /*used in TX mode, disables AUTOACK on this specific packet. must be first enabled in FEATURE register by setting the EN_DYN_ACK bit. if used, PTX will not wait for ACK and goes directly to standby I*/
 #define NOP_CMD             0XFF              /*might be used to read the status register*/
 
-void nrf24_reset(void);                            
+typedef enum {
+  SENT_FAILED_WRONG_STRING_SIZE,
+  SENT_FAILED_TRANSMIT_FUNC_ERROR,
+  SENT_SUCCESS
+} NRF24_SEND_STRING_STATUS;
+
+void delay_function(uint32_t duration_ms);
+void SPI_Initializer(void);
+void pinout_Initializer(void);
+void nrf24_SPI(uint8_t input);
+uint8_t SPI_send_command(uint8_t command);
+void nrf24_CE(uint8_t input);
+
+void nrf24_print_internal_register_values(void);
+NRF24_SEND_STRING_STATUS nrf24_send_string(uint8_t* string);
+
+void nrf24_reset();                            
 void nrf24_device(uint8_t device_mode, uint8_t reset_state);
 uint8_t SPI_send_command(uint8_t command);          
-void pinout_Initializer(void);         
-void SPI_Initializer(void);
+void pinout_Initializer();         
+void SPI_Initializer();
 void nrf24_mode(uint8_t mode);
 void nrf24_SPI(uint8_t input);
 void nrf24_CE(uint8_t input);
 void nrf24_address_width(uint8_t address_width);
 void nrf24_rf_channel(uint8_t rf_channel);
 void nrf24_rf_power(uint8_t rf_power);
-void nrf24_rf_datarate(uint16_t rf_datarate);
+void nrf24_rf_datarate(uint8_t rf_datarate);
 void nrf24_read(uint8_t address, uint8_t *value, uint8_t data_length, uint8_t spi_state);
 void nrf24_write(uint8_t address, uint8_t *value, uint8_t data_length, uint8_t spi_state);
 void delay_function(uint32_t duration_ms);
@@ -196,17 +212,16 @@ void nrf24_crc_configuration(uint8_t crc_enable, uint8_t crc_encoding_scheme);
 void nrf24_interrupt_mask(uint8_t rx_mask, uint8_t tx_mask, uint8_t max_rt_mask);
 void nrf24_datapipe_enable(uint8_t number_of_datapipes);
 void nrf24_prx_static_payload_width(uint8_t static_payload_width, uint8_t number_of_datapipes);
-void nrf24_datapipe_address_configuration(void);
+void nrf24_datapipe_address_configuration();
 void nrf24_datapipe_ptx(uint8_t datapipe_number);
 void nrf24_automatic_retransmit_setup(uint16_t delay_time, uint8_t retransmit_count);
 void nrf24_auto_acknowledgment_setup(uint8_t datapipe);
 void nrf24_dynamic_payload(uint8_t state, uint8_t datapipe);
 void nrf24_device(uint8_t device_mode, uint8_t reset_state);
-void nrf24_print_internal_register_values(void);
 void nrf24_send_payload(uint8_t *payload, uint8_t payload_width);
-uint8_t nrf24_receive(uint8_t *payload, uint8_t payload_width) __reentrant;
+uint8_t nrf24_receive(uint8_t *payload, uint8_t payload_width);
 uint8_t nrf24_transmit(uint8_t *payload, uint8_t payload_width, uint8_t acknowledgement_state);
-uint8_t nrf24_transmit_status(void);
+uint8_t nrf24_transmit_status();
 void nrf24_dynamic_ack(uint8_t state);
 uint8_t nrf24_flush(uint8_t fifo_select);
 
