@@ -315,8 +315,7 @@ uint8_t nrf24_flush(uint8_t fifo_select)
 }
 
 /*must be called atleast once, which happens with calling nrf24_device function*/
-void nrf24_reset()
-{
+void nrf24_reset() {
   reset_flag = 1;
   nrf24_CE(CE_OFF);
   register_new_value = CONFIG_REGISTER_DEFAULT;
@@ -350,8 +349,8 @@ void nrf24_reset()
   nrf24_rf_power(RF_PWR_DEFAULT);
   nrf24_rf_channel(RF_CHANNEL_DEFAULT);
   nrf24_datapipe_enable(NUMBER_OF_DP_DEFAULT);
-  /*nrf24_datapipe_address_configuration();*/
-  /*nrf24_datapipe_ptx(1);*/
+  nrf24_datapipe_address_configuration();
+  nrf24_datapipe_ptx(1);
   nrf24_prx_static_payload_width(STATIC_PAYLOAD_WIDTH_DEFAULT, NUMBER_OF_DP_DEFAULT);
   nrf24_automatic_retransmit_setup(RETRANSMIT_DELAY_DEFAULT, RETRANSMIT_COUNT_DEFAULT);
   nrf24_auto_acknowledgment_setup(NUMBER_OF_DP_DEFAULT);

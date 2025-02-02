@@ -179,7 +179,8 @@ LINE_STATUS terminal_execute_line(char* line) {
       break;
 
     case COMMAND_GET_CURRENT_TIME:
-      report("Time: %lu\n", get_current_time());
+      /* report("Time: %lu\n", get_current_time()); */
+      report("From STC\n"); //TODO: JUST FOR SHOWING
       break;
 
     default:

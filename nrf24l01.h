@@ -10,7 +10,7 @@
 #define PRX_MODE_DELAY                100
 #define ADDRESS_WIDTH_DEFAULT         5               /*address width in bytes, for default value*/
 #define RF_DATARATE_DEFAULT           1000            /*250, 1000, 2000*/
-#define RF_PWR_DEFAULT                6               /*0, -6, -12, -18*/
+#define RF_PWR_DEFAULT                0               /*0, -6, -12, -18*/
 #define STATIC_PAYLOAD_WIDTH_DEFAULT  32               /*for static payload mode, configurable between 1 and 32 bytes for PRX device ONLY (RX_PW_Pn, n for data pipe n)(no register for payload length in PTX device)*/
 #define NUMBER_OF_DP_DEFAULT          1               /*number of datapipes, 1 to 6*/ 
 #define RETRANSMIT_DELAY_DEFAULT      500
