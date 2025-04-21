@@ -13,7 +13,6 @@ typedef enum {
   COMMAND_TEST_INT_READING,
   COMMAND_GET_NRF24_REGISTERS,
   COMMAND_GET_CURRENT_TIME,
-  COMMAND_ECHO,
 } command_type_t;
 
 typedef struct {

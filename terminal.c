@@ -105,6 +105,7 @@ LINE_STATUS terminal_execute_line(char* line) {
         return LINE_FAILED;
     }
 
+
     /* [ Step 2: Identify and Initiate command_t variable] */
     switch(letter) {
 
@@ -145,7 +146,7 @@ LINE_STATUS terminal_execute_line(char* line) {
         break;
 
       default:
-        printf("Command Letter '%c' Not Implemented\n", letter);
+        printf("Command Letter Not Implemented\n");
         return LINE_FAILED;
     }
   }
@@ -171,7 +172,7 @@ LINE_STATUS terminal_execute_line(char* line) {
   switch(command.command_type) {
 
     case COMMAND_TEST_INT_READING:
-      printf("Read INT value: %d\n", int_value);
+      report("Read INT value: %d\n", int_value);
       break;
 
     case COMMAND_GET_NRF24_REGISTERS:
@@ -179,8 +180,8 @@ LINE_STATUS terminal_execute_line(char* line) {
       break;
 
     case COMMAND_GET_CURRENT_TIME:
-      /* report("Time: %lu\n", get_current_time()); */
-      report("From STC\n"); //TODO: JUST FOR SHOWING
+      report("Current Time Passed: %lu\n", get_current_time());
+      /* report("testing!\n"); */
       break;
 
     default:

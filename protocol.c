@@ -25,14 +25,11 @@ static void protocol_read_line(uint8_t (*func)(uint8_t*, uint8_t) __reentrant, u
         line[char_count] = 0; // string termination character, V.IMP for terminal.c to know where the command characters end
         char_count = 0; // reseting to read next command
 
-        printf("\n");
-
         // executing line!
         protocol_execute_line(line);
 
       // throw away whitespaces and control characters
       } else if (c <= ' '){
-        printf(" ");
 
       // buffer overflow
       } else if (char_count >= (LINE_BUFFER_SIZE-1)) {
@@ -43,7 +40,6 @@ static void protocol_read_line(uint8_t (*func)(uint8_t*, uint8_t) __reentrant, u
       // store uart_rx_buffer in line character array
       } else {
 
-        printf("%c", c);
         line[char_count++] = c;
       }
     } while (func(&c, 1) != flag_to_compare_to);
@@ -75,7 +71,6 @@ void protocol_main_loop(void) {
       protocol_read_line(uart_receive_func_ptr, UART_RECEIVE_EMPTY);
 
     } else if (nrf24_receive(nrf_buf, STATIC_PAYLOAD_WIDTH_DEFAULT) != RECEIVE_FIFO_EMPTY) {
-
       do {
         c = *nrf_buf_ptr;
         protocol_read_line(nrf24_receive_func_ptr, RECEIVE_FIFO_EMPTY);
@@ -84,11 +79,9 @@ void protocol_main_loop(void) {
       // resetting for future use
       nrf_buf_ptr = nrf_buf;
       nrf_buf_end = nrf_buf + STATIC_PAYLOAD_WIDTH_DEFAULT;
-
-
- 
     }
 
+    // real-time processing
     report_toggle_led();
 
   }
