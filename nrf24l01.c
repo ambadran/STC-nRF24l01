@@ -170,7 +170,7 @@ NRF24_SEND_STRING_STATUS nrf24_send_string(uint8_t* string) {
     return SENT_FAILED_WRONG_STRING_SIZE;
   }
   strcpy(str_to_send, string);
-  for(int8_t i = (current_payload_width-str_size); i<0 ; i--) {
+  for(int8_t i = (current_payload_width-str_size); i>0 ; i--) {
     str_to_send[str_size+i] = 0x00;
   }
 
